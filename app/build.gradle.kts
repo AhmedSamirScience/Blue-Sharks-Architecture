@@ -1,4 +1,7 @@
+import build.BuildCreator
+import build.BuildDimensions
 import dependencies.defaultLibraries
+
 /**
  * ***build.gradle/build.gradle.kts (app module)***
  *
@@ -88,6 +91,9 @@ android {
      */
     compileSdk = build.BuildConfig.COMPILE_SDK_VERSION
 
+    // ───────────────────────────────────────────────────────────────────────────────
+    // Default Configurations
+    // ───────────────────────────────────────────────────────────────────────────────
     defaultConfig {
         /**
          * defaultConfig {} Block -> This specifies the default configuration for the project.
@@ -175,15 +181,110 @@ android {
         }
     }
 
+    // ───────────────────────────────────────────────────────────────────────────────
+    // Signing Configurations
+    // ───────────────────────────────────────────────────────────────────────────────
+    signingConfigs {
+        /**
+         * Calls the `create` method from `BuildSigning` to define signing configurations.
+         * - `Release` → Used for production releases (signed with a secure keystore).
+         * - `ReleaseExternalQa` → Used for QA releases (separate keystore for testing).
+         * - `Debug` → Used for development and testing (default debug keystore).
+         *
+         * **Why Use `BuildSigning` Instead of Defining Signing Manually?**
+         * - Centralizes signing logic for **better maintainability**.
+         * - Ensures all build types are **properly signed** without duplication.
+         */
+        sigining.BuildSigning.Release(project).create(this)
+        sigining.BuildSigning.ReleaseExternalQa(project).create(this)
+        sigining.BuildSigning.Debug(project).create(this)
+    }
+
+    // ───────────────────────────────────────────────────────────────────────────────
+    // Build Types Configuration
+    // ───────────────────────────────────────────────────────────────────────────────
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        /**
+         * `Release` Build Type:
+         * - Used for **production releases** (uploaded to Google Play Store).
+         * - Enables **ProGuard** to optimize and obfuscate the APK.
+         * - Uses the `RELEASE` signing configuration.
+         */
+        BuildCreator.Release(project).create(this).apply {
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",)
+            signingConfig = signingConfigs.getByName(sigining.SigningTypes.RELEASE)
+        }
+
+        /**
+         * `Debug` Build Type:
+         * - Used for **development and testing**.
+         * - Uses the default **debug keystore**.
+         * - **ProGuard is disabled** to allow debugging.
+         */
+        BuildCreator.Debug(project).create(this).apply {
+            signingConfig = signingConfigs.getByName(sigining.SigningTypes.DEBUG)
+        }
+
+        /**
+         * `ReleaseExternalQa` Build Type:
+         * - Used for **QA testing** before production release.
+         * - Uses a separate QA keystore for **internal testing**.
+         */
+        BuildCreator.ReleaseExternalQa(project).create(this).apply {
+            signingConfig = signingConfigs.getByName(sigining.SigningTypes.RELEASE_EXTERNAL_QA)
         }
     }
+
+    // ───────────────────────────────────────────────────────────────────────────────
+    // Product Flavors Configuration
+    // ───────────────────────────────────────────────────────────────────────────────
+    /**
+     * Defines **flavor dimensions** to categorize product flavors.
+     * - `APP` → Groups app-based flavors (e.g., `Client`, `Driver`).
+     * - `STORE` → Groups store-based flavors (e.g., `Google Play`, `Huawei Store`).
+     */
+    flavorDimensions.add(BuildDimensions.APP)
+    flavorDimensions.add(BuildDimensions.STORE)
+    productFlavors {
+        /**
+         * Defines different **product flavors** to generate multiple APK variants.
+         * - `Google` → Google Play Store distribution.
+         * - `Huawei` → Huawei AppGallery distribution.
+         * - `Client` → Client-side version of the app.
+         * - `Driver` → Driver-side version of the app.
+         *
+         * **Why Use `BuildFlavor` Instead of Defining Flavors Manually?**
+         * - Centralizes flavor logic for **easier maintenance**.
+         * - Ensures **consistent naming and configurations**.
+         */
+        BuildFlavor.Google.create(this)
+        BuildFlavor.Huawei.create(this)
+        BuildFlavor.Client.create(this)
+        BuildFlavor.Driver.create(this)
+    }
+
+    // ───────────────────────────────────────────────────────────────────────────────
+    // Build Features Configuration
+    // ───────────────────────────────────────────────────────────────────────────────
+    buildFeatures {
+        /**
+         * Enables the generation of the `BuildConfig` class.
+         * - `BuildConfig` is an automatically generated class that contains constants defined in `build.gradle.kts`.
+         * - **Example Usage:**
+         *   ```kotlin
+         *   val appId = BuildConfig.APPLICATION_ID
+         *   val version = BuildConfig.VERSION_NAME
+         *   ```
+         * - **Why Enable `buildConfig`?**
+         *   - Stores **app metadata** (e.g., version name, API keys).
+         *   - Improves **build-time optimizations** by enabling conditional logic.
+         */
+        buildConfig = true
+    }
+
+    // ───────────────────────────────────────────────────────────────────────────────
+    // Java Compilation Options
+    // ───────────────────────────────────────────────────────────────────────────────
     compileOptions {
         /**
          * compileOptions {} Block -> This specifies options related to compiling your Java code.
@@ -192,13 +293,37 @@ android {
         /**
          *  specifies the Java version that your code uses.
          */
+        /**
+         * Specifies the **Java source compatibility version**.
+         * - Defines the Java language level your code is **written in**.
+         * - **Example:**
+         *   - `JavaVersion.VERSION_17` → Allows Java 17 features.
+         *   - `JavaVersion.VERSION_11` → Uses Java 11 features.
+         * - **Why Set `sourceCompatibility`?**
+         *   - Ensures **new Java features** (e.g., Records, Sealed Classes) are available.
+         *   - Improves **readability** and **efficiency** of code.
+         */
         sourceCompatibility = JavaVersion.VERSION_17
 
         /**
          * specifies the Java runtime version that your code will be executed on.
          */
+        /**
+         * Specifies the **Java runtime compatibility version**.
+         * - Defines the **JVM version** that will execute the compiled Java code.
+         * - **Example:**
+         *   - `JavaVersion.VERSION_17` → Code runs on **JVM 17**.
+         *   - `JavaVersion.VERSION_11` → Code runs on **JVM 11**.
+         * - **Why Set `targetCompatibility`?**
+         *   - Ensures your compiled code runs **on a specific JVM version**.
+         *   - Prevents compatibility issues when running the app on different environments.
+         */
         targetCompatibility = JavaVersion.VERSION_17
     }
+
+    // ───────────────────────────────────────────────────────────────────────────────
+    // Kotlin Compilation Options
+    // ───────────────────────────────────────────────────────────────────────────────
     kotlinOptions {
         /**
          * kotlinOptions {} Block
@@ -218,12 +343,38 @@ android {
          *
          * Here is another reference : https://vtsen.hashnode.dev/android-vs-desktop-app-kotlin-compilation-process
          */
+        /**
+         * Specifies **Kotlin JVM Target Version**.
+         * - Determines the Java Virtual Machine (JVM) version for compiled Kotlin code.
+         * - **Example:**
+         *   ```kotlin
+         *   kotlinOptions {
+         *       jvmTarget = "17"
+         *   }
+         *   ```
+         * - **Why Set `jvmTarget`?**
+         *   - Compiles Kotlin code into **bytecode compatible** with the specified JVM version.
+         *   - Enables **Kotlin interoperability** with Java 17 features.
+         *   - Prevents compatibility issues when running **Kotlin-Java mixed projects**.
+         * - **More Info on Kotlin Compilation:**
+         *   - https://vtsen.hashnode.dev/android-vs-desktop-app-kotlin-compilation-process
+         */
+
         jvmTarget = "17"
     }
+
+    // ───────────────────────────────────────────────────────────────────────────────
+    // APK Packaging Options
+    // ───────────────────────────────────────────────────────────────────────────────
     packaging {
         /**
          * packagingOptions {} Block
          * This specifies certain resources to exclude from the Android package - APK or Android bundle files.
+         */
+        /**
+         * `packagingOptions {}` - Defines **resource exclusion rules**.
+         * - Prevents unnecessary resources from being included in the final APK/AAB.
+         * - **Reduces app size** and improves **build performance**.
          */
 
         resources {
@@ -235,6 +386,23 @@ android {
              * META-INF/LGPL2.1
              *
              * The purpose is to reduce the Android package file size.
+             */
+            /**
+             * **Excludes Unnecessary License Files**:
+             * - META-INF/AL2.0 → Apache License 2.0
+             * - META-INF/LGPL2.1 → GNU Lesser General Public License
+             * - **Why Exclude These Files?**
+             *   - They **increase APK size** but aren't needed in runtime.
+             *   - They **don't affect app behavior** if removed.
+             * - **Example Before Exclusion:**
+             *   ```plaintext
+             *   APK Size: 50MB
+             *   Contains: META-INF/AL2.0, META-INF/LGPL2.1
+             *   ```
+             * - **Example After Exclusion:**
+             *   ```plaintext
+             *   APK Size: 49MB (1MB reduction)
+             *   ```
              */
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
@@ -251,5 +419,22 @@ dependencies {
      * Note: If you have unused dependencies in your Android project, it is better to remove them. This can help reduce the size of the Android package (APK/ Android bundle) and improve build times.
      */
 
+    /**
+     * `dependencies {}` Block
+     * - This declares the **external libraries and dependencies** needed in your project.
+     * - Dependencies can be:
+     *   - **implementation** → Used by the app at runtime.
+     *   - **api** → Exposes the library to dependent modules.
+     *   - **testImplementation** → Used for unit testing.
+     *   - **androidTestImplementation** → Used for Android instrumented tests.
+     *
+     * **Why Manage Dependencies Here?**
+     * - **Centralizes** all dependencies for maintainability.
+     * - **Prevents duplication** across modules.
+     * - **Improves build performance** by reducing unused libraries.
+     *
+     * **Best Practice:**
+     * - Remove unused dependencies to **reduce APK size** and **improve build times**.
+     */
     dependencies.defaultLibraries()
 }
