@@ -1,39 +1,70 @@
-import dependencies.defaultLibraries
+// ───────────────────────────────────────────────────────────────────────────────
+// Import Statements
+// ───────────────────────────────────────────────────────────────────────────────
+import dependencies.defaultLibraries // Imports a function to add default dependencies.
+import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
+// ───────────────────────────────────────────────────────────────────────────────
+// Apply Plugins
+// ───────────────────────────────────────────────────────────────────────────────
 plugins {
+    /**
+     * `ANDROID_LIBRARY` - Applies the Android Library plugin.
+     * - Required for building **Android libraries (`.aar` files)**.
+     * - Unlike an application module, it **does not generate an APK**.
+     * - Example usage:
+     *   ```kotlin
+     *   plugins {
+     *       id("com.android.library")
+     *   }
+     *   ```
+     */
     id(plugs.BuildPlugins.ANDROID_LIBRARY)
-    id(plugs.BuildPlugins.KOTLIN_ANDROID)
 }
 
+/**
+ * `apply<SharedLibraryGradlePlugin>()`
+ * - Applies the **custom Gradle plugin** (`SharedLibraryGradlePlugin.kt`).
+ * - Automates the setup of **build types, signing, flavors, and Kotlin options**.
+ * - Ensures **consistent configurations** across all library modules.
+ * - Example usage:
+ *   ```kotlin
+ *   apply<SharedLibraryGradlePlugin>()
+ *   ```
+ */
+apply<SharedLibraryGradlePlugin>()
+
+// ───────────────────────────────────────────────────────────────────────────────
+// Android Configuration
+// ───────────────────────────────────────────────────────────────────────────────
 android {
+    /**
+     * **Namespace Declaration**
+     * - Specifies the **unique package name** for the library.
+     * - Helps **prevent class name conflicts** between different libraries.
+     * - Example usage:
+     *   ```kotlin
+     *   namespace = "com.example.my_library"
+     *   ```
+     */
     namespace = "com.samir.blue_sharks_architectue.login"
-    compileSdk = 34
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
 }
 
+// ───────────────────────────────────────────────────────────────────────────────
+// Dependency Management
+// ───────────────────────────────────────────────────────────────────────────────
 dependencies {
-   defaultLibraries()
+    /**
+     * `defaultLibraries()`
+     * - Calls a function that **automatically adds required dependencies**.
+     * - Reduces manual dependency management.
+     * - Example usage in `Dependencies.kt`:
+     *   ```kotlin
+     *   fun DependencyHandler.defaultLibraries() {
+     *       implementation("androidx.core:core-ktx:1.9.0")
+     *       implementation("androidx.appcompat:appcompat:1.6.1")
+     *   }
+     *   ```
+     */
+    defaultLibraries()
 }
