@@ -1,4 +1,4 @@
-package com.samir.blue_sharks_architectue
+package com.samir.bluearchitectue
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
