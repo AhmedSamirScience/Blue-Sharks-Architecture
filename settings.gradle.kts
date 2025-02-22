@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Blue_Sharks_Architectue"
 include(":app")
- 
+include(":feature:login")

@@ -72,7 +72,7 @@ fun DependencyHandler.androidx() {
 }
 
 fun DependencyHandler.loginModule() {
-    moduleImplementation(project(":features:login"))
+    moduleImplementation(project(":feature:login"))
 }
 
 fun DependencyHandler.dataModule() {

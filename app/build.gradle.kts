@@ -1,6 +1,7 @@
 import build.BuildCreator
 import build.BuildDimensions
 import dependencies.defaultLibraries
+import dependencies.loginModule
 
 /**
  * ***build.gradle/build.gradle.kts (app module)***
@@ -437,4 +438,5 @@ dependencies {
      * - Remove unused dependencies to **reduce APK size** and **improve build times**.
      */
     dependencies.defaultLibraries()
+    dependencies.loginModule()
 }
