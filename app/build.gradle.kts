@@ -17,8 +17,25 @@ plugins {
      * - It doesn't need to explicitly call version() because it has already been specified in the root project.
      * - apply(true) is also not needed because by default it is true.
      */
-    id(plugs.BuildPlugins.ANDROID_APPLICATION)  //plugin to build Android app (e.g. default app module) (AGP)
-    id(plugs.BuildPlugins.KOTLIN_ANDROID) //plugin to enable Kotlin support in your project.
+    id(plugs.BuildPlugins.ANDROID_APPLICATION) // plugin to build Android app (e.g. default app module) (AGP)
+    id(plugs.BuildPlugins.KOTLIN_ANDROID) // plugin to enable Kotlin support in your project.
+
+    /**
+     * Applies the **Ktlint Gradle Plugin** to enforce Kotlin coding standards.
+     *
+     * - **Purpose:** Ensures all Kotlin code follows a consistent style guide.
+     * - **Why Use Ktlint?**
+     *   - Prevents inconsistent formatting in the codebase.
+     *   - Improves code readability and maintainability.
+     *   - Automatically formats code when running `ktlintFormat`.
+     * - **How It Works:**
+     *   - **`ktlintCheck`** → Runs ktlint to check for formatting violations.
+     *   - **`ktlintFormat`** → Fixes auto-correctable formatting issues.
+     * - **Example Usage:**
+     *   - Run `./gradlew ktlintCheck` to find violations.
+     *   - Run `./gradlew ktlintFormat` to auto-fix them.
+     */
+    id(plugs.BuildPlugins.KTLINT)
 }
 
 android {
