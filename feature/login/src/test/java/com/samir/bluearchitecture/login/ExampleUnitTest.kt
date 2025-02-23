@@ -1,4 +1,4 @@
-package com.samir.bluearchitectue.login
+package com.samir.bluearchitecture.login
 
 import org.junit.Test
 

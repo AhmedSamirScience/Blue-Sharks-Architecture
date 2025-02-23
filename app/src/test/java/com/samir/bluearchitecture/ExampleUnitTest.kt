@@ -1,4 +1,4 @@
-package com.samir.bluearchitectue
+package com.samir.bluearchitecture
 
 import org.junit.Test
 

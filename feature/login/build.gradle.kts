@@ -47,7 +47,7 @@ android {
      *   namespace = "com.example.my_library"
      *   ```
      */
-    namespace = "com.samir.bluearchitectue.login"
+    namespace = "com.samir.bluearchitecture.login"
 }
 
 // ───────────────────────────────────────────────────────────────────────────────

@@ -17,7 +17,7 @@ object BuildConfig {
      *   applicationId = BuildConfig.APP_ID
      *   ```
      */
-    const val APP_ID = "com.samir.bluearchitectue"
+    const val APP_ID = "com.samir.bluearchitecture"
 
     /**
      * `MIN_SDK_VERSION` - Defines the **minimum API level** required to install and run the app.

@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Blue_Sharks_Architectue"
+rootProject.name = "bluearchitecture"
 include(":app")
 include(":feature:login")

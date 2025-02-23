@@ -1,4 +1,4 @@
-package com.samir.bluearchitectue
+package com.samir.bluearchitecture
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
