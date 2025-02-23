@@ -26,7 +26,6 @@ android {
      * android {} Block -> This defines the properties specific to the Android platform.
      */
 
-
     /**
      * namespace -> namespace for this project, where all the generated code is based on this namespace.
      */
@@ -100,7 +99,6 @@ android {
          * defaultConfig {} Block -> This specifies the default configuration for the project.
          */
 
-
         /**
          * applicationId -> Unique ID that is used to identify your app on a device or in Google Play Store.
          */
@@ -158,25 +156,25 @@ android {
         targetSdk = build.BuildConfig.TARGET_SDK_VERSION
 
         /**
-        * versionCode - an integer value that represents the version of your app
-        */
+         * versionCode - an integer value that represents the version of your app
+         */
         versionCode = release.ReleaseConfig.VERSION_CODE
 
         /**
-        * versionName - string value that represents the user-visible version of your app.
-        * It can be any string but is usually based on <major>.<minor>.<point> version format.
-        * It doesn't need to match the version code.
-        */
+         * versionName - string value that represents the user-visible version of your app.
+         * It can be any string but is usually based on <major>.<minor>.<point> version format.
+         * It doesn't need to match the version code.
+         */
         versionName = release.ReleaseConfig.VERSION_NAME
 
         /**
-        * testInstrumentationRunner - specify the library to run the instrumented test
-        */
+         * testInstrumentationRunner - specify the library to run the instrumented test
+         */
         testInstrumentationRunner = tests.TestBuildConfig.TEST_INSTRUMENTATION_RUNNER
 
         /**
-        * vectorDrawable - set "useSupportLibrary = true" to enable the vector drawable support for your app
-        */
+         * vectorDrawable - set "useSupportLibrary = true" to enable the vector drawable support for your app
+         */
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -212,7 +210,7 @@ android {
          * - Uses the `RELEASE` signing configuration.
          */
         BuildCreator.Release(project).create(this).apply {
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",)
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName(sigining.SigningTypes.RELEASE)
         }
 
