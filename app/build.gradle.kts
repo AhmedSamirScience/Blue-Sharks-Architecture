@@ -36,6 +36,21 @@ plugins {
      *   - Run `./gradlew ktlintFormat` to auto-fix them.
      */
     id(plugs.BuildPlugins.KTLINT)
+
+    /**
+     * Spotless Plugin
+     * - Spotless is a code formatter that ensures consistent coding styles across the project.
+     * - It supports multiple file types, including Kotlin, Java, XML, and more.
+     * - Helps enforce clean code standards by automatically formatting source files.
+     *
+     * 🔹 Why Use Spotless?
+     * - 🚀 Automates code formatting to save time.
+     * - 🔄 Ensures uniform coding styles in large projects.
+     * - ✅ Prevents unnecessary formatting-related changes in version control.
+     *
+     * Official Documentation: https://github.com/diffplug/spotless
+     */
+    id(plugs.BuildPlugins.SPOTLESS)
 }
 
 android {

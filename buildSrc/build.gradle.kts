@@ -69,6 +69,22 @@ dependencies {
      */
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
 
+    /**
+     * - Spotless is a powerful code formatting tool for Gradle projects.
+     * - It ensures consistent code style by automatically formatting source files.
+     * - Supports multiple languages, including Kotlin, Java, XML, and more.
+     *
+     * Why Use Spotless?
+     * - 🚀 Automatically formats code to maintain a clean and uniform style.
+     * - 🛠 Integrates with Kotlin, Java, XML, and other languages.
+     * - 🔄 Helps enforce coding standards and eliminates manual formatting efforts.
+     * - ✅ Prevents formatting-related issues in pull requests.
+     *
+     * Version: 6.22.0 → Provides the latest features and bug fixes.
+     * Official Documentation: https://github.com/diffplug/spotless
+     */
+    implementation("com.diffplug.spotless:spotless-plugin-gradle:6.22.0")
+
 
 
 }
