@@ -1,118 +1,62 @@
-<h1>Spotless & Prettier Integration</h1>
+<h1>Gradle Versions Plugin Integration</h1>
 
-<p>This repository integrates <strong>Spotless</strong> and <strong>Prettier</strong> to ensure consistent code formatting across the project.</p>
-<p>These tools help maintain clean, readable, and standardized code automatically.</p>
+<p>The <strong>Gradle Versions Plugin</strong> is a tool that helps manage and update dependencies in a Gradle-based project. It provides a way to check for outdated dependencies and ensures that your project remains up to date with the latest stable versions.</p>
 
-<hr>
-
-<h2>📌 What is Spotless?</h2>
-
-<p><strong>Spotless</strong> is a powerful Gradle plugin for formatting code automatically.</p>
-<p>It helps enforce code style rules for various languages like <strong>Kotlin, Java, XML, Gradle scripts</strong>, and more.</p>
-
-<h3>✅ Features of Spotless:</h3>
+<h2>📌 Plugin Details</h2>
 <ul>
-    <li>Formats Kotlin, Java, XML, and Gradle files.</li>
-    <li>Integrates with <strong>Ktlint</strong> for Kotlin formatting.</li>
-    <li>Supports Google Java Format, Eclipse Formatter, and more.</li>
-    <li>Removes trailing whitespaces and ensures proper indentation.</li>
-    <li>Enforces line endings and file-ending newlines.</li>
+    <li><strong>Library:</strong> <code>com.github.ben-manes:gradle-versions-plugin</code></li>
+    <li><strong>Version:</strong> <code>0.51.0</code></li>
+    <li><strong>Purpose:</strong> Automatically checks for updates of dependencies in a Gradle project.</li>
+    <li><strong>Usage Scope:</strong> Works with Kotlin and Java projects.</li>
 </ul>
 
-<h3>🛠️ How Spotless Works:</h3>
-<p>Spotless applies formatting rules on specific file types and ensures consistency across the codebase.</p>
-<p>It uses <code>spotlessCheck</code> to verify formatting and <code>spotlessApply</code> to auto-fix formatting issues.</p>
-
-<hr>
-
-<h2>📌 What is Prettier?</h2>
-
-<p><strong>Prettier</strong> is a widely used opinionated code formatter that ensures consistent style across different file types.</p>
-<p>It supports JavaScript, TypeScript, HTML, XML, and more.</p>
-
-<h3>✅ Features of Prettier:</h3>
+<h2>🔧 How It Works</h2>
+<p>The Gradle Versions Plugin analyzes all declared dependencies and determines if a newer version is available. It categorizes updates into:</p>
 <ul>
-    <li>Automatically formats code for better readability.</li>
-    <li>Supports multiple languages including JSON, YAML, and HTML.</li>
-    <li>Works with plugins like <code>@prettier/plugin-xml</code> for XML formatting.</li>
-    <li>Eliminates unnecessary spaces and enforces proper indentation.</li>
-    <li>Prevents formatting debates by following a unified style.</li>
+    <li><strong>Up-to-date</strong> - Dependencies that are on their latest stable version.</li>
+    <li><strong>Gradle Updates</strong> - Suggests updates for the Gradle wrapper.</li>
+    <li><strong>Exceeding the Latest Stable</strong> - When a dependency is newer than its stable release.</li>
 </ul>
 
-<hr>
+<h2>🛠️ Installation</h2>
+<p>To enable the Gradle Versions Plugin in your project, add the following configuration:</p>
 
-<h2>🚀 Configuration in Gradle</h2>
-
-<h3>🔧 Applying Spotless Plugin</h3>
-<pre><code>
+<pre><code class="language-kotlin">// build.gradle.kts (Root or Module level)
 plugins {
-    id("com.diffplug.spotless") version "6.22.0"
+    id("com.github.ben-manes.versions") version "0.51.0"
 }
 </code></pre>
 
-<h3>🎯 Spotless Configuration</h3>
-<pre><code>
-spotless {
-    format("xml") {
-        target("**/*.xml")
-        prettier(mapOf("prettier" to "2.7.1", "@prettier/plugin-xml" to "2.2.0"))
-            .config(mapOf(
-                "parser" to "xml",
-                "tabWidth" to 4,
-                "printWidth" to 80
-            ))
-        indentWithSpaces(4)
-        trimTrailingWhitespace()
-        endWithNewline()
-    }
+<p>Or, if using a centralized <code>buildSrc</code> approach:</p>
+<pre><code class="language-kotlin">id(plugs.BuildPlugins.UPDATE_DEPS_VERSIONS)</code></pre>
 
-    kotlin {
-        target("**/*.kt")
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        ktlint("0.49.0")
-            .userData(mapOf("android" to "true", "max_line_length" to "120"))
-    }
+<h2>🚀 Running the Dependency Update Check</h2>
+<p>Once installed, you can check for outdated dependencies by running:</p>
 
-    java {
-        target("**/*.java")
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        googleJavaFormat()
-    }
-}
+<pre><code>./gradlew dependencyUpdates</code></pre>
+
+<p>This will generate a report showing available updates for dependencies and Gradle itself.</p>
+
+<h2>📄 Example Output</h2>
+<pre><code>Task :dependencyUpdates
+The following dependencies have newer versions:
+- org.jetbrains.kotlin:kotlin-stdlib [1.8.10 -> 1.9.0]
+- androidx.core:core-ktx [1.6.0 -> 1.7.0]
 </code></pre>
 
-<hr>
+<h2>🔍 Additional Features</h2>
+<ul>
+    <li>Filters pre-release versions (<code>--revision=release</code>)</li>
+    <li>Outputs report in JSON or XML format for CI/CD integration</li>
+    <li>Can ignore specific dependencies from being updated</li>
+</ul>
 
-<h2>⚡ Running Spotless</h2>
+<h2>🎯 Why Use This Plugin?</h2>
+<ul>
+    <li>Reduces manual effort in tracking updates.</li>
+    <li>Ensures that security patches and bug fixes are applied.</li>
+    <li>Helps maintain project stability by providing update insights.</li>
+</ul>
 
-<table>
-    <thead>
-        <tr>
-            <th>Command</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>./gradlew spotlessCheck</code></td>
-            <td>Checks if code is formatted correctly.</td>
-        </tr>
-        <tr>
-            <td><code>./gradlew spotlessApply</code></td>
-            <td>Auto-formats the code.</td>
-        </tr>
-    </tbody>
-</table>
-
-<hr>
-
-<h2>📌 Conclusion</h2>
-
-<p>Integrating <strong>Spotless</strong> and <strong>Prettier</strong> ensures a clean and standardized codebase.</p>
-<p>It helps maintain code quality, enforces best practices, and saves time spent on manual formatting.</p>
-
-<h2>🚀 Happy Coding!</h2>
+<h2>📚 Learn More</h2>
+<p>For more details, visit the official repository: <a href="https://github.com/ben-manes/gradle-versions-plugin">Gradle Versions Plugin</a>.</p>
