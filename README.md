@@ -1,118 +1,156 @@
-<h1>Spotless & Prettier Integration</h1>
+<h1>🔍 Detekt - Static Code Analysis for Kotlin</h1>
 
-<p>This repository integrates <strong>Spotless</strong> and <strong>Prettier</strong> to ensure consistent code formatting across the project.</p>
-<p>These tools help maintain clean, readable, and standardized code automatically.</p>
+<p>
+    <strong>Detekt</strong> is a powerful **static code analysis tool** designed for Kotlin projects. It helps enforce best coding practices by identifying **code smells, complexity issues, performance bottlenecks, and potential security risks**.
+</p>
 
-<hr>
-
-<h2>📌 What is Spotless?</h2>
-
-<p><strong>Spotless</strong> is a powerful Gradle plugin for formatting code automatically.</p>
-<p>It helps enforce code style rules for various languages like <strong>Kotlin, Java, XML, Gradle scripts</strong>, and more.</p>
-
-<h3>✅ Features of Spotless:</h3>
+<h2>📌 Why Use Detekt?</h2>
 <ul>
-    <li>Formats Kotlin, Java, XML, and Gradle files.</li>
-    <li>Integrates with <strong>Ktlint</strong> for Kotlin formatting.</li>
-    <li>Supports Google Java Format, Eclipse Formatter, and more.</li>
-    <li>Removes trailing whitespaces and ensures proper indentation.</li>
-    <li>Enforces line endings and file-ending newlines.</li>
+    <li><strong>Improves Code Quality:</strong> Detects common issues like long functions, nested complexity, and unused code.</li>
+    <li><strong>Prevents Code Smells:</strong> Highlights bad coding practices and potential refactoring areas.</li>
+    <li><strong>CI/CD Integration:</strong> Ensures code consistency in automated pipelines.</li>
+    <li><strong>Custom Rule Support:</strong> Allows the creation of project-specific static analysis rules.</li>
+    <li><strong>Multiple Report Formats:</strong> Generates reports in **HTML, XML, JSON, and SARIF**.</li>
+    <li><strong>Configurable:</strong> Can be fully customized with a `detekt.yml` configuration file.</li>
 </ul>
 
-<h3>🛠️ How Spotless Works:</h3>
-<p>Spotless applies formatting rules on specific file types and ensures consistency across the codebase.</p>
-<p>It uses <code>spotlessCheck</code> to verify formatting and <code>spotlessApply</code> to auto-fix formatting issues.</p>
+<h2>🚀 Installation & Setup</h2>
 
-<hr>
-
-<h2>📌 What is Prettier?</h2>
-
-<p><strong>Prettier</strong> is a widely used opinionated code formatter that ensures consistent style across different file types.</p>
-<p>It supports JavaScript, TypeScript, HTML, XML, and more.</p>
-
-<h3>✅ Features of Prettier:</h3>
-<ul>
-    <li>Automatically formats code for better readability.</li>
-    <li>Supports multiple languages including JSON, YAML, and HTML.</li>
-    <li>Works with plugins like <code>@prettier/plugin-xml</code> for XML formatting.</li>
-    <li>Eliminates unnecessary spaces and enforces proper indentation.</li>
-    <li>Prevents formatting debates by following a unified style.</li>
-</ul>
-
-<hr>
-
-<h2>🚀 Configuration in Gradle</h2>
-
-<h3>🔧 Applying Spotless Plugin</h3>
+<h3>1️⃣ Apply Detekt Plugin in <code>build.gradle.kts</code></h3>
 <pre><code>
 plugins {
-    id("com.diffplug.spotless") version "6.22.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.3"
 }
 </code></pre>
 
-<h3>🎯 Spotless Configuration</h3>
+<h3>2️⃣ Using <code>buildSrc</code></h3>
 <pre><code>
-spotless {
-    format("xml") {
-        target("**/*.xml")
-        prettier(mapOf("prettier" to "2.7.1", "@prettier/plugin-xml" to "2.2.0"))
-            .config(mapOf(
-                "parser" to "xml",
-                "tabWidth" to 4,
-                "printWidth" to 80
-            ))
-        indentWithSpaces(4)
-        trimTrailingWhitespace()
-        endWithNewline()
-    }
+id(plugs.BuildPlugins.DETEKT)
+</code></pre>
 
-    kotlin {
-        target("**/*.kt")
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        ktlint("0.49.0")
-            .userData(mapOf("android" to "true", "max_line_length" to "120"))
-    }
+<h3>3️⃣ Add Dependency</h3>
+<pre><code>
+dependencies {
+    implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.3")
+}
+</code></pre>
 
-    java {
-        target("**/*.java")
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        googleJavaFormat()
+<h2>⚙️ Configuration</h2>
+<p>
+    Detekt provides a **default configuration**, but you can customize it by generating a <code>detekt.yml</code> file.
+</p>
+
+<h3>Generate Default Configuration</h3>
+<pre><code>
+./gradlew detektGenerateConfig
+</code></pre>
+
+<h3>Modify <code>detekt.yml</code></h3>
+<p>Enable or disable specific rules in your project:</p>
+
+<pre><code>
+complexity:
+  TooManyFunctions:
+    active: true
+    threshold: 10  # Maximum number of functions allowed in a class
+</code></pre>
+
+<h2>📊 Running Detekt</h2>
+
+<h3>1️⃣ Run Detekt as a Gradle Task</h3>
+<pre><code>
+./gradlew detekt
+</code></pre>
+
+<h3>2️⃣ Run via CLI</h3>
+<pre><code>
+detekt --input src --config detekt.yml
+</code></pre>
+
+<h2>📜 Report Generation</h2>
+<p>
+    Detekt can generate reports in multiple formats to visualize detected issues.
+</p>
+
+<h3>Enable Report Generation in <code>build.gradle.kts</code></h3>
+<pre><code>
+detekt {
+    reports {
+        xml.required.set(true)   // XML format (used in CI/CD)
+        html.required.set(true)  // User-friendly HTML format
+        sarif.required.set(true) // SARIF format (used by GitHub)
     }
 }
 </code></pre>
 
-<hr>
+<h3>Example HTML Report</h3>
+<p>
+    After running Detekt, you can find an **HTML report** inside the <code>build/reports/detekt</code> folder.
+</p>
 
-<h2>⚡ Running Spotless</h2>
+<h2>🔄 Auto-correcting Issues</h2>
+<p>Some minor issues can be automatically fixed using the <code>--auto-correct</code> flag:</p>
+<pre><code>
+./gradlew detekt --auto-correct
+</code></pre>
 
-<table>
-    <thead>
-        <tr>
-            <th>Command</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>./gradlew spotlessCheck</code></td>
-            <td>Checks if code is formatted correctly.</td>
-        </tr>
-        <tr>
-            <td><code>./gradlew spotlessApply</code></td>
-            <td>Auto-formats the code.</td>
-        </tr>
-    </tbody>
-</table>
+<h2>✅ CI/CD Integration</h2>
+<p>Detekt can be integrated into **GitHub Actions, GitLab CI, Jenkins, and other CI/CD pipelines**.</p>
 
-<hr>
+<h3>GitHub Actions Example</h3>
+<pre><code>
+name: Detekt Analysis
+on: [push, pull_request]
+jobs:
+  detekt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Run Detekt
+        run: ./gradlew detekt
+</code></pre>
 
-<h2>📌 Conclusion</h2>
+<h2>🔎 Writing Custom Detekt Rules</h2>
+<p>
+    If the default rules are not enough, you can create custom **Detekt rules** to match your project’s requirements.
+</p>
 
-<p>Integrating <strong>Spotless</strong> and <strong>Prettier</strong> ensures a clean and standardized codebase.</p>
-<p>It helps maintain code quality, enforces best practices, and saves time spent on manual formatting.</p>
+<h3>Example: Preventing <code>println</code> Statements</h3>
+<pre><code>
+class NoPrintStatement(config: Config) : Rule(config) {
+    override val issue = Issue(
+        id = "NoPrintStatement",
+        severity = Severity.Warning,
+        description = "Avoid using System.out.println",
+        debt = Debt.FIVE_MINS
+    )
 
-<h2>🚀 Happy Coding!</h2>
+    override fun visitCallExpression(expression: KtCallExpression) {
+        if (expression.text.contains("println")) {
+            report(CodeSmell(issue, Entity.from(expression), "Use a logger instead of println"))
+        }
+    }
+}
+</code></pre>
+
+<h2>📌 Best Practices</h2>
+<ul>
+    <li>Run Detekt as part of your **pre-commit hook** to enforce code quality.</li>
+    <li>Regularly update **detekt.yml** to refine rules as your project evolves.</li>
+    <li>Combine **Detekt with Spotless** for automatic formatting.</li>
+    <li>Use **Detekt + CI/CD** to maintain a clean and efficient codebase.</li>
+</ul>
+
+<h2>📌 Useful Resources</h2>
+<ul>
+    <li><a href="https://detekt.dev/">Official Detekt Documentation</a></li>
+    <li><a href="https://github.com/detekt/detekt">Detekt GitHub Repository</a></li>
+</ul>
+
+<h2>📜 License</h2>
+<p>Detekt is licensed under the Apache 2.0 License.</p>
