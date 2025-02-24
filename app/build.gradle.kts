@@ -69,6 +69,23 @@ plugins {
    * 🔗 Official Documentation: [https://detekt.dev](https://detekt.dev)
    */
   id(plugs.BuildPlugins.DETEKT)
+
+  /**
+   * 📌 Gradle Versions Plugin - Automatic Dependency Updates
+   * - This plugin helps track and manage outdated dependencies in your project.
+   * - It scans all dependencies and plugins to find newer versions.
+   * - Ensures that your project stays updated with the latest stable releases.
+   *
+   * 🔹 Benefits:
+   * - 🚀 **Automates dependency updates** to prevent outdated libraries.
+   * - 🔄 **Reduces security risks** by identifying deprecated dependencies.
+   * - 📊 **Provides detailed reports** on outdated and available versions.
+   * - ✅ **Filters out unstable versions** to ensure only stable updates.
+   *
+   * 🔗 Official Documentation: https://github.com/ben-manes/gradle-versions-plugin
+   */
+  id(plugs.BuildPlugins.UPDATE_DEPS_VERSIONS)
+
 }
 
 android {

@@ -100,6 +100,20 @@ dependencies {
      */
     implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.3")
 
-
+    /**
+     * 📌 Gradle Versions Plugin - Keep Dependencies Up to Date
+     * - The **Gradle Versions Plugin** is a tool that helps track outdated dependencies and suggests updates.
+     * - It scans the project's dependencies and plugins to find newer versions.
+     * - Helps ensure your project stays up to date with the latest stable releases.
+     *
+     * 🔹 Why Use the Gradle Versions Plugin?
+     * - 🚀 Automates the process of checking for dependency updates.
+     * - 🔄 Reduces security risks by identifying outdated libraries.
+     * - 📊 Generates detailed reports on which dependencies need updating.
+     * - ✅ Supports filtering by stable releases to avoid unstable versions.
+     *
+     * 🔗 Official Documentation: https://github.com/ben-manes/gradle-versions-plugin
+     */
+    implementation("com.github.ben-manes:gradle-versions-plugin:0.51.0")
 
 }
