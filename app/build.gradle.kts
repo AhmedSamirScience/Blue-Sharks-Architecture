@@ -51,6 +51,24 @@ plugins {
    * Official Documentation: https://github.com/diffplug/spotless
    */
   id(plugs.BuildPlugins.SPOTLESS)
+
+  /**
+   * 🛡️ Detekt - Kotlin Static Code Analysis Plugin
+   *
+   * - Detekt is a **static analysis tool** that helps enforce coding standards,
+   *   detect code smells, and improve code quality in Kotlin projects.
+   * - This plugin integrates Detekt into the Gradle build process.
+   * - It provides automatic code inspections and generates reports.
+   *
+   * 🔹 Benefits of Using Detekt:
+   * - 🚀 Detects common issues such as **long methods, unused parameters, and magic numbers**.
+   * - 📊 Provides **reports in multiple formats** (HTML, XML, SARIF).
+   * - 🔧 Fully **configurable rules** to match your project's coding guidelines.
+   * - 🔄 Supports **Gradle task automation** for continuous integration.
+   *
+   * 🔗 Official Documentation: [https://detekt.dev](https://detekt.dev)
+   */
+  id(plugs.BuildPlugins.DETEKT)
 }
 
 android {
