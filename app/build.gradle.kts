@@ -104,7 +104,6 @@ plugins {
    * 🔗 Official Documentation: https://kotlinlang.org/docs/dokka-introduction.html
    */
   id(plugs.BuildPlugins.DOKKA)
-
 }
 
 android {
