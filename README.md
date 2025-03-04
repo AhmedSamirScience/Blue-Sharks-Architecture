@@ -1,25 +1,36 @@
-<h1>📌 Gradle Plugin Integrations for Kotlin Projects</h1>
+<h1>🚀 Build-Src Module - Gradle Plugin Integrations</h1>
 
-<p>This project integrates several powerful Gradle plugins to ensure <strong>code quality, dependency management, and documentation generation</strong>. Below is a detailed overview of each tool and its role in the project.</p>
+<p>This branch (<strong>1.0-ArchitecturePhase/Development/01-Build-Src-Module</strong>) introduces structured Gradle configuration for <strong>plugin management</strong>, <strong>code quality enforcement</strong>, and <strong>dependency management</strong>. Below is a breakdown of all the plugins integrated into this branch.</p>
 
 <hr>
 
-<h2>📝 1. Dokka - Kotlin Documentation Generator</h2>
+<h2>📌 Table of Contents</h2>
+<ul>
+    <li><a href="#dokka">📖 Dokka - Kotlin Documentation Generator</a></li>
+    <li><a href="#gradle-versions">🔄 Gradle Versions Plugin - Dependency Updates</a></li>
+    <li><a href="#ktlint">🛠 Ktlint - Kotlin Code Formatter</a></li>
+    <li><a href="#spotless">🎯 Spotless - Code Formatting</a></li>
+    <li><a href="#prettier">🎨 Prettier - JavaScript/HTML/CSS Formatter</a></li>
+    <li><a href="#detekt">⚠️ Detekt - Kotlin Static Analysis</a></li>
+</ul>
 
-<p><strong>Dokka</strong> is the official Kotlin documentation tool that generates API documentation from KDoc comments.</p>
+<hr>
+
+<h2 id="dokka">📖 1. Dokka - Kotlin Documentation Generator</h2>
+
+<p><strong>Dokka</strong> is used to generate structured documentation from Kotlin code comments.</p>
 
 <h3>🚀 Why Use Dokka?</h3>
 <ul>
-    <li>📄 Automatically generates documentation from your Kotlin code.</li>
-    <li>🔄 Supports multiple output formats (HTML, Markdown, Javadoc, etc.).</li>
-    <li>📦 Works with mixed Java/Kotlin codebases.</li>
+    <li>📄 Converts KDoc comments into HTML, Markdown, and Javadoc.</li>
+    <li>🔄 Works with mixed Java-Kotlin projects.</li>
+    <li>📦 Supports custom output formats and plugins.</li>
 </ul>
 
 <h3>📌 When to Use?</h3>
 <ul>
-    <li>🛠️ When working on <strong>large projects</strong> that require structured documentation.</li>
-    <li>📚 When you need to generate API docs for <strong>open-source libraries</strong>.</li>
-    <li>💡 When improving documentation for <strong>team collaboration</strong>.</li>
+    <li>🛠️ When maintaining a <strong>large project</strong> with complex APIs.</li>
+    <li>📚 When generating <strong>open-source documentation</strong>.</li>
 </ul>
 
 <h3>🛠️ How to Use?</h3>
@@ -35,22 +46,20 @@ dependencies {
 
 <hr>
 
-<h2>🔄 2. Gradle Versions Plugin - Dependency Updates</h2>
+<h2 id="gradle-versions">🔄 2. Gradle Versions Plugin - Dependency Updates</h2>
 
-<p>The <strong>Gradle Versions Plugin</strong> helps track outdated dependencies and suggests updates.</p>
+<p>The <strong>Gradle Versions Plugin</strong> keeps track of outdated dependencies and suggests updates.</p>
 
 <h3>🚀 Why Use It?</h3>
 <ul>
-    <li>🔍 Scans for outdated dependencies.</li>
-    <li>📊 Generates reports on available updates.</li>
-    <li>✅ Reduces security risks by keeping dependencies up to date.</li>
+    <li>🔍 Automates dependency update checks.</li>
+    <li>📊 Reduces security risks from outdated libraries.</li>
 </ul>
 
 <h3>📌 When to Use?</h3>
 <ul>
-    <li>📆 When dependencies need to be checked regularly for <strong>new versions</strong>.</li>
-    <li>⚠️ When working on a <strong>long-term project</strong> that must stay up to date.</li>
-    <li>🚀 When preparing for a <strong>major upgrade</strong> to ensure compatibility.</li>
+    <li>📆 When working on a <strong>long-term project</strong>.</li>
+    <li>🚀 When preparing for a <strong>major version upgrade</strong>.</li>
 </ul>
 
 <h3>🛠️ How to Use?</h3>
@@ -65,22 +74,20 @@ dependencies {
 
 <hr>
 
-<h2>🛠 3. Ktlint - Kotlin Code Formatter</h2>
+<h2 id="ktlint">🛠 3. Ktlint - Kotlin Code Formatter</h2>
 
-<p><strong>Ktlint</strong> is a Kotlin linter and formatter that ensures a consistent coding style.</p>
+<p><strong>Ktlint</strong> is a Kotlin linter and formatter that enforces a consistent coding style.</p>
 
 <h3>🚀 Why Use Ktlint?</h3>
 <ul>
-    <li>📌 Automatically formats Kotlin code.</li>
-    <li>📊 Enforces coding style guidelines.</li>
-    <li>✅ Helps maintain clean and readable code.</li>
+    <li>📌 Auto-formats Kotlin code.</li>
+    <li>📊 Helps maintain coding consistency.</li>
 </ul>
 
 <h3>📌 When to Use?</h3>
 <ul>
-    <li>⚡ When multiple developers are working on the same project.</li>
-    <li>💡 When following a strict <strong>coding style guide</strong>.</li>
-    <li>🛠️ When you want to automate formatting to save time.</li>
+    <li>⚡ When multiple developers are contributing.</li>
+    <li>💡 When following a strict <strong>Kotlin coding style guide</strong>.</li>
 </ul>
 
 <h3>🛠️ How to Use?</h3>
@@ -93,21 +100,19 @@ id("org.jlleitschuh.gradle.ktlint") version "11.3.2"
 
 <hr>
 
-<h2>🎯 4. Spotless - Code Formatting</h2>
+<h2 id="spotless">🎯 4. Spotless - Code Formatting</h2>
 
-<p><strong>Spotless</strong> is a general-purpose Gradle plugin for formatting various file types, including Kotlin, Java, and XML.</p>
+<p><strong>Spotless</strong> is a Gradle plugin for formatting Java, Kotlin, and XML files.</p>
 
 <h3>🚀 Why Use Spotless?</h3>
 <ul>
-    <li>🔧 Supports multiple code styles and languages.</li>
-    <li>📄 Ensures code consistency across the project.</li>
-    <li>🔄 Works alongside Ktlint for better formatting control.</li>
+    <li>📄 Supports multiple languages.</li>
+    <li>🔧 Enforces consistent code formatting.</li>
 </ul>
 
 <h3>📌 When to Use?</h3>
 <ul>
-    <li>🛠️ When you need <strong>multi-language support</strong> (e.g., XML, Java, Kotlin).</li>
-    <li>📌 When enforcing strict formatting across an entire project.</li>
+    <li>🛠️ When a project contains **both Java and Kotlin code**.</li>
 </ul>
 
 <h3>🛠️ How to Use?</h3>
@@ -122,21 +127,19 @@ dependencies {
 
 <hr>
 
-<h2>🎨 5. Prettier - Code Formatter</h2>
+<h2 id="prettier">🎨 5. Prettier - JavaScript/HTML/CSS Formatter</h2>
 
-<p><strong>Prettier</strong> is a code formatter that enforces a consistent style for various programming languages.</p>
+<p><strong>Prettier</strong> enforces a consistent style for JavaScript, TypeScript, and CSS.</p>
 
 <h3>🚀 Why Use Prettier?</h3>
 <ul>
-    <li>📝 Formats JavaScript, TypeScript, HTML, CSS, and more.</li>
-    <li>✅ Helps avoid style debates by enforcing a standard format.</li>
-    <li>🔄 Works with Spotless to format frontend code.</li>
+    <li>📝 Supports JS, TypeScript, HTML, and CSS.</li>
+    <li>✅ Works with Spotless for full project consistency.</li>
 </ul>
 
 <h3>📌 When to Use?</h3>
 <ul>
-    <li>🛠️ When working on frontend projects with JS/HTML/CSS.</li>
-    <li>📌 When enforcing a strict coding standard across teams.</li>
+    <li>📌 When working on frontend-heavy applications.</li>
 </ul>
 
 <h3>🔗 Official Docs:</h3>
@@ -144,21 +147,19 @@ dependencies {
 
 <hr>
 
-<h2>⚠️ 6. Detekt - Kotlin Static Code Analysis</h2>
+<h2 id="detekt">⚠️ 6. Detekt - Kotlin Static Code Analysis</h2>
 
-<p><strong>Detekt</strong> is a static analysis tool for Kotlin that helps identify code smells and potential issues.</p>
+<p><strong>Detekt</strong> helps identify code smells and potential issues in Kotlin.</p>
 
 <h3>🚀 Why Use Detekt?</h3>
 <ul>
-    <li>🛠 Identifies security vulnerabilities and bad practices.</li>
-    <li>📊 Provides detailed reports on code quality.</li>
-    <li>🔄 Customizable rules to enforce project-specific guidelines.</li>
+    <li>📊 Identifies security vulnerabilities.</li>
+    <li>🔄 Enforces clean code principles.</li>
 </ul>
 
 <h3>📌 When to Use?</h3>
 <ul>
-    <li>⚠️ When following <strong>clean code principles</strong>.</li>
-    <li>📊 When improving <strong>code maintainability</strong> and reducing complexity.</li>
+    <li>📊 When improving **code maintainability**.</li>
 </ul>
 
 <h3>🛠️ How to Use?</h3>
@@ -175,11 +176,13 @@ dependencies {
 
 <h2>🎯 Summary</h2>
 
-<p>These Gradle plugins help improve <strong>code quality, maintainability, and project management</strong>. They provide:</p>
+<p>This branch introduces several Gradle plugins to improve:</p>
 <ul>
-    <li>📄 Well-documented and up-to-date dependencies.</li>
-    <li>📌 Consistent code style and formatting.</li>
-    <li>🛡️ Static analysis for improved code quality.</li>
+    <li>📄 Automated documentation with <strong>Dokka</strong>.</li>
+    <li>🔄 Dependency tracking using <strong>Gradle Versions Plugin</strong>.</li>
+    <li>🛠 Code formatting via <strong>Ktlint</strong> and <strong>Spotless</strong>.</li>
+    <li>🎨 JavaScript formatting via <strong>Prettier</strong>.</li>
+    <li>⚠️ Static code analysis with <strong>Detekt</strong>.</li>
 </ul>
 
-<p>🚀 Happy coding!</p>
+<p>🚀 <strong>Ensuring better code quality, maintainability, and collaboration.</strong></p>
