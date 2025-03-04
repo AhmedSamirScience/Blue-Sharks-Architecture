@@ -22,3 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "bluearchitecture"
 include(":app")
 include(":feature:login")
+include(":core:presentation")
+include(":core:data")
+include(":core:domain")
