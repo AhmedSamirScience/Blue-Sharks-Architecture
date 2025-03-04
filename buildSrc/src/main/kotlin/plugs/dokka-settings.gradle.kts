@@ -2,6 +2,9 @@ import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTask
 import java.net.URL
 
+/**
+ * This has been added for Dokka Integration and please the previous commit that add this file should be added here in this branch
+ */
 apply<DokkaPlugin>()
 
 tasks {
@@ -110,7 +113,6 @@ tasks {
                 // By default Dokka will omit all files in folder named generated that is a child of buildDir
                 suppressGeneratedFiles.set(false)
             }
-
         }
     }
 }

@@ -116,4 +116,26 @@ dependencies {
      */
     implementation("com.github.ben-manes:gradle-versions-plugin:0.51.0")
 
+    /**
+     * 📌 Dokka - Kotlin Documentation Generator
+     * - **Dokka** is a documentation generation tool for Kotlin projects.
+     * - It generates API documentation from KDoc comments and supports multiple formats.
+     * - Helps maintain clear and well-structured project documentation.
+     *
+     * 🔹 Why Use Dokka?
+     * - 📄 Converts KDoc comments into structured documentation.
+     * - 📚 Supports multiple output formats: HTML, Markdown, Javadoc, etc.
+     * - 🔄 Integrates seamlessly with Kotlin Multiplatform projects.
+     * - ✅ Provides a "Kotlin as Java" mode to generate Java-friendly documentation.
+     *
+     * 🛠️ Components:
+     * - **dokka-gradle-plugin** → Enables Gradle-based documentation generation.
+     * - **kotlin-as-java-plugin** → Generates documentation that looks like JavaDocs.
+     *
+     * 🔗 Official Documentation: https://kotlinlang.org/docs/dokka-introduction.html
+     */
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.20")
+    implementation("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.20")
+
+
 }
