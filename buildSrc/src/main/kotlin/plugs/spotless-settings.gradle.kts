@@ -91,3 +91,114 @@ tasks.named("preBuild") {
 tasks.named("preBuild") {
     dependsOn("spotlessApply")
 }
+
+/**
+ * /*
+ *  * Spotless Formatting Violations Documentation
+ *  *
+ *  * This document provides examples of formatting violations based on the Spotless rules defined in your Gradle configuration.
+ *  */
+ *
+ * // 1. XML Formatting Violations
+ *
+ * // A. Wrong Attribute Order
+ * // ❌ Incorrect (Violates Attribute Order)
+ * // <Button id="btn1" name="Submit" type="primary"/>
+ * // ✅ Correct (Attributes in Order: name → id → type)
+ * // <Button name="Submit" id="btn1" type="primary"/>
+ *
+ * // B. Missing Newline at EOF
+ * // ❌ Incorrect
+ * // <LinearLayout>
+ * //     <TextView text="Hello"/>
+ * // </LinearLayout>⏎(No newline here)
+ * // ✅ Correct
+ * // <LinearLayout>
+ * //     <TextView text="Hello"/>
+ * // </LinearLayout>
+ * // ⏎(Has a newline at the end)
+ *
+ * // C. Self-Closing Tags Not Used
+ * // ❌ Incorrect: <img></img>
+ * // ✅ Correct: <img/>
+ *
+ * // 2. Kotlin Formatting Violations
+ *
+ * // A. Wrong Indentation (Tabs Instead of Spaces)
+ * // ❌ Incorrect
+ * fun main() {
+ * 	println("Hello")  // Uses a tab instead of 2 spaces
+ * }
+ * // ✅ Correct
+ * fun main() {
+ *   println("Hello")  // Uses 2 spaces
+ * }
+ *
+ * // B. Exceeding Line Length (120 Characters)
+ * // ❌ Incorrect
+ * fun veryLongFunction() { println("This is a very long line that exceeds the 120-character limit which is not allowed by ktlint") }
+ * // ✅ Correct
+ * fun veryLongFunction() {
+ *   println("This is a very long line that exceeds the 120-character limit " +
+ *           "which is not allowed by ktlint")
+ * }
+ *
+ * // C. Trailing Whitespace
+ * // ❌ Incorrect
+ * fun main() {
+ *   println("Hello")  // Extra spaces here ␣␣␣␣
+ * }
+ * // ✅ Correct
+ * fun main() {
+ *   println("Hello")
+ * }
+ *
+ * // 3. Java Formatting Violations
+ *
+ * // A. Wrong Indentation (Tabs Instead of Spaces)
+ * // ❌ Incorrect
+ * public class Main {
+ * 	public static void main(String[] args) {
+ * 		System.out.println("Hello");
+ * 	}
+ * }
+ * // ✅ Correct
+ * public class Main {
+ *   public static void main(String[] args) {
+ *     System.out.println("Hello");
+ *   }
+ * }
+ *
+ * // B. Trailing Whitespace
+ * // ❌ Incorrect
+ * public class Main {
+ *   public static void main(String[] args) {
+ *     System.out.println("Hello");    // Extra spaces ␣␣␣␣
+ *   }
+ * }
+ * // ✅ Correct
+ * public class Main {
+ *   public static void main(String[] args) {
+ *     System.out.println("Hello");
+ *   }
+ * }
+ *
+ * // 4. Kotlin Gradle (KTS) Formatting Violations
+ *
+ * // A. Wrong Indentation (4 Spaces Instead of 2)
+ * // ❌ Incorrect
+ * plugins {
+ *     id("com.android.application")
+ * }
+ * // ✅ Correct
+ * plugins {
+ *   id("com.android.application")
+ * }
+ *
+ * // Summary:
+ * // - XML: Attribute order, missing newline, self-closing tags
+ * // - Kotlin: Indentation, max line length, trailing whitespace, missing EOF newline
+ * // - Java: Indentation, trailing whitespace, missing EOF newline
+ * // - Gradle (KTS): Indentation
+ *
+ */
