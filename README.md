@@ -7,8 +7,12 @@
 This branch introduces the foundational **core modules** for implementing **Clean Architecture**. The project is now divided into three distinct layers:
 
 1️⃣ **Data Layer** (`data` module) - Handles data sources, API calls, and local storage.
+
 2️⃣ **Domain Layer** (`domain` module) - Contains business logic and use cases.
+
 3️⃣ **Presentation Layer** (`presentation` module) - Manages UI logic and user interactions.
+
+4️⃣ **Core UI Layer** (`core-ui` module) - Provides shared UI components, themes, animations, and UI utilities.
 
 This modularization ensures **scalability, maintainability, and separation of concerns**. ✅
 
@@ -74,6 +78,30 @@ Handles **UI logic** and connects with the domain layer via **ViewModels**.
 │   ├── consumer-rules.pro
 │   ├── proguard-rules.pro
 ```
+---
+
+### **📁 Core UI Layer (`core-ui` Module)**
+This module provides **reusable UI components, animations, themes, and utilities**.
+
+📌 **Key Responsibilities:**
+- Shared **themes, styles, fonts, dimensions**
+- Common **UI components (Buttons, Custom Views, etc.)**
+- **Animations and UI transitions**
+- **Dialog helpers, RecyclerView adapters, UI utilities**
+
+📌 **Files & Configurations**
+```
+📦 core/
+  ├── ui/
+      ├── build.gradle.kts       # Module-specific dependencies
+      ├── AndroidManifest.xml    # Necessary for defining the module
+      ├── components/            # Custom UI Components (Buttons, Dialogs)
+      ├── themes/                # Colors, Styles, Typography
+      ├── animations/            # Shared Animation Utilities
+      ├── keyboard/              # Soft Keyboard utilities
+      ├── adapters/              # RecyclerView & Spinner Adapters
+      ├── extensions/            # UI-related Kotlin Extensions
+```
 
 ---
 
@@ -91,6 +119,7 @@ rootProject.name = "MyApplication"
 include(":data")
 include(":domain")
 include(":presentation")
+include(":core:ui")
 ```
 
 ---
