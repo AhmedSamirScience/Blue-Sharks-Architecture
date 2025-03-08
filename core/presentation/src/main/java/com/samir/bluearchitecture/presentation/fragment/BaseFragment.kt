@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.navigation.NavArgs
 import com.samir.bluearchitecture.presentation.logger.Logger
 import com.samir.bluearchitecture.presentation.viewModel.BaseViewModel
 
@@ -16,7 +15,7 @@ import com.samir.bluearchitecture.presentation.viewModel.BaseViewModel
  * @param VM The type of ViewModel associated with the fragment.
  * @param VB The type of ViewDataBinding associated with the fragment's layout.
  */
-abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding, A : NavArgs>() : SafeArgsFragmentManager<A, VM>(), View.OnClickListener {
+abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding>() : SafeArgsFragmentManager<VM>(), View.OnClickListener {
 
   /*** ViewDataBinding instance for the fragment's layout **/
   protected lateinit var baseViewBinding: VB
