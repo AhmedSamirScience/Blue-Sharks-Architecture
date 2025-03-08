@@ -137,5 +137,64 @@ dependencies {
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.20")
     implementation("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.20")
 
+    /**
+     * 📌 Navigation Safe Args Plugin - Type-Safe Argument Passing
+     *
+     * 🔹 **What is Safe Args?**
+     * - Safe Args is a Gradle plugin that generates **type-safe navigation arguments** for the Jetpack Navigation component.
+     * - It eliminates the need for manually passing arguments via Bundles, reducing boilerplate code.
+     *
+     * 🔹 **Why Use Safe Args?**
+     * - ✅ **Type Safety:** Prevents runtime crashes due to incorrect argument types.
+     * - ✅ **Improves Readability:** Arguments are passed via generated classes instead of raw Bundles.
+     * - ✅ **Easy Integration:** Works seamlessly with Jetpack Navigation.
+     *
+     * 🔹 **How It Works**
+     * 1. Define arguments in your navigation graph (`nav_graph.xml`).
+     * 2. Safe Args generates a `Directions` class with methods for type-safe navigation.
+     * 3. Use these generated classes to navigate with arguments safely.
+     *
+     * 🔹 **Example Usage**
+     *
+     * 📌 **Define Arguments in `nav_graph.xml`**
+     * ```xml
+     * <fragment
+     *     android:id="@+id/detailsFragment"
+     *     android:name="com.example.DetailsFragment">
+     *     <argument
+     *         android:name="userId"
+     *         app:argType="string" />
+     * </fragment>
+     * ```
+     *
+     * 📌 **Navigate Using Safe Args**
+     * ```kotlin
+     * val action = HomeFragmentDirections.actionHomeToDetails(userId = "123")
+     * findNavController().navigate(action)
+     * ```
+     *
+     * 📌 **Retrieve Arguments in Fragment**
+     * ```kotlin
+     * val args: DetailsFragmentArgs by navArgs()
+     * val userId = args.userId // Type-safe retrieval
+     * ```
+     *
+     * 🔹 **Dependency**
+     * - Safe Args plugin must be applied in the project-level `build.gradle.kts`:
+     * ```gradle
+     * plugins {
+     *     id("androidx.navigation.safeargs.kotlin") version "2.7.7"
+     * }
+     * ```
+     *
+     * - Add this dependency in `buildSrc` or module `build.gradle.kts`:
+     * ```gradle
+     * implementation("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
+     * ```
+     *
+     * 🔗 **Official Documentation:**
+     * [Navigation Safe Args](https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args)
+     */
+    implementation("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
 
 }

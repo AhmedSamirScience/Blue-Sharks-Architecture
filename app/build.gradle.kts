@@ -1,7 +1,11 @@
 import build.BuildCreator
 import build.BuildDimensions
 import dependencies.defaultLibraries
+import dependencies.lifecycleRuntimeKtx
 import dependencies.loginModule
+import dependencies.navGraph
+import dependencies.presentationModule
+import dependencies.viewModel
 
 /**
  * ***build.gradle/build.gradle.kts (app module)***
@@ -104,6 +108,8 @@ plugins {
    * 🔗 Official Documentation: https://kotlinlang.org/docs/dokka-introduction.html
    */
   id(plugs.BuildPlugins.DOKKA)
+
+  id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -491,6 +497,37 @@ android {
       excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
   }
+
+  /**
+   * **Enable Data Binding**
+   * - `dataBinding = true` enables **Android Data Binding** in the module.
+   * - Data Binding allows you to bind UI components in XML layouts directly to data sources.
+   * - Eliminates the need for `findViewById()`, improving code readability and performance.
+   * - Required for using `DataBindingUtil`, `ViewDataBinding`, and `BindingAdapters`.
+   *
+   * **Example Use Case:**
+   * 1. Declare a `<layout>` tag in your XML:
+   *    ```xml
+   *    <layout xmlns:android="http://schemas.android.com/apk/res/android">
+   *        <data>
+   *            <variable name="user" type="com.example.User" />
+   *        </data>
+   *        <TextView android:text="@{user.name}" />
+   *    </layout>
+   *    ```
+   * 2. Access the binding object in your Activity/Fragment:
+   *    ```kotlin
+   *    val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+   *    binding.user = User("John Doe")
+   *    ```
+   *
+   * **Note:**
+   * - If using ViewBinding instead of Data Binding, use `viewBinding = true` instead.
+   * - Data Binding is useful for MVVM architecture and working with LiveData.
+   */
+  buildFeatures {
+    dataBinding = true
+  }
 }
 
 dependencies {
@@ -522,4 +559,9 @@ dependencies {
    */
   dependencies.defaultLibraries()
   dependencies.loginModule()
+
+  dependencies.viewModel()
+  dependencies.lifecycleRuntimeKtx()
+  dependencies.presentationModule()
+  dependencies.navGraph()
 }
