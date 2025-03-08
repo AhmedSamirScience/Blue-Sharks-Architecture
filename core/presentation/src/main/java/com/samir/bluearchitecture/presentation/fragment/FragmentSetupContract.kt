@@ -48,10 +48,4 @@ interface FragmentSetupContract {
    */
   fun subscribeObservers()
   //endregion
-
-  /**
-   * Initializes the views of the fragment.
-   * Subclasses must override this method to set up views.
-   */
-  fun initializeViews()
 }

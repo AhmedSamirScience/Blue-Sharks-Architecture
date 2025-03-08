@@ -33,7 +33,7 @@ abstract class ViewModelStateHandler<V : BaseViewModel>() : BackPressedStateMana
    * - Calls `start()` on the ViewModel **only if data hasn't been loaded yet**.
    * - Prevents unnecessary reloading when navigating back and forth.
    */
-  open fun startViewModelIfNeeded() {
+  open fun startViewModel() {
     if (!isDataLoaded) {
       isDataLoaded = true
       baseViewModel.start()

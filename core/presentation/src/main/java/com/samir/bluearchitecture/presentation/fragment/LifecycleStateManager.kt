@@ -18,6 +18,7 @@ abstract class LifecycleStateManager : ViewStateManager() {
    *
    * ▶️ Description:
    *                 It is called when the fragment becomes visible to the user but is not yet in the foreground (it’s still not interactive).
+   *                 This is where the fragment is fully attached to its lifecycle and is visible but not yet interactive.
    *
    * ▶️ Usages:
    *                ➊ ✅ Start Light Processes: Start lightweight tasks that prepare the UI, like loading data for a list (Not Firing APIs) or updating non-interactive elements.
@@ -29,7 +30,7 @@ abstract class LifecycleStateManager : ViewStateManager() {
    * ▶️ Example (Kotlin Code):
    *                   override fun onStart() {
    *                       super.onStart()
-   *                       // ✅ ➊ Start Light Processes
+   *                       // ✅ ➊ Start Light Processes (Not Firing APIs)
    *                       loadDashboardData()
    *
    *                       // ✅ ➋ Starting an animation when the fragment becomes visible
@@ -57,7 +58,19 @@ abstract class LifecycleStateManager : ViewStateManager() {
   override fun onStart() {
     Logger.i(fragment = this, message = "♻♻♻ onStart ♻♻♻")
     super.onStart()
+    onFragmentVisible()
   }
+  /**
+   * Called when the fragment becomes **visible** but is not yet interactive.
+   * Override this method to:
+   * - Start light processes (e.g., preparing UI, animations)
+   * - Connect to background services (e.g., location updates)
+   * - Register listeners that only need to be active while visible
+   */
+  protected open fun onFragmentVisible() {
+    // Default implementation is empty; subclasses override if needed
+  }
+
   //endregion
 
   //region onResume
@@ -94,17 +107,17 @@ abstract class LifecycleStateManager : ViewStateManager() {
   override fun onResume() {
     Logger.i(fragment = this, message = "✅✅✅ onResume ✅✅✅")
     super.onResume()
-    start()
+    onFragmentActive()
   }
 
   /**
-   * Starts any necessary operations or processes when the fragment
-   * is in the foreground. Subclasses must override this method to
-   * perform tasks that should begin with `onResume`.
-   *
-   * Default implementation is empty; subclasses provide the functionality.
+   * Called when the fragment becomes **active** and ready for interaction.
+   * Override this method in subclasses to resume operations such as:
+   * - Fetching updated data
+   * - Resuming animations or UI updates
+   * - Reconnecting to live services
    */
-  protected open fun start() {
+  protected open fun onFragmentActive() {
     // Default implementation is empty; subclasses override if needed
   }
   //endregion
@@ -155,17 +168,17 @@ abstract class LifecycleStateManager : ViewStateManager() {
   override fun onStop() {
     Logger.i(fragment = this, message = "🚩🚩🚩onStop🚩🚩🚩")
     super.onStop()
-    stopAndReset()
+    onFragmentInactive()
   }
 
   /**
-   * Stops and resets any ongoing operations or processes when the fragment
-   * is no longer visible. This method should be overridden by subclasses to
-   * handle any cleanup necessary when the fragment transitions out of the foreground.
-   *
-   * Default implementation is empty; subclasses provide the functionality.
+   * Called when the fragment becomes **inactive** (not visible but still exists).
+   * Override this method to:
+   * - Stop animations to prevent memory leaks
+   * - Unregister listeners to save resources
+   * - Disconnect from external services
    */
-  protected open fun stopAndReset() {
+  protected open fun onFragmentInactive() {
     // Default implementation is empty; subclasses override if needed
   }
   //endregion

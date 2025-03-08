@@ -170,8 +170,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding>() : SafeAr
     super.onViewCreated(view, savedInstanceState)
     Logger.i(fragment = this, message = "📺📺📺onViewCreated called📺📺📺")
 
-    initializeViews()
-
     /**
      * 🍧 subscribeObservers() 🍧
      *
@@ -283,7 +281,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding>() : SafeAr
      * ❌ Not tracking `isDataLoaded` → Can cause **multiple API calls** when navigating back to the fragment.
      * ❌ Calling it before `subscribeObservers()` → Can cause UI updates before the observer is set.
      */
-    startViewModelIfNeeded()
+    startViewModel()
   }
 
   /**
