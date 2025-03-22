@@ -1,4 +1,4 @@
-package com.samir.bluearchitecture.presentation.logger
+package com.samir.bluearchitecture.ui.utils.logging
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

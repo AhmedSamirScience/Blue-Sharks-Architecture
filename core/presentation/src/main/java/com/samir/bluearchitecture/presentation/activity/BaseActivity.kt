@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.fragment.NavHostFragment
-import com.samir.bluearchitecture.presentation.logger.Logger
+import com.samir.bluearchitecture.ui.utils.logging.Logger
 
 /**
  * Base class for all activities in the application.

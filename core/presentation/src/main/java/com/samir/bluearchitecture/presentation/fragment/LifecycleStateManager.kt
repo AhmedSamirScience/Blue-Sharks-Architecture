@@ -1,6 +1,6 @@
 package com.samir.bluearchitecture.presentation.fragment
 
-import com.samir.bluearchitecture.presentation.logger.Logger
+import com.samir.bluearchitecture.ui.utils.logging.Logger
 
 /**
  * Abstract class to handle fragment lifecycle methods.
@@ -60,6 +60,7 @@ abstract class LifecycleStateManager : ViewStateManager() {
     super.onStart()
     onFragmentVisible()
   }
+
   /**
    * Called when the fragment becomes **visible** but is not yet interactive.
    * Override this method to:

@@ -17,7 +17,7 @@ import com.samir.bluearchitecture.presentation.viewModel.BaseViewModel
  * }
  * ```
  */
-abstract class ViewModelStateHandler<V : BaseViewModel>() : BackPressedStateManager() {
+abstract class ViewModelStateHandler<V : BaseViewModel> : BackPressedStateManager() {
   protected lateinit var baseViewModel: V // ✅ No constructor needed!
 
   /**

@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import com.samir.bluearchitecture.presentation.logger.Logger
+import com.samir.bluearchitecture.ui.utils.logging.Logger
 
 /**
  * Abstract class for handling back press events.
