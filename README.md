@@ -1,110 +1,68 @@
-# 📌 Core Modules - Clean Architecture Setup
+<h2>📂 Module File Breakdown</h2>
 
-## 🌱 Branch Name
-`1.0-ArchitecturePhase/Feature/2.1-Add-Core-Modules`
+<p>This section explains the role of each file and how it contributes to the Android module’s functionality, styling, or structure.</p>
 
-## 🚀 Overview
-This branch introduces the foundational **core modules** for implementing **Clean Architecture**. The project is now divided into three distinct layers:
+<hr>
 
-1️⃣ **Data Layer** (`data` module) - Handles data sources, API calls, and local storage.
-2️⃣ **Domain Layer** (`domain` module) - Contains business logic and use cases.
-3️⃣ **Presentation Layer** (`presentation` module) - Manages UI logic and user interactions.
+<h3>📄 XML Drawables</h3>
+<ul>
+  <li><code>all_rect_crn1_strblacksldandgray.xml</code> — Custom shape with black stroke and gray fill (1dp corner radius).</li>
+  <li><code>all_rect_crn1_strblacksldmainclr.xml</code> — Similar to above but uses the app’s main color as the fill.</li>
+  <li><code>spinner_selector_btn_maincolorgaryblackanddark.xml</code> — State selector for a spinner button using grayscale and dark modes.</li>
+</ul>
 
-This modularization ensures **scalability, maintainability, and separation of concerns**. ✅
+<hr>
 
----
+<h3>🎨 Resource Files</h3>
+<ul>
+  <li><code>colors.xml</code> — Centralized color definitions for light/dark themes or branding.</li>
+  <li><code>strings.xml</code> — String resources to support localization and cleaner code structure.</li>
+</ul>
 
-## 📂 Project Structure
+<hr>
 
-### **📁 Data Layer (`data` Module)**
-Responsible for handling all **data sources**, including:
-- API interactions (Retrofit, OkHttp, etc.)
-- Local databases (Room, SharedPreferences, etc.)
-- Repositories to provide data to the domain layer
+<h3>🧩 Fonts</h3>
+<p><strong>Roboto Font Family</strong> — Used for custom typography across the app:</p>
+<ul>
+  <li><code>roboto_black.ttf</code>, <code>roboto_black_italic.ttf</code></li>
+  <li><code>roboto_bold.ttf</code>, <code>roboto_bold_italic.ttf</code></li>
+  <li><code>roboto_medium.ttf</code>, <code>roboto_medium_italic.ttf</code></li>
+  <li><code>roboto_regular.ttf</code>, <code>roboto_light.ttf</code>, <code>roboto_thin.ttf</code></li>
+  <li><code>roboto_italic.ttf</code>, <code>roboto_light_italic.ttf</code>, <code>roboto_thin_italic.ttf</code></li>
+</ul>
 
-📌 **Files & Configurations**
-```
-├── data/
-│   ├── build.gradle.kts  // Module-specific dependencies
-│   ├── AndroidManifest.xml  // Necessary for defining the module
-│   ├── ExampleUnitTest.kt  // Placeholder test file
-│   ├── ExampleInstrumentedTest.kt  // Placeholder instrumented test
-│   ├── consumer-rules.pro  // ProGuard consumer rules
-│   ├── proguard-rules.pro  // ProGuard configurations
-```
+<hr>
 
----
+<h3>🧠 Naming Convention Documents</h3>
+<p>These XMLs are used as internal references or documentation:</p>
+<ul>
+  <li><code>naming_convenstion.xml</code> — Describes general naming guidelines.</li>
+  <li><code>naming_convention_for_short_name_of_android_widgets.xml</code> — Covers short name rules (e.g., <code>btnLogin</code>).</li>
+  <li><code>naming_convention_principle.xml</code> <em>(appears twice)</em> — May need cleanup if duplicated by mistake.</li>
+</ul>
 
-### **📁 Domain Layer (`domain` Module)**
-This layer contains **business logic** and acts as an intermediary between **data** and **presentation** layers.
+<hr>
 
-📌 **Key Responsibilities:**
-- Defines **Use Cases** (Application-specific business rules)
-- Provides **abstractions** for data sources
-- Operates independently of external frameworks
+<h3>📜 Manifest & Gradle</h3>
+<ul>
+  <li><code>AndroidManifest.xml</code> — Declares components like activities, services, and permissions for this module.</li>
+  <li><code>build.gradle.kts</code> — Kotlin DSL build configuration for this module.</li>
+</ul>
 
-📌 **Files & Configurations**
-```
-├── domain/
-│   ├── build.gradle.kts
-│   ├── AndroidManifest.xml
-│   ├── ExampleUnitTest.kt
-│   ├── ExampleInstrumentedTest.kt
-│   ├── consumer-rules.pro
-│   ├── proguard-rules.pro
-```
+<hr>
 
----
+<h3>📦 Kotlin Classes</h3>
+<ul>
+  <li><code>DependenciesProvider.kt</code> — Likely manages dependency injection or provides centralized access to dependencies.</li>
+</ul>
 
-### **📁 Presentation Layer (`presentation` Module)**
-Handles **UI logic** and connects with the domain layer via **ViewModels**.
+<hr>
 
-📌 **Key Responsibilities:**
-- Uses **ViewModel, LiveData, and StateFlow** to manage UI state
-- Contains **UI-related business logic**
-- Completely independent from the data layer
+<h3>🧪 Test Files</h3>
+<ul>
+  <li><code>ExampleInstrumentedTest.kt</code> — Android-specific tests (run on device/emulator).</li>
+  <li><code>ExampleUnitTest.kt</code> — JVM unit tests that run on the local machine.</li>
+</ul>
 
-📌 **Files & Configurations**
-```
-├── presentation/
-│   ├── build.gradle.kts
-│   ├── AndroidManifest.xml
-│   ├── ExampleUnitTest.kt
-│   ├── ExampleInstrumentedTest.kt
-│   ├── consumer-rules.pro
-│   ├── proguard-rules.pro
-```
-
----
-
-## 🏗 Root Project Configurations
-
-📁 **Other Files Added**
-```
-├── settings.gradle.kts  // Includes the new modules
-├── .gitignore  // Ensures proper version control
-```
-
-📌 **settings.gradle.kts** Example:
-```kotlin
-rootProject.name = "MyApplication"
-include(":data")
-include(":domain")
-include(":presentation")
-```
-
----
-
-## 🛠 Clean Architecture Implementation
-This structure follows **Uncle Bob’s Clean Architecture Principles**:
-✅ Separation of concerns  
-✅ Modularization  
-✅ Scalable and maintainable architecture  
-
----
-
-## 📖 Reference
-📖 [Clean Architecture by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-
----
+<hr>
 
