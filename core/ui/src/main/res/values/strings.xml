@@ -56,7 +56,10 @@
 
     <!--************************************************************Auth Flow****************************************************-->
     <!--Login Fragment-->
-    <string name="login_forgetPassword" translatable="false">Forget Password ?</string>
+    <string
+        name="login_forgetPassword"
+        translatable="false"
+    >Forget Password ?</string>
     <string name="login_loginButtonText" translatable="false">Login</string>
      <!--******************************************************************************************************************************-->
 
@@ -64,12 +67,21 @@
 
     <!--************************************************************Home Flow****************************************************-->
     <!--Home Fragment-->
-    <string name="home_yourTodayVisit" translatable="false">Your Today\'s Visit List:</string>
+    <string
+        name="home_yourTodayVisit"
+        translatable="false"
+    >Your Today\'s Visit List:</string>
     <string name="home_discount" translatable="false">Discount</string>
 
     <!--Reports Fragment-->
-    <string name="homeReports_fragmentTitle" translatable="false">Reports</string>
-    <string name="homeReports_btnReportDate" translatable="false">Select Report Date</string>
+    <string
+        name="homeReports_fragmentTitle"
+        translatable="false"
+    >Reports</string>
+    <string
+        name="homeReports_btnReportDate"
+        translatable="false"
+    >Select Report Date</string>
 
     <!--Nested Reports Item-->
     <string name="nestedReportsItem_testName" translatable="false">CBC</string>

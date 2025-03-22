@@ -71,6 +71,10 @@ fun DependencyHandler.androidx() {
 //    implementation(Dependencies.googleJson)
 }
 
+fun DependencyHandler.appModule() {
+    moduleImplementation(project(":app"))
+}
+
 fun DependencyHandler.loginModule() {
     moduleImplementation(project(":feature:login"))
 }
@@ -89,6 +93,10 @@ fun DependencyHandler.protoDataStoreModule() {
 
 fun DependencyHandler.domainModule() {
     moduleImplementation(project(":core:domain"))
+}
+
+fun DependencyHandler.uiModule() {
+    moduleImplementation(project(":core:ui"))
 }
 fun DependencyHandler.navigatorModule() {
     moduleImplementation(project(":core:navigator"))
@@ -146,7 +154,7 @@ fun DependencyHandler.viewModel() {
     //implementation(Dependencies.lifecycleViewModelCompose)
 }
 
-fun DependencyHandler.designMargins() {
+fun DependencyHandler.applyScalableDimensions() {
     implementation(Dependencies.INTUIT_SDB)
     implementation(Dependencies.INTUIT_SSP)
 }
