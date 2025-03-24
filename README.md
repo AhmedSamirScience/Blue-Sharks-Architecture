@@ -1,79 +1,75 @@
-<h2>📁 UI & Architecture Utilities</h2>
-<p>This module provides essential base classes and utilities to streamline Android development, including base UI components, lifecycle helpers, keyboard handling, delayed execution, and more.</p>
+## 🧱 Core Architecture Setup — Phase 3.2
 
-<hr />
+This feature branch focuses on establishing a clean, scalable foundation for the Android application architecture by introducing base components and organizing utilities.
 
-<h3>📦 Base Classes</h3>
-<ul>
-  <li><strong><code>BaseActivity.kt</code></strong> — Abstract base class for activities providing common setup like lifecycle observers, logging, or event handling.</li>
-  <li><strong><code>BaseFragment.kt</code></strong> — Reusable base class for fragments with view binding, back press handling, and lifecycle-aware logic.</li>
-</ul>
+---
 
-<hr />
+### ✅ Key Highlights
 
-<h3>🔄 Lifecycle & Back Press Management</h3>
-<ul>
-  <li><strong><code>BackPressedHandlerActivity.kt</code></strong> — Handles custom back press behavior in activities (e.g., double press to exit, confirmation dialogs).</li>
-  <li><strong><code>BackPressedStateManager.kt</code></strong> — Centralized manager for tracking and delegating back press events.</li>
-  <li><strong><code>LifecycleStateManager.kt</code></strong> — Utility for tracking lifecycle states and triggering appropriate actions on lifecycle transitions.</li>
-</ul>
+#### 🎯 Core Components
+- **BaseActivity** & **BaseFragment**
+  - Shared lifecycle-aware setup
+  - Abstracted common UI logic
+  - Improved testability and reusability
 
-<hr />
+#### 🔁 UX & Interaction Helpers
+- **BackPressedHandler**: Central manager for custom back navigation
+- **ViewModelStateHandler**: UI state binding from ViewModel (`Loading`, `Success`, `Error`, `Empty`)
+- **DelayedActionHandler**: Throttle or debounce UI events like search inputs
+- **SoftKeyboardUtils**: Hide/show the soft keyboard programmatically
 
-<h3>⏱️ Delayed Actions</h3>
-<ul>
-  <li><strong><code>DelayedActionHandler.kt</code></strong> — Executes delayed actions with cancellation support, commonly used for throttling button clicks or search input.</li>
-</ul>
+#### 🧩 Utility Packages
+- `date_time_helpers/` — Date picker, time picker, month-year dialogs
+- `form_helpers/` — Input validation tools (e.g., TextInputEditTextUtils)
+- `formatters/` — Utility functions for date/time formatting (e.g., DateUtils)
 
-<hr />
+#### 🧾 UI Enhancements
+- **AnimationHelper.kt**: Easily apply fade, scale, or custom animations
+- **SpinnerAdapter** with custom dropdown layout
+- Moved `dialog_month_year_picker.xml` to `res/layout/dialogs/` for better resource organization
 
-<h3>🎥 Animation</h3>
-<ul>
-  <li><strong><code>AnimationHelper.kt</code></strong> — Reusable animation utilities for smooth transitions, fade-ins, scaling, or view manipulation.</li>
-</ul>
+#### 🎨 Style & Theme
+- Base color resources added for consistent design system
+  - Example: `colorPrimary`, `colorSecondary`, `colorGrayDark`, etc.
 
-<hr />
+---
 
-<h3>🎹 Keyboard Management</h3>
-<ul>
-  <li><strong><code>SoftKeyBoardUtils.kt</code></strong> — Hides or shows the soft keyboard programmatically, improves UX for input forms.</li>
-</ul>
+### 📁 Folder Structure Changes
 
-<hr />
+| Old Path | New Path |
+|----------|----------|
+| `TextInputEditTextUtils.kt` | `form_helpers/TextInputEditTextUtils.kt` |
+| `DateUtils.kt` | `formatters/DateUtils.kt` |
+| `dialog_month_year_picker.xml` | `res/layout/dialogs/dialog_month_year_picker.xml` |
+| `*Date/Time Pickers` | `date_time_helpers/` |
 
-<h3>🧾 Logging</h3>
-<ul>
-  <li><strong><code>Logger.kt</code></strong> — Custom logging wrapper that enables structured logs (e.g., based on build types or tags).</li>
-</ul>
+---
 
-<hr />
+### 🔍 Benefits
 
-<h3>🔑 Constants & Keys</h3>
-<ul>
-  <li><strong><code>Constants.kt</code></strong> — Stores global constants like delay durations, log tags, shared keys, etc. (Appears twice — consider deduplication).</li>
-  <li><strong><code>LocalKeys.kt</code></strong> — Keys used for local storage or inter-component communication (e.g., SharedPreferences, Bundle).</li>
-</ul>
+- ✅ **Better Modularity** — Clear separation of concerns
+- ✅ **Improved Scalability** — Well-named folders help future teams navigate faster
+- ✅ **Developer Productivity** — Fewer bugs and faster development due to reusable helpers
+- ✅ **Cleaner Git History** — Meaningful commits, each scoped to a particular area
 
-<hr />
+---
 
-<h3>🔄 View State Handling</h3>
-<ul>
-  <li><strong><code>ViewModelStateHandler.kt</code></strong> — Manages UI states like loading, success, error, and empty for screens based on ViewModel states.</li>
-</ul>
+### 📅 Commits Summary
 
-<hr />
+| Date | Commit |
+|------|--------|
+| Mar 22, 2025 | `feat: add core activity/fragment base classes and utility components` |
+| Mar 22, 2025 | `refactor(ui): reorganize date/time picker helpers, input validation, and utils into structured folders` |
+| Mar 22, 2025 | `Added Animation files` |
+| Mar 22, 2025 | `Added Base Colors` |
 
-<h3>🎛️ Spinner UI</h3>
-<ul>
-  <li><strong><code>SpinnerAdapter.kt</code></strong> — Custom adapter to render dropdown items with dynamic styling and behavior.</li>
-  <li><strong><code>layout_spinner_item.xml</code></strong> — XML layout used to display individual items in a spinner (drop-down list).</li>
-</ul>
+---
 
-<hr />
+### 🧠 When to Use This Branch
 
-<h3>🔧 Gradle</h3>
-<ul>
-  <li><strong><code>build.gradle.kts</code></strong> — Kotlin-based Gradle configuration for this module (dependencies, plugins, settings).</li>
-</ul>
+Use this branch if:
+- You are working on **foundation-layer features**
+- You need **base UI logic**, **navigation handling**, or **lifecycle-aware utilities**
+- You are building reusable infrastructure before jumping into features
 
-<hr />
+---
