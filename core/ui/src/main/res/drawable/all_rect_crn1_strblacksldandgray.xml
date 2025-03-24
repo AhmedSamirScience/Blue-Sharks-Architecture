@@ -6,9 +6,9 @@
 
      <stroke
         android:width="@dimen/_1sdp"
-        android:color="@color/gray_extra_light"
+        android:color="@color/color_gray_extra_light"
     />
 
-    <solid android:color="@color/white" />
+    <solid android:color="@color/color_white" />
 
 </shape>
