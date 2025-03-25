@@ -2,192 +2,152 @@ package dependencies
 
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.project
-import tests.TestDependencies
 
-fun DependencyHandler.room() {
-//    implementation(Dependencies.roomKtx)
-//    implementation(Dependencies.roomRuntime)
-//    kapt(Dependencies.roomCompiler)
-}
 
-fun DependencyHandler.dataStore() {
-//    implementation(Dependencies.datastore)
-//    implementation(Dependencies.kotlinCollections)
-}
-fun DependencyHandler.kotlinx() {
-   // implementation(Dependencies.kotlinSerilaizations)
-}
+    //region App & Feature Modules
+    fun DependencyHandler.appModule() {
+        moduleImplementation(project(":app"))
+    }
+    fun DependencyHandler.dataModule() {
+        moduleImplementation(project(":core:data"))
+    }
+    fun DependencyHandler.domainModule() {
+        moduleImplementation(project(":core:domain"))
+    }
+    fun DependencyHandler.presentationModule() {
+        moduleImplementation(project(":core:presentation"))
+    }
+    fun DependencyHandler.uiModule() {
+        moduleImplementation(project(":core:ui"))
+    }
+    fun DependencyHandler.viewModelCasesModule() {
+        moduleImplementation(project(":feature:viewmodelcases"))
+    }
+    fun DependencyHandler.loginModule() {
+        moduleImplementation(project(":feature:login"))
+    }
+    //endregion
 
-fun DependencyHandler.protoDataStore() {
-//    implementation(Dependencies.datastore)
-//    implementation(Dependencies.protoBufJavaLite)
-//    implementation(Dependencies.protoBufKotlinLite)
-}
+    //region Libraries
 
-fun DependencyHandler.chucker() {
-//    releaseImplementation(Dependencies.chuckerRelease)
-//    debugImplementation(Dependencies.chuckerDebug)
-}
+    //region Core Android + UI Libraries
+    /**
+    * Includes core Android dependencies such as AppCompat, Material Components, and ConstraintLayout.
+    * Also includes unit and instrumentation testing libraries.
+    *
+    * ✅ Use this in **every module that deals with UI** or needs basic Android platform features.
+    * ✅ Includes testing setup for `test/` and `androidTest/`.
+    */
+    fun DependencyHandler.defaultLibraries() {
+        //Android Core + UI Framework
+        implementation(Dependencies.ANDROID_CORE)
+        implementation(Dependencies.APP_COMPAT)
+        implementation(Dependencies.ANDROID_MATERIAL)
+        implementation(Dependencies.CONSTRAIN_LAYOUT)
+        implementation(Dependencies.LEGACY_SUPPORT)
 
-//fun DependencyHandler.retrofit() {
-//    implementation(Dependencies.retrofit)
-//    implementation(Dependencies.retrofitConverterGson)
-//    implementation(Dependencies.retrofitKotlinCoroutinesAdapter)
-//}
+        //Testing (Unit + Instrumentation)
+        testImplementation(Dependencies.JUNIT)
+        androidTestImplementation(Dependencies.TEST_EXT)
+        androidTestImplementation(Dependencies.TEST_ESPRESSO)
+    }
+    //endregion
 
-fun DependencyHandler.okHttp() {
-//    implementation(Dependencies.okHttp)
-//    implementation(Dependencies.okHttpLoggingInterceptor)
-}
+    //region Jetpack Architecture Components
+    /**
+    * Adds lifecycle-aware components such as ViewModel, LiveData, and lifecycle-aware coroutine scopes.
+    *
+    * ✅ Use this in **any module that holds UI-related logic**, such as ViewModels or state management.
+    * ✅ Required for `viewModelScope`, `lifecycleScope`, `LiveData.observe()`.
+    */
+    fun DependencyHandler.jetpackViewModelAndLifecycle() {
+        implementation(Dependencies.LIFECYCLE_LIVE_DATA)
+        implementation(Dependencies.LIFECYCLE_VIEWMODEL)
+        implementation(Dependencies.LIFECYCLE_RUNTIME_KTX)
+    }
+    //endregion
 
-fun DependencyHandler.hilt() {
-//    implementation(Dependencies.hiltAndroid)
-//    implementation(Dependencies.hiltCompose)
-//    implementation(Dependencies.hiltNavigation)
-//    kapt(Dependencies.hiltCompiler)
-//    kapt(Dependencies.hiltAgp)
-//    kapt(Dependencies.hiltCompilerKapt)
+    //region Navigation Component
+    /**
+    * Adds Jetpack Navigation support for fragments and UI controls (e.g., Toolbar, BottomNav).
+    *
+    * ✅ Use this in **modules with UI that involve screen navigation** (Fragment-based or Compose).
+    * ✅ Supports `findNavController()`, Safe Args, toolbar back navigation, and more.
+    */
+    fun DependencyHandler.navigationComponent() {
+        implementation(Dependencies.NAVIGATION_FRAGMENT_KTX)
+        implementation(Dependencies.NAVIGATION_KTX)
+    }
+    //endregion
 
-}
+    //region Dependency Injection (Hilt)
+    /**
+    * Adds Hilt support for dependency injection and annotation processing.
+    *
+    * ✅ Use this in **modules that require injection via `@Inject`, `@HiltViewModel`, or `@AndroidEntryPoint`**.
+    * ✅ Works with ViewModels, Fragments, Activities, Services, and Workers.
+    */
+    fun DependencyHandler.dependencyInjectionHilt() {
+        implementation(Dependencies.DAGGER_HILT_ANDROID)
+        //  implementation(Dependencies.hiltLifeCycleViewModel)
+        kapt(Dependencies.DAGGER_HILT_COMPILER)
+        kapt(Dependencies.ANDROID_HILT_COMPILER)
+    }
+    //endregion
 
-fun DependencyHandler.androidx() {
-//    implementation(Dependencies.ANDROIDX_CORE)
-//    implementation(Dependencies.ANDROIDX_LIFECYCLE_RUNTIME_KTX)
-//    implementation(Dependencies.ANDROIDX_ACTIVITY_COMPOSE)
-//    implementation(Dependencies.ANDROIDX_UI)
-//    implementation(Dependencies.ANDROIDX_UI_GRAPHICS)
-//    implementation(Dependencies.ANDROIDX_UI_TOOLING_PREVIEW)
-//    implementation(Dependencies.ANDROIDX_MATERIAL3)
-//    implementation(Dependencies.WORK_RUNTIME)
-//    implementation(Dependencies.APP_COMPAT)
-//    implementation(Dependencies.MATERIAL)
-//    implementation(Dependencies.ANDROIDX_ACTIVITY)
-//    implementation(Dependencies.COMPOSE_MATERIAL)
-//    implementation(Dependencies.COMPOSE_COMPILER)
-//    implementation(Dependencies.COMPOSE_RUNTIME)
-//    implementation(Dependencies.navigation)
-//    implementation(Dependencies.navigation2)
-//    implementation(Dependencies.navigationFragmentKtx)
-//    implementation(Dependencies.googleJson)
-}
+    //region Kotlin Coroutines
+    /**
+    * Adds core and Android-specific coroutine support.
+    *
+    * ✅ Use this in **modules that handle background tasks, async APIs, or flow collection**.
+    * ✅ Enables `Dispatchers.Main`, `Dispatchers.IO`, `withContext`, `viewModelScope`, etc.
+    */
+    fun DependencyHandler.coroutines() {
+        implementation(Dependencies.KOTLINX_COROUTINES_CORE)
+        implementation(Dependencies.KOTLINX_COROUTINES_ANDROID)
+    }
+    //endregion
 
-fun DependencyHandler.appModule() {
-    moduleImplementation(project(":app"))
-}
+    //region Networking (Retrofit + OkHttp)
+    /**
+    * Adds Retrofit and OkHttp for HTTP networking.
+    *
+    * ✅ Use this in **data modules** or any module that needs to make REST API calls.
+    * ✅ Includes JSON conversion and logging capabilities.
+    */
+    fun DependencyHandler.networking() {
+        implementation(Dependencies.RETROFIT_SQUARE_UP)
+        implementation(Dependencies.RETROFIT_SQUARE_UP_CONVERTER_GSON)
+        implementation(Dependencies.OKHTTP_SQUARE_UP)
+        implementation(Dependencies.INTERCEPTOR_SQUARE_UP)
+    }
+    //endregion
 
-fun DependencyHandler.loginModule() {
-    moduleImplementation(project(":feature:login"))
-}
+    //region UI Responsiveness (SDP & SSP)
+    /**
+    * Adds responsive layout and text size utilities.
+    *
+    * ✅ Use this in **UI modules** where screen size scaling matters (e.g., margin, padding, text size).
+    * ✅ Useful for tablets, multi-resolution phones, and accessibility.
+    */
+    fun DependencyHandler.applyScalableDimensions() {
+        //Design & Dimensions (Responsive UI)
+        implementation(Dependencies.INTUIT_SDB)
+        implementation(Dependencies.INTUIT_SSP)
+    }
+    //endregion
 
-fun DependencyHandler.viewModelCasesModule() {
-    moduleImplementation(project(":feature:viewmodelcases"))
-}
+    //region Media & Animations
+    /**
+    * Adds native GIF drawable support for loading and controlling animated GIFs.
+    *
+    * ✅ Use this in **UI modules** that require GIF display (e.g., loading indicators, animated banners).
+    */
+    fun DependencyHandler.mediaAnimations() {
+        implementation(Dependencies.GIF_DRAWABLE)
+    }
+    //endregion
 
-fun DependencyHandler.dataModule() {
-    moduleImplementation(project(":core:data"))
-}
-
-fun DependencyHandler.dataStoreModule() {
-    moduleImplementation(project(":core:datastore"))
-}
-
-fun DependencyHandler.protoDataStoreModule() {
-    moduleImplementation(project(":core:protodatastore"))
-}
-
-fun DependencyHandler.domainModule() {
-    moduleImplementation(project(":core:domain"))
-}
-
-fun DependencyHandler.uiModule() {
-    moduleImplementation(project(":core:ui"))
-}
-fun DependencyHandler.navigatorModule() {
-    moduleImplementation(project(":core:navigator"))
-}
-
-fun DependencyHandler.presentationModule() {
-    moduleImplementation(project(":core:presentation"))
-}
-fun DependencyHandler.paymentModule() {
-    moduleImplementation(project(":core:payment"))
-}
-
-fun DependencyHandler.homeModule() {
-    moduleImplementation(project(":features:home"))
-}
-fun DependencyHandler.signupModule() {
-    moduleImplementation(project(":features:signup"))
-}
-
-fun DependencyHandler.testDeps() {
-    //testImplementation(TestDependencies.ANDROIDX_JUNIT)
-}
-
-fun DependencyHandler.testImplDeps() {
-    //androidTestImplementation(TestDependencies.ANDROIDX_JUNIT)
-    //androidTestImplementation(TestDependencies.ANDROIDX_ESPRESSO_CORE)
-    //androidTestImplementation(TestDependencies.ANDROIDX_COMPOSE_UI_TEST)
-}
-
-fun DependencyHandler.testDebugDeps() {
-    //debugImplementation(TestDependencies.ANDROIDX_COMPOSE_UI_TEST_MANIFEST)
-}
-
-////////////////////////////////////////////////////////
-
-fun DependencyHandler.defaultLibraries() {
-    implementation(Dependencies.ANDROID_CORE)
-    implementation(Dependencies.APP_COMPAT)
-    implementation(Dependencies.ANDROID_MATERIAL)
-    implementation(Dependencies.CONSTRAIN_LAYOUT)
-    testImplementation(Dependencies.JUNIT)
-    androidTestImplementation(Dependencies.TEST_EXT)
-    androidTestImplementation(Dependencies.TEST_ESPRESSO)
-}
-
-fun DependencyHandler.navGraph() {
-    implementation(Dependencies.NAVIGATION_FRAGMENT_KTX)
-    implementation(Dependencies.NAVIGATION_KTX)
-}
-
-fun DependencyHandler.viewModel() {
-    implementation(Dependencies.LEGACY_SUPPORT)
-    implementation(Dependencies.LIFECYCLE_LIVE_DATA)
-    implementation(Dependencies.LIFECYCLE_VIEWMODEL)
-    //implementation(Dependencies.lifecycleViewModelCompose)
-}
-
-fun DependencyHandler.applyScalableDimensions() {
-    implementation(Dependencies.INTUIT_SDB)
-    implementation(Dependencies.INTUIT_SSP)
-}
-
-fun DependencyHandler.gifDrawable() {
-    implementation(Dependencies.GIF_DRAWABLE)
-}
-
-fun DependencyHandler.lifecycleRuntimeKtx() {
-    implementation(Dependencies.LIFECYCLE_RUNTIME_KTX)
-}
-
-fun DependencyHandler.daggerHilt() {
-    implementation(Dependencies.DAGGER_HILT_ANDROID)
-    //  implementation(Dependencies.hiltLifeCycleViewModel)
-    kapt(Dependencies.DAGGER_HILT_COMPILER)
-    kapt(Dependencies.ANDROID_HILT_COMPILER)
-}
-
-fun DependencyHandler.coroutines() {
-    implementation(Dependencies.KOTLINX_COROUTINES_CORE)
-    implementation(Dependencies.KOTLINX_COROUTINES_ANDROID)
-}
-
-fun DependencyHandler.retrofit() {
-    implementation(Dependencies.RETROFIT_SQUARE_UP)
-    implementation(Dependencies.RETROFIT_SQUARE_UP_CONVERTER_GSON)
-    implementation(Dependencies.OKHTTP_SQUARE_UP)
-    implementation(Dependencies.INTERCEPTOR_SQUARE_UP)
-}
+    //endregion
 
 

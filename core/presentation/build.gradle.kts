@@ -2,7 +2,7 @@
 // Import Statements
 // ───────────────────────────────────────────────────────────────────────────────
 import dependencies.defaultLibraries // Imports a function to add default dependencies.
-import dependencies.navGraph
+import dependencies.navigationComponent
 import dependencies.uiModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
@@ -116,7 +116,7 @@ dependencies {
    *   }
    *   ```
    */
-  navGraph()
+  navigationComponent()
 
   uiModule()
 }

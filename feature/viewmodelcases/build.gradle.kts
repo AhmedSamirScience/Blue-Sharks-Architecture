@@ -48,6 +48,10 @@ android {
    *   ```
    */
   namespace = "com.samir.bluearchitecture.viewmodelcases"
+
+  buildFeatures {
+    dataBinding = true
+  }
 }
 
 // ───────────────────────────────────────────────────────────────────────────────

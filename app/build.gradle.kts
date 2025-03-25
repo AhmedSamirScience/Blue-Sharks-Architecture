@@ -1,11 +1,10 @@
 import build.BuildCreator
 import build.BuildDimensions
 import dependencies.defaultLibraries
-import dependencies.lifecycleRuntimeKtx
+import dependencies.jetpackViewModelAndLifecycle
 import dependencies.loginModule
-import dependencies.navGraph
+import dependencies.navigationComponent
 import dependencies.presentationModule
-import dependencies.viewModel
 import dependencies.viewModelCasesModule
 
 /**
@@ -558,11 +557,11 @@ dependencies {
    * **Best Practice:**
    * - Remove unused dependencies to **reduce APK size** and **improve build times**.
    */
-  dependencies.defaultLibraries()
-  dependencies.loginModule()
   dependencies.viewModelCasesModule()
-  dependencies.viewModel()
-  dependencies.lifecycleRuntimeKtx()
   dependencies.presentationModule()
-  dependencies.navGraph()
+  dependencies.loginModule()
+
+  dependencies.defaultLibraries()
+  dependencies.jetpackViewModelAndLifecycle()
+  dependencies.navigationComponent()
 }
