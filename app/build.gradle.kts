@@ -6,6 +6,7 @@ import dependencies.loginModule
 import dependencies.navGraph
 import dependencies.presentationModule
 import dependencies.viewModel
+import dependencies.viewModelCasesModule
 
 /**
  * ***build.gradle/build.gradle.kts (app module)***
@@ -559,7 +560,7 @@ dependencies {
    */
   dependencies.defaultLibraries()
   dependencies.loginModule()
-
+  dependencies.viewModelCasesModule()
   dependencies.viewModel()
   dependencies.lifecycleRuntimeKtx()
   dependencies.presentationModule()

@@ -79,6 +79,10 @@ fun DependencyHandler.loginModule() {
     moduleImplementation(project(":feature:login"))
 }
 
+fun DependencyHandler.viewModelCasesModule() {
+    moduleImplementation(project(":feature:viewmodelcases"))
+}
+
 fun DependencyHandler.dataModule() {
     moduleImplementation(project(":core:data"))
 }
