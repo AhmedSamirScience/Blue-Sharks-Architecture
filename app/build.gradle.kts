@@ -109,7 +109,24 @@ plugins {
    */
   id(plugs.BuildPlugins.DOKKA)
 
-  id("androidx.navigation.safeargs.kotlin")
+  /**
+   * 📌 Applying the Safe Args Kotlin Plugin - Type-Safe Navigation in Jetpack
+   * - This plugin integrates **Safe Args** into the Gradle build system.
+   * - It enables the generation of **type-safe classes** for passing data between navigation destinations.
+   *
+   * 🔹 Why Apply the Safe Args Plugin?
+   * - 🚫 Avoids runtime errors from incorrect `Bundle` keys or types.
+   * - ✅ Generates `Directions` and `Args` classes for safer navigation.
+   * - 🤝 Strongly typed arguments improve maintainability and readability.
+   * - 💡 Works seamlessly with the Jetpack Navigation Component in Kotlin projects.
+   *
+   * ⚠️ Requirements:
+   * - The **Kotlin Android plugin** (`org.jetbrains.kotlin.android`) must be applied *before* this plugin.
+   * - Only compatible with **Kotlin modules**.
+   *
+   * 🔗 Official Documentation: https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args
+   */
+  id(plugs.BuildPlugins.SAFE_ARGS)
 }
 
 android {
@@ -557,8 +574,8 @@ dependencies {
    * **Best Practice:**
    * - Remove unused dependencies to **reduce APK size** and **improve build times**.
    */
-  dependencies.viewModelCasesModule()
   dependencies.presentationModule()
+  dependencies.viewModelCasesModule()
   dependencies.loginModule()
 
   dependencies.defaultLibraries()

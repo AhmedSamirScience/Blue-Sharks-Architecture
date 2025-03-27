@@ -3,9 +3,20 @@
 
     <application>
         <activity
-            android:name=".MainViewModelActivity"
+            android:name=".navGraphScopeFlow.activity.NavGraphVMActivity"
             android:exported="false"
         />
+        <activity
+            android:name=".activityScopeFlow.activity.ScopeVMActivity"
+            android:exported="false"
+        />
+        <activity
+            android:name=".basicFlow.activity.BasicVMActivity"
+            android:exported="false"
+        />
+
+        <activity android:name=".MainVMActivity" android:exported="false" />
+
     </application>
 
 </manifest>

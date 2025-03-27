@@ -2,12 +2,28 @@
 // Import Statements
 // ───────────────────────────────────────────────────────────────────────────────
 import dependencies.defaultLibraries // Imports a function to add default dependencies.
+import dependencies.navigationComponent
+import dependencies.presentationModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
 // ───────────────────────────────────────────────────────────────────────────────
 // Apply Plugins
 // ───────────────────────────────────────────────────────────────────────────────
 plugins {
+  /**
+   * `KOTLIN_ANDROID` - Enables **Kotlin support** in the Android module.
+   * - Required when using Kotlin source files.
+   * - Also required for plugins like `androidx.navigation.safeargs.kotlin`.
+   * - Defined in `plugs.BuildPlugins` as `"org.jetbrains.kotlin.android"`.
+   * - Example usage:
+   *   ```kotlin
+   *   plugins {
+   *       id(BuildPlugins.KOTLIN_ANDROID)
+   *   }
+   *   ```
+   */
+  id(plugs.BuildPlugins.KOTLIN_ANDROID)
+
   /**
    * `ANDROID_LIBRARY` - Applies the Android Library plugin.
    * - Required for building **Android libraries (`.aar` files)**.
@@ -20,6 +36,8 @@ plugins {
    *   ```
    */
   id(plugs.BuildPlugins.ANDROID_LIBRARY)
+
+  id("androidx.navigation.safeargs.kotlin")
 }
 
 /**
@@ -71,4 +89,7 @@ dependencies {
    *   ```
    */
   defaultLibraries()
+  navigationComponent()
+
+  presentationModule()
 }

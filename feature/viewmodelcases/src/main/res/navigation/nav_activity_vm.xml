@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_activity_vm"
+    app:startDestination="@id/activityVMFirstFragment"
+>
+
+    <fragment
+        android:id="@+id/activityVMFirstFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.activityScopeFlow.fragment.first.ActivityVMFirstFragment"
+        android:label="fragment_activity_v_m_first"
+        tools:layout="@layout/fragment_activity_v_m_first"
+    >
+        <action
+            android:id="@+id/action_activityVMFirstFragment_to_activityVMSecondFragment"
+            app:destination="@id/activityVMSecondFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+        />
+    </fragment>
+
+    <fragment
+        android:id="@+id/activityVMSecondFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.activityScopeFlow.fragment.second.ActivityVMSecondFragment"
+        android:label="fragment_activity_v_m_second"
+        tools:layout="@layout/fragment_activity_v_m_second"
+    />
+</navigation>

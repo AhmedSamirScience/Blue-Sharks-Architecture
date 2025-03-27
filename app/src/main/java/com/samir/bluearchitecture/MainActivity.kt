@@ -1,10 +1,11 @@
 package com.samir.bluearchitecture
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.samir.bluearchitecture.databinding.ActivityMainBinding
-import com.samir.bluearchitecture.viewmodelcases.MainViewModelActivity
+import com.samir.bluearchitecture.viewmodelcases.MainVMActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,8 +16,13 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     binding.sharedViewModelButton.setOnClickListener {
-      val intent = Intent(this, MainViewModelActivity::class.java)
-      startActivity(intent)
+      val intent = Intent(this, MainVMActivity::class.java)
+      val options = ActivityOptions.makeCustomAnimation(
+        this,
+        com.samir.bluearchitecture.ui.R.anim.slide_in_from_top,
+        com.samir.bluearchitecture.ui.R.anim.slide_out_to_bottom,
+      )
+      startActivity(intent, options.toBundle())
     }
   }
 }

@@ -140,4 +140,22 @@ object BuildPlugins {
      * - Converts Kotlin comments into **HTML or Markdown documentation**.
      */
     const val DOKKA = "dokka-settings"
+
+    /**
+     * `SAFE_ARGS` - Applies the **Safe Args Kotlin Plugin** for Jetpack Navigation.
+     * - Generates **type-safe classes** for navigating and passing arguments between destinations.
+     * - Reduces the risk of runtime errors due to incorrect argument types or missing data.
+     * - This is the **Kotlin-specific** version of Safe Args.
+     * - Requires the `KOTLIN_ANDROID` plugin to be applied **before** this plugin.
+     * - Should be used in modules that utilize **Jetpack Navigation** and are written in **Kotlin**.
+     *
+     * - Example usage in `build.gradle.kts`:
+     *   ```kotlin
+     *   plugins {
+     *       id(BuildPlugins.KOTLIN_ANDROID)
+     *       id(BuildPlugins.SAFE_ARGS)
+     *   }
+     *   ```
+     */
+    const val SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
 }

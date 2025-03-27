@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_navgraph_vm"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navGraphVMFirstFragment"
+>
+    <fragment
+        android:id="@+id/navGraphVMFirstFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.navGraphScopeFlow.fragment.first.NavGraphVMFirstFragment"
+        android:label="NavGraphVMFirstFragment"
+        tools:layout="@layout/fragment_nav_graph_v_m_first"
+    >
+        <action
+            android:id="@+id/action_navGraphVMFirstFragment_to_navGraphVMSecondFragment"
+            app:destination="@id/navGraphVMSecondFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/navGraphVMSecondFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.navGraphScopeFlow.fragment.second.NavGraphVMSecondFragment"
+        android:label="NavGraphVMSecondFragment"
+        tools:layout="@layout/fragment_nav_graph_v_m_second"
+    />
+
+</navigation>
