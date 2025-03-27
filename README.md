@@ -1,110 +1,91 @@
-# 📌 Core Modules - Clean Architecture Setup
+<hr />
 
-## 🌱 Branch Name
-`1.0-ArchitecturePhase/Feature/2.1-Add-Core-Modules`
+<h2>🎯 Feature: Base Classes Integration in Presentation Layer</h2>
+<h3>📌 Branch: <code>1.0-ArchitecturePhase/Feature/2.2-Base-Classes-Integration</code></h3>
 
-## 🚀 Overview
-This branch introduces the foundational **core modules** for implementing **Clean Architecture**. The project is now divided into three distinct layers:
+<hr />
 
-1️⃣ **Data Layer** (`data` module) - Handles data sources, API calls, and local storage.
-2️⃣ **Domain Layer** (`domain` module) - Contains business logic and use cases.
-3️⃣ **Presentation Layer** (`presentation` module) - Manages UI logic and user interactions.
+<h3>✅ Overview</h3>
+<p>This update introduces <strong>core foundational components</strong> for the <code>presentation layer</code> in a scalable, modular Android architecture.</p>
 
-This modularization ensures **scalability, maintainability, and separation of concerns**. ✅
+<ul>
+  <li>📦 Establishes reusable <strong>base classes</strong> for Fragments, Activities, and ViewModels</li>
+  <li>🧠 Adds ViewModel state management and lifecycle helpers</li>
+  <li>🎛 Implements utility classes for back press, click handling, and argument passing</li>
+  <li>🧪 Sets up initial test scaffolding for presentation components</li>
+</ul>
 
----
+<hr />
 
-## 📂 Project Structure
+<h3>🆕 Added Files</h3>
 
-### **📁 Data Layer (`data` Module)**
-Responsible for handling all **data sources**, including:
-- API interactions (Retrofit, OkHttp, etc.)
-- Local databases (Room, SharedPreferences, etc.)
-- Repositories to provide data to the domain layer
+<ul>
+  <li><strong>Base Classes</strong>
+    <ul>
+      <li><code>BaseFragment.kt</code></li>
+      <li><code>BaseActivity.kt</code></li>
+      <li><code>BaseViewModel.kt</code></li>
+    </ul>
+  </li>
 
-📌 **Files & Configurations**
-```
-├── data/
-│   ├── build.gradle.kts  // Module-specific dependencies
-│   ├── AndroidManifest.xml  // Necessary for defining the module
-│   ├── ExampleUnitTest.kt  // Placeholder test file
-│   ├── ExampleInstrumentedTest.kt  // Placeholder instrumented test
-│   ├── consumer-rules.pro  // ProGuard consumer rules
-│   ├── proguard-rules.pro  // ProGuard configurations
-```
+  <li><strong>Back Press & Lifecycle Managers</strong>
+    <ul>
+      <li><code>BackPressedHandlerActivity.kt</code></li>
+      <li><code>BackPressedStateManager.kt</code></li>
+      <li><code>LifecycleStateManager.kt</code></li>
+    </ul>
+  </li>
 
----
+  <li><strong>ViewModel State Management</strong>
+    <ul>
+      <li><code>ViewModelStateHandler.kt</code></li>
+      <li><code>ViewStateManager.kt</code></li>
+    </ul>
+  </li>
 
-### **📁 Domain Layer (`domain` Module)**
-This layer contains **business logic** and acts as an intermediary between **data** and **presentation** layers.
+  <li><strong>Argument & Setup Helpers</strong>
+    <ul>
+      <li><code>SafeArgsFragmentManager.kt</code> – Simplifies working with Jetpack Safe Args</li>
+      <li><code>FragmentSetupContract.kt</code> – Enforces consistent fragment initialization</li>
+    </ul>
+  </li>
 
-📌 **Key Responsibilities:**
-- Defines **Use Cases** (Application-specific business rules)
-- Provides **abstractions** for data sources
-- Operates independently of external frameworks
+  <li><strong>Click Handling</strong>
+    <ul>
+      <li><code>ClickListenerManager.kt</code> – Prevents double taps and centralizes click logic</li>
+    </ul>
+  </li>
 
-📌 **Files & Configurations**
-```
-├── domain/
-│   ├── build.gradle.kts
-│   ├── AndroidManifest.xml
-│   ├── ExampleUnitTest.kt
-│   ├── ExampleInstrumentedTest.kt
-│   ├── consumer-rules.pro
-│   ├── proguard-rules.pro
-```
+  <li><strong>Logging</strong>
+    <ul>
+      <li><code>Logger.kt</code> – Standard logging utility for debugging and crash tracing</li>
+    </ul>
+  </li>
 
----
+  <li><strong>Tests</strong>
+    <ul>
+      <li><code>ExampleUnitTest.kt</code></li>
+      <li><code>ExampleInstrumentedTest.kt</code></li>
+    </ul>
+  </li>
+</ul>
 
-### **📁 Presentation Layer (`presentation` Module)**
-Handles **UI logic** and connects with the domain layer via **ViewModels**.
+<hr />
 
-📌 **Key Responsibilities:**
-- Uses **ViewModel, LiveData, and StateFlow** to manage UI state
-- Contains **UI-related business logic**
-- Completely independent from the data layer
+<h3>🧠 When & Why to Use These Base Classes?</h3>
 
-📌 **Files & Configurations**
-```
-├── presentation/
-│   ├── build.gradle.kts
-│   ├── AndroidManifest.xml
-│   ├── ExampleUnitTest.kt
-│   ├── ExampleInstrumentedTest.kt
-│   ├── consumer-rules.pro
-│   ├── proguard-rules.pro
-```
+<ul>
+  <li>⏱ Reduce boilerplate code across modules and features</li>
+  <li>🔁 Promote reusability and consistency in UI setup and ViewModel interactions</li>
+  <li>🧩 Easily plug lifecycle-aware utilities (e.g. <code>repeatOnLifecycle</code>) into shared classes</li>
+  <li>🔐 Improve argument safety with Safe Args and type-safe navigation</li>
+</ul>
 
----
+<hr />
 
-## 🏗 Root Project Configurations
-
-📁 **Other Files Added**
-```
-├── settings.gradle.kts  // Includes the new modules
-├── .gitignore  // Ensures proper version control
-```
-
-📌 **settings.gradle.kts** Example:
-```kotlin
-rootProject.name = "MyApplication"
-include(":data")
-include(":domain")
-include(":presentation")
-```
-
----
-
-## 🛠 Clean Architecture Implementation
-This structure follows **Uncle Bob’s Clean Architecture Principles**:
-✅ Separation of concerns  
-✅ Modularization  
-✅ Scalable and maintainable architecture  
-
----
-
-## 📖 Reference
-📖 [Clean Architecture by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-
----
-
+<h3>📚 References</h3>
+<ul>
+  <li><a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank">ViewModel Architecture - Android Docs</a></li>
+  <li><a href="https://developer.android.com/topic/libraries/architecture/lifecycle" target="_blank">Lifecycle Management</a></li>
+  <li><a href="https://developer.android.com/jetpack" target="_blank">Jetpack Architecture Components</a></li>
+</ul>
