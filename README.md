@@ -1,131 +1,99 @@
-<h2>🎨 UI Core Layer — Development Branch (03-UI-Core)</h2>
+<h2>🚀 Feature: ViewModel + Activity Integration</h2>
+<h3><code>Branch: 1.0-ArchitecturePhase/Feature/4.2-View-Model-Activity-Integration</code></h3>
 
-<p>This branch focuses on establishing and evolving the <strong>UI foundation</strong> of the application architecture — including naming conventions, animation resources, colors, and reusable helpers for form and date/time input.</p>
-
-<hr/>
-
-<h3>📌 Purpose</h3>
 <p>
-  The <code>Development/03-UI-Core</code> branch acts as the <strong>base layer for UI styling, interaction, and structure</strong>. It consolidates essential components like:
+This feature integrates the <strong>MainActivity</strong> and <strong>HomeActivity</strong> using a <strong>shared ViewModel architecture</strong> and updated layout resources, enabling smooth modular navigation and state handling across activities.
 </p>
 
+<hr />
+
+<h3>📌 What’s Included?</h3>
 <ul>
-  <li>🔤 Naming conventions for consistency</li>
-  <li>🎨 Shared color and font styles</li>
-  <li>📅 Date and time input utilities</li>
-  <li>🧪 Form validation helpers</li>
-  <li>💫 Base animations and reusable UI interactions</li>
-</ul>
-
-<hr/>
-
-<h3>✅ Summary of Key Changes</h3>
-
-<h4>🧱 UI Architecture Setup (from Feature/3.2-Core-Architecture-Setup)</h4>
-<ul>
-  <li><strong>Moved</strong> all <code>Date/Time Pickers</code> to <code>date_time_helpers/</code></li>
-  <li><strong>Moved</strong> <code>TextInputEditTextUtils.kt</code> to <code>form_helpers/</code></li>
-  <li><strong>Moved</strong> <code>DateUtils.kt</code> to <code>formatters/</code></li>
-  <li><strong>Relocated</strong> dialog layout to <code>res/layout/dialogs/</code></li>
-  <li><strong>Added</strong> color palettes to <code>colors.xml</code></li>
-  <li><strong>Added</strong> animation files for fade, slide, etc.</li>
-</ul>
-
-<h4>🧭 Naming Standards (from Feature/3.1-Naming-Standards)</h4>
-<ul>
-  <li>➕ Introduced <code>naming_convention.xml</code> and UI widget short name principles</li>
-  <li>📁 Guidelines ensure naming consistency across XML, code, and resources</li>
-  <li>📌 Examples:
+  <li>🧩 <strong>ViewModel Integration:</strong> Shared ViewModel setup between Main and Home flows for cleaner state management.</li>
+  <li>🧱 <strong>Updated Layouts:</strong> New and updated XML layout files for the UI:
     <ul>
-      <li><code>btn_main_primary.xml</code> for primary button styles</li>
-      <li><code>edt_username_input.xml</code> for input fields</li>
+      <li><code>activity_home.xml</code></li>
+      <li><code>activity_main.xml</code></li>
+      <li><code>activity_main_view_model.xml</code></li>
     </ul>
   </li>
+  <li>🏗️ <strong>Activity Enhancements:</strong> Refactored and integrated activities:
+    <ul>
+      <li><code>HomeActivity.kt</code></li>
+      <li><code>MainActivity.kt</code></li>
+      <li><code>MainViewModelActivity.kt</code></li>
+    </ul>
+  </li>
+  <li>📛 <strong>AndroidManifest.xml:</strong> Registered new activity entries and updated intent filters if required.</li>
+  <li>⚙️ <strong>Gradle Updates:</strong> `build.gradle.kts` updated to reflect changes in dependencies, view binding, or architecture setup.</li>
+  <li>📦 <strong>Constants:</strong> Used across modules for reusability:
+    <ul>
+      <li><code>Constants.kt</code> → Holds global constants.</li>
+      <li><code>LocalKeys.kt</code> → Holds shared preference keys or local tags.</li>
+    </ul>
+  </li>
+  <li>🧪 <strong>Testing:</strong> Added/updated unit or scaffold tests in <code>Test.kt</code>.</li>
 </ul>
 
-<hr/>
+<hr />
 
-<h3>🧠 Why This Matters</h3>
+<h3>🎯 Why This Is Important</h3>
 <ul>
-  <li>✅ <strong>Developer Productivity</strong> → Structured folders and consistent naming save time during collaboration</li>
-  <li>🎯 <strong>Scalability</strong> → Easy to expand UI features and styling rules without clutter</li>
-  <li>🎨 <strong>Design Consistency</strong> → Shared colors, fonts, and animation styles make your app feel polished</li>
+  <li>✅ Enables modular navigation and separation of concerns between Home and Main UI flows.</li>
+  <li>✅ Promotes reuse of logic using shared ViewModels (especially for shared UI state or event bus).</li>
+  <li>✅ Reduces boilerplate by leveraging clean activity-ViewModel binding patterns.</li>
+  <li>✅ Prepares the foundation for deeper navigation flows and dynamic screen rendering.</li>
 </ul>
 
-<hr/>
+<hr />
 
-<h3>📁 Folder Overview</h3>
+<h3>📁 Directory Overview</h3>
+<pre>
+feature/
+└── main/
+    ├── ui/
+    │   ├── activities/
+    │   │   ├── HomeActivity.kt
+    │   │   ├── MainActivity.kt
+    │   │   └── MainViewModelActivity.kt
+    │   └── layouts/
+    │       ├── activity_home.xml
+    │       ├── activity_main.xml
+    │       └── activity_main_view_model.xml
+    ├── viewmodel/
+    │   └── SharedViewModel.kt
+    ├── utils/
+    │   ├── Constants.kt
+    │   └── LocalKeys.kt
+</pre>
 
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Folder</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>📅 Date/Time Helpers</td>
-      <td><code>date_time_helpers/</code></td>
-      <td>Pickers for date, time, and month-year dialogs</td>
-    </tr>
-    <tr>
-      <td>🧪 Form Helpers</td>
-      <td><code>form_helpers/</code></td>
-      <td>Validation helpers like TextInputEditTextUtils</td>
-    </tr>
-    <tr>
-      <td>📆 Formatters</td>
-      <td><code>formatters/</code></td>
-      <td>Date utilities and string formatting helpers</td>
-    </tr>
-    <tr>
-      <td>🎨 Styling</td>
-      <td><code>res/values/colors.xml</code></td>
-      <td>Centralized color palette</td>
-    </tr>
-    <tr>
-      <td>💫 Animations</td>
-      <td><code>res/anim/</code></td>
-      <td>Reusable animation XMLs for transitions</td>
-    </tr>
-    <tr>
-      <td>📋 Guidelines</td>
-      <td><code>res/xml/naming_convention*.xml</code></td>
-      <td>Naming standards and UI principles</td>
-    </tr>
-  </tbody>
-</table>
+<hr />
 
-<hr/>
+<h3>🔌 Manifest Snippet</h3>
+<pre><code>&lt;activity android:name=".ui.activities.MainActivity" /&gt;
+&lt;activity android:name=".ui.activities.HomeActivity"&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.MAIN" /&gt;
+        &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre>
 
-<h3>📅 Commits Summary</h3>
+<hr />
 
+<h3>🧠 When &amp; Why to Use Shared ViewModels Between Activities?</h3>
 <ul>
-  <li><strong>Mar 24, 2025</strong>: Refactored folder structure for UI helpers</li>
-  <li><strong>Mar 24, 2025</strong>: Added animation XMLs</li>
-  <li><strong>Mar 24, 2025</strong>: Introduced base color scheme</li>
-  <li><strong>Mar 22, 2025</strong>: Added naming conventions and UI guidelines</li>
+  <li>When both activities share logic or state (e.g., login status, user session).</li>
+  <li>When you want to persist logic across screens without creating separate ViewModels.</li>
+  <li>When using <code>Activity-scoped ViewModel</code> via <code>ViewModelProvider(this)</code>.</li>
 </ul>
 
-<hr/>
+<hr />
 
-<h3>🚀 When to Use This Branch</h3>
-
-<p>Use this branch if you are:</p>
-
+<h3>🔗 References</h3>
 <ul>
-  <li>🔧 Setting up UI components across multiple features</li>
-  <li>🧪 Creating reusable form logic and validations</li>
-  <li>🖌️ Applying base themes, fonts, or UI behaviors</li>
+  <li><a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank">Android ViewModel - Official Docs</a></li>
+  <li><a href="https://developer.android.com/jetpack/docs/guide" target="_blank">Jetpack Guide to Modern Architecture</a></li>
 </ul>
 
-<hr/>
-
-<h3>🔗 Related Branches</h3>
-
-<ul>
-  <li><strong>Feature/3.1-Naming-Standards</strong> — UI naming rules and styling conventions</li>
-  <li><strong>Feature/3.2-Core-Architecture-Setup</strong> — Base classes and shared utilities</li>
-</ul>
+ 
