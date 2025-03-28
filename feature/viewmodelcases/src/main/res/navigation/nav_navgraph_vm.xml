@@ -8,7 +8,7 @@
 >
     <fragment
         android:id="@+id/navGraphVMFirstFragment"
-        android:name="com.samir.bluearchitecture.viewmodelcases.navGraphScopeFlow.fragment.first.NavGraphVMFirstFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow3NavGraphScope.fragment.f1NavGraphVM.NavGraphVMFirstFragment"
         android:label="NavGraphVMFirstFragment"
         tools:layout="@layout/fragment_nav_graph_v_m_first"
     >
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/navGraphVMSecondFragment"
-        android:name="com.samir.bluearchitecture.viewmodelcases.navGraphScopeFlow.fragment.second.NavGraphVMSecondFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow3NavGraphScope.fragment.f2NavGraphVM.NavGraphVMSecondFragment"
         android:label="NavGraphVMSecondFragment"
         tools:layout="@layout/fragment_nav_graph_v_m_second"
     />

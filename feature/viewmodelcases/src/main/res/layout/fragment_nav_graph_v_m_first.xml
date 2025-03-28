@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".navGraphScopeFlow.fragment.first.NavGraphVMFirstFragment"
+        tools:context=".flow3NavGraphScope.fragment.f1NavGraphVM.NavGraphVMFirstFragment"
     >
         <TextView
             android:layout_width="match_parent"

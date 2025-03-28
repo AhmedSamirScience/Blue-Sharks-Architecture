@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/activityVMFirstFragment"
-        android:name="com.samir.bluearchitecture.viewmodelcases.activityScopeFlow.fragment.first.ActivityVMFirstFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow2ActivityScope.fragment.f1ActivityVM.ActivityVMFirstFragment"
         android:label="fragment_activity_v_m_first"
         tools:layout="@layout/fragment_activity_v_m_first"
     >
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/activityVMSecondFragment"
-        android:name="com.samir.bluearchitecture.viewmodelcases.activityScopeFlow.fragment.second.ActivityVMSecondFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow2ActivityScope.fragment.f2ActivityVM.ActivityVMSecondFragment"
         android:label="fragment_activity_v_m_second"
         tools:layout="@layout/fragment_activity_v_m_second"
     />

@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/basicVMFragment"
-        android:name="com.samir.bluearchitecture.viewmodelcases.basicFlow.fragment.first.BasicVMFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow1Basic.fragment.f1BasicVM.BasicVMFragment"
         android:label="fragment_basic_v_m"
         tools:layout="@layout/fragment_basic_v_m"
     >
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/configChangeVMFragment"
-        android:name="com.samir.bluearchitecture.viewmodelcases.basicFlow.fragment.second.ConfigChangeVMFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow1Basic.fragment.f2ConfiqChangeVM.ConfigChangeVMFragment"
         android:label="fragment_config_change_v_m"
         tools:layout="@layout/fragment_config_change_v_m"
     />

@@ -5,18 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
 >
 
+    <data>
+        <variable
+            name="myItem"
+            type="com.samir.bluearchitecture.viewmodelcases.flow1Basic.fragment.f1BasicVM.DisplayClass"
+        />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".basicFlow.fragment.first.BasicVMFragment"
+        tools:context=".flow1Basic.fragment.f1BasicVM.BasicVMFragment"
     >
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Base Concept of View Model First Fragment"
+            android:text='@{"Count (View Model): " + String.valueOf(myItem.x)}'
         />
 
         <Button

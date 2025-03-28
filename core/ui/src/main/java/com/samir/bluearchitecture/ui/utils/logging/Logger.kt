@@ -10,7 +10,7 @@ object Logger {
 
   // Helper function to format the log message with Activity, Fragment, ViewModel, and Use Case names
   private fun formatMessage(activity: AppCompatActivity?, fragment: Fragment?, viewModel: ViewModel?, useCase: Class<*>?, message: String): String {
-    val activityName = activity?.javaClass?.simpleName ?: "" // "UnknownActivity"
+    val activityName = activity?.javaClass?.simpleName?.replace("Activity", " Activity 🧿)") ?: "" // "UnknownActivity"
     val fragmentName = fragment?.javaClass?.simpleName?.replace("Fragment", " Fragment 🏠") ?: "" // "NoFragment"
     val viewModelName = viewModel?.javaClass?.simpleName ?: "" // "NoViewModel"
     val useCaseName = useCase?.simpleName?.replace("UseCase", " UseCase 🎲") ?: "" // "NoUseCase"

@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".navGraphScopeFlow.activity.NavGraphVMActivity"
+        tools:context=".flow3NavGraphScope.activity.NavGraphVMActivity"
     >
 
         <androidx.fragment.app.FragmentContainerView

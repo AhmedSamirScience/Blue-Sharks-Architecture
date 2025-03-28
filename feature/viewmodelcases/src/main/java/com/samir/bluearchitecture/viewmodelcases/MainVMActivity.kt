@@ -4,10 +4,10 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.samir.bluearchitecture.viewmodelcases.activityScopeFlow.activity.ScopeVMActivity
-import com.samir.bluearchitecture.viewmodelcases.basicFlow.activity.BasicVMActivity
 import com.samir.bluearchitecture.viewmodelcases.databinding.ActivityMainVmactivityBinding
-import com.samir.bluearchitecture.viewmodelcases.navGraphScopeFlow.activity.NavGraphVMActivity
+import com.samir.bluearchitecture.viewmodelcases.flow1Basic.activity.BasicVMActivity
+import com.samir.bluearchitecture.viewmodelcases.flow2ActivityScope.activity.ScopeVMActivity
+import com.samir.bluearchitecture.viewmodelcases.flow3NavGraphScope.activity.NavGraphVMActivity
 
 class MainVMActivity : AppCompatActivity() {
 

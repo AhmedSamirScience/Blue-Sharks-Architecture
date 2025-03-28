@@ -2,19 +2,56 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 >
+    <data>
+        <variable name="myItem" type="Integer" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".basicFlow.fragment.second.ConfigChangeVMFragment"
+        tools:context=".flow1Basic.fragment.f2ConfiqChangeVM.ConfigChangeVMFragment"
     >
 
         <TextView
+            android:id="@+id/titleTextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Base Concept of View Model Second Fragment"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:text='@{"Count (View Model): " + String.valueOf(myItem)}'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+
+        <TextView
+            android:id="@+id/textViewNonRetainedCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        />
+
+        <TextView
+            android:id="@+id/textViewNonRetainedFirstFragmentCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNonRetainedCount"
+        />
+
+        <Button
+            android:id="@+id/incrementCounterButton"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:text="Incerment Counter"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

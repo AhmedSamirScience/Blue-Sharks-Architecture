@@ -3,15 +3,15 @@
 
     <application>
         <activity
-            android:name=".navGraphScopeFlow.activity.NavGraphVMActivity"
+            android:name=".flow3NavGraphScope.activity.NavGraphVMActivity"
             android:exported="false"
         />
         <activity
-            android:name=".activityScopeFlow.activity.ScopeVMActivity"
+            android:name=".flow2ActivityScope.activity.ScopeVMActivity"
             android:exported="false"
         />
         <activity
-            android:name=".basicFlow.activity.BasicVMActivity"
+            android:name=".flow1Basic.activity.BasicVMActivity"
             android:exported="false"
         />
 
