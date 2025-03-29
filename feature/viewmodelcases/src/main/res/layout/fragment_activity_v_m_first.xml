@@ -5,23 +5,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 >
 
+    <data>
+        <variable
+            name="myItem"
+            type="com.samir.bluearchitecture.viewmodelcases.flow2ActivityScope.fragment.f1ActivityVM.CounterClass"
+        />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".flow2ActivityScope.fragment.f1ActivityVM.ActivityVMFirstFragment"
     >
+
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@color/color_gray_medium_light"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="First Activity - First Fragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+
+        <TextView
+            android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="ACtivity View Model Scope First Fragment"
             android:gravity="center"
+            android:text='@{"Counter (Shared View Model): " + String.valueOf(myItem.count)}'
+        />
+
+        <Button
+            android:id="@+id/increaseButton"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:text="Increment"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toTopOf="@+id/firstFragmentButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
         />
 
         <Button
             android:id="@+id/firstFragmentButton"
             android:layout_width="@dimen/_230sdp"
             android:layout_height="@dimen/_50sdp"
-            android:text="Second Fragment"
+            android:text="Navigate To Second Fragment"
             android:layout_marginBottom="@dimen/_30sdp"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="parent"

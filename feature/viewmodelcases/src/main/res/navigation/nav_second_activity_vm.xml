@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_second_activity_vm"
+    app:startDestination="@id/activityVMThirdFragment"
+>
+
+    <fragment
+        android:id="@+id/activityVMThirdFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow2ActivityScope.fragment.f3ActivityVM.ActivityVMThirdFragment"
+        android:label="fragment_activity_v_m_third"
+        tools:layout="@layout/fragment_activity_v_m_third"
+    />
+</navigation>

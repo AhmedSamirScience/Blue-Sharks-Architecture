@@ -3,6 +3,10 @@
 
     <application>
         <activity
+            android:name=".flow2ActivityScope.activity.ScopeVMSecondActivity"
+            android:exported="false"
+        />
+        <activity
             android:name=".flow3NavGraphScope.activity.NavGraphVMActivity"
             android:exported="false"
         />
@@ -14,9 +18,7 @@
             android:name=".flow1Basic.activity.BasicVMActivity"
             android:exported="false"
         />
-
         <activity android:name=".MainVMActivity" android:exported="false" />
-
     </application>
 
 </manifest>
