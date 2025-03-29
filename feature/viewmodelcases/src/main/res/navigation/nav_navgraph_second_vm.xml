@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_navgraph_second_vm"
+    app:startDestination="@id/navGraphVMThirdFragment"
+>
+
+    <fragment
+        android:id="@+id/navGraphVMThirdFragment"
+        android:name="com.samir.bluearchitecture.viewmodelcases.flow3NavGraphScope.fragment.f3NavGraphVM.NavGraphVMThirdFragment"
+        android:label="NavGraphVMThirdFragment"
+        tools:layout="@layout/fragment_nav_graph_v_m_third"
+    />
+</navigation>

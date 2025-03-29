@@ -5,29 +5,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 >
 
-    <data>
-        <variable name="myItem" type="Integer" />
-    </data>
+<data>
+    <variable name="myItem" type="Integer" />
+</data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".flow3NavGraphScope.fragment.f2NavGraphVM.NavGraphVMSecondFragment"
+        tools:context=".flow3NavGraphScope.fragment.f3NavGraphVM.NavGraphVMThirdFragment"
     >
-        <TextView
+
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30sdp"
-            android:gravity="center"
-            android:text="First Nav Graph - Second Fragment"
             android:background="@color/color_gray_medium_light"
+            android:gravity="center"
             android:padding="@dimen/_10sdp"
+            android:text="Second Nav Graph - First Fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
         />
 
-        <TextView
+    <TextView
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,24 +38,11 @@
             app:layout_constraintTop_toTopOf="parent"
         />
 
-
-        <Button
+    <Button
             android:id="@+id/incrementCounterButton"
             android:layout_width="@dimen/_230sdp"
             android:layout_height="@dimen/_50sdp"
             android:text="Incerment Counter"
-            android:textSize="@dimen/_11ssp"
-            android:layout_marginBottom="@dimen/_30sdp"
-            app:layout_constraintBottom_toTopOf="@+id/toAnotherActivityButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-        />
-
-        <Button
-            android:id="@+id/toAnotherActivityButton"
-            android:layout_width="@dimen/_230sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:text="Navigate To Another Activity"
             android:layout_marginBottom="@dimen/_30sdp"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -62,6 +50,6 @@
             app:layout_constraintStart_toStartOf="parent"
         />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
