@@ -48,7 +48,7 @@
 # 🔐 Final note:
 # This does not stop shrinking or removing unused classes — it only preserves the name.
 # ----------------------------------------------------------------------------------
--keep class androidx.databinding.DataBindingComponent { *; }
+#-keep class androidx.databinding.DataBindingComponent { *; }
 ####################################################################################################
 
 
