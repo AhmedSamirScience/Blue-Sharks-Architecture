@@ -24,18 +24,34 @@
     <color name="color_blue">#FF0000FF</color>
 
     <!-- Black Shades -->
-    <color name="color_black_light">#BF000000</color>         <!-- 75% opacity -->
-    <color name="color_black_light_extra">#66000000</color>   <!-- 40% opacity -->
+    <color
+        name="color_black_light"
+    >#BF000000</color>         <!-- 75% opacity -->
+    <color
+        name="color_black_light_extra"
+    >#66000000</color>   <!-- 40% opacity -->
 
     <!-- White Shades -->
-    <color name="color_white_dark">#FFEDEDED</color>          <!-- Slightly dark white -->
+    <color
+        name="color_white_dark"
+    >#FFEDEDED</color>          <!-- Slightly dark white -->
 
     <!-- Gray Shades -->
-    <color name="color_gray_dark">#BFACACAC</color>           <!-- Medium-dark gray -->
-    <color name="color_gray_light">#BFBFBFBF</color>          <!-- Light gray -->
-    <color name="color_gray_light_opacity_20">#33BFBFBF</color> <!-- 20% opacity -->
-    <color name="color_gray_medium_light">#80DFDEDE</color>   <!-- Medium light gray -->
-    <color name="color_gray_extra_light">#80EAEAEA</color>    <!-- Extra light gray -->
+    <color
+        name="color_gray_dark"
+    >#BFACACAC</color>           <!-- Medium-dark gray -->
+    <color
+        name="color_gray_light"
+    >#BFBFBFBF</color>          <!-- Light gray -->
+    <color
+        name="color_gray_light_opacity_20"
+    >#33BFBFBF</color> <!-- 20% opacity -->
+    <color
+        name="color_gray_medium_light"
+    >#80DFDEDE</color>   <!-- Medium light gray -->
+    <color
+        name="color_gray_extra_light"
+    >#80EAEAEA</color>    <!-- Extra light gray -->
 
     <!-- Green Shades -->
     <color name="color_green_dark">#FF077307</color>
@@ -44,4 +60,3 @@
     <color name="color_item_default">#FFFFFFFF</color>
     <color name="color_item_selected">#FFFF0000</color>
 </resources>
-
