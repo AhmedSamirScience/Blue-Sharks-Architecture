@@ -101,7 +101,8 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
                  * - Uses **secure signing configuration**.
                  */
                 BuildCreator.Release(project).createLibrary(this).apply {
-                    proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                    proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",
+                        "proguard-string-concat-fix.pro" )
                     signingConfig = signingConfigs.getByName(SigningTypes.RELEASE)
                 }
 
@@ -177,6 +178,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
         tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_17.toString()
+                freeCompilerArgs += listOf("-Xstring-concat=inline") // ✅ Important
             }
         }
     }
