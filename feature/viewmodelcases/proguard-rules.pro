@@ -50,3 +50,80 @@
 # ----------------------------------------------------------------------------------
 -keep class androidx.databinding.DataBindingComponent { *; }
 ####################################################################################################
+
+
+
+################################################################################################
+# 👇 Fragment Rule: Keep Fragment subclasses used by Navigation XML or FragmentContainerView
+################################################################################################
+
+# Why?
+# R8 removes unused classes to shrink your APK, and this includes Fragments that are never
+# directly instantiated in code but are instead referenced via:
+#   - XML navigation graphs
+#   - FragmentContainerView / <fragment> tags in XML
+#   - FragmentManager.instantiate() via class name (reflection)
+#
+# What this rule does:
+# - Keeps all classes under "com.samir.bluearchitecture.viewmodelcases" that have names
+#   ending with "Fragment" and their full structure.
+# - Retains their public constructors and lifecycle methods that are typically invoked
+#   via the Fragment lifecycle (onCreate, onCreateView, onViewCreated).
+#
+# When is it needed?
+# ✅ Required in a multi-module app if the fragment is only used in XML or through reflection.
+# ❌ Not usually required if fragments are instantiated directly in Kotlin code and not renamed.
+#
+# This rule helps avoid:
+# - java.lang.ClassNotFoundException for fragment class
+# - android.view.InflateException during layout inflation
+#
+# Safe & minimal usage — keeps essential behavior without over-exposing internal logic.
+-keep class com.samir.bluearchitecture.viewmodelcases.**.*Fragment {
+    public <init>();
+#    void onAttach(...);
+    void onCreate(...);
+    void onCreateView(...);
+    void onViewCreated(...);
+    void onStart(...);
+    void onResume(...);
+    void onPause(...);
+    void onStop(...);
+    void onDestroyView(...);
+    void onDestroy(...);
+#    void onDetach(...);
+#    void onSaveInstanceState(...);
+#    void onViewStateRestored(...);
+}
+####################################################################################################
+
+################################################################################################
+# 👇 ViewModel Rule: Keep ViewModel subclasses used with reflection, Hilt, or SavedStateHandle
+################################################################################################
+
+# Why?
+# ViewModel classes are sometimes:
+#   - Created using reflection by AndroidX ViewModelProvider
+#   - Instantiated with SavedStateHandle (which uses reflection to inject it)
+#   - Used by Dagger Hilt for dependency injection (@HiltViewModel)
+#
+# What this rule does:
+# - Keeps ViewModel subclasses within "com.samir.bluearchitecture.viewmodelcases"
+# - Preserves their no-argument public constructor (or Hilt-assisted constructor)
+#
+# When is it needed?
+# ✅ Required when:
+#   - ViewModel is used via reflection (SavedStateViewModelFactory, Hilt, etc.)
+#   - The ViewModel is in a dynamic-feature or feature module
+# ❌ Not needed if R8 can trace the constructor directly and class isn’t renamed
+#
+# Helps prevent:
+# - java.lang.InstantiationException
+# - java.lang.NoSuchMethodException
+# - Hilt runtime errors during ViewModel injection
+#
+# Light and safe — avoids keeping all ViewModel code, just essentials.
+-keep class com.samir.bluearchitecture.viewmodelcases.**.*ViewModel {
+    public <init>();
+}
+####################################################################################################
