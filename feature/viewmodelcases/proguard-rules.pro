@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#💡 This prevents R8 from removing these classes even if they look unused. (Until we write the code to use them.)
+-keep class com.samir.bluearchitecture.viewmodelcases.HomeActivity
