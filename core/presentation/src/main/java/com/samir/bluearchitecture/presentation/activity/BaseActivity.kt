@@ -9,7 +9,7 @@ import com.samir.bluearchitecture.ui.utils.logging.Logger
 
 /**
  * Base class for all activities in the application.
- * This class provides common functionality such as setting up views, etc.
+ * Provides common setup logic for binding, navigation, and error handling.
  */
 abstract class BaseActivity : BackPressedHandlerActivity() {
 
@@ -22,59 +22,58 @@ abstract class BaseActivity : BackPressedHandlerActivity() {
    * @return ViewDataBinding instance for the inflated layout.
    */
   protected abstract fun inflateBinding(inflater: LayoutInflater): ViewDataBinding
+
+  /**
+   * Gets the container view ID for the NavHostFragment.
+   */
   protected abstract fun getContainer(): Int
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     try {
-      // Safely inflate the binding
       baseViewBinding = inflateBinding(layoutInflater)
       setContentView(baseViewBinding.root)
 
-      // Ensure container ID is valid before accessing NavHostFragment
       val containerId = getContainer()
       if (containerId == 0) {
-        throw IllegalArgumentException("Invalid container ID: $containerId")
+        throw IllegalArgumentException(
+          StringBuilder("Invalid container ID: ").append(containerId).toString(),
+        )
       }
 
-      // Safely get NavHostFragment and NavController
       val navHostFragment = supportFragmentManager.findFragmentById(containerId)
       if (navHostFragment !is NavHostFragment) {
-        throw IllegalStateException("NavHostFragment not found in container ID: $containerId")
+        throw IllegalStateException(
+          StringBuilder("NavHostFragment not found in container ID: ").append(containerId).toString(),
+        )
       }
 
       navController = navHostFragment.navController
-
-      // Safely initialize views
       initializeViews()
     } catch (e: Exception) {
       Logger.e(activity = this, message = "Error in BaseActivity initialization", throwable = e)
-      handleInitializationError(e) // Handle the error gracefully
+      handleInitializationError(e)
     }
-
-    val navHostFragment = supportFragmentManager.findFragmentById(getContainer()) as NavHostFragment
-    navController = navHostFragment.navController
-    initializeViews()
   }
 
   /**
-   * To gracefully handle initialization failures, implement this method:
-   *
+   * Gracefully handles errors that occur during activity initialization.
    */
   private fun handleInitializationError(e: Exception) {
     Logger.e(activity = this, message = "Activity failed to initialize due to an error", throwable = e)
 
-    // Show a fallback UI or message
-    Toast.makeText(this, "Something went wrong: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+    Toast.makeText(
+      this,
+      StringBuilder("Something went wrong: ").append(e.localizedMessage).toString(),
+      Toast.LENGTH_LONG,
+    ).show()
 
-    // Optionally finish the activity to prevent a broken state
-    // finish()
+    // finish() // Uncomment this if you want to close the activity on error
   }
 
   /**
-   * Initializes the views of the activity.
-   * Subclasses must override this method to set up views.
+   * Called to initialize the activity views. Must be implemented by subclasses.
    */
   protected abstract fun initializeViews()
 }
