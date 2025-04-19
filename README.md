@@ -1,115 +1,131 @@
-<h1>📦 NavGraph-Scoped ViewModel – Feature Branch Overview</h1>
+<!DOCTYPE html>
+<html lang="en">
+ 
+<body>
 
-<p>
-  This branch demonstrates how to use <strong>NavGraph-scoped ViewModels</strong> in Android using Jetpack Navigation Component,
-  <code>StateFlow</code>, and <code>repeatOnLifecycle</code>. This approach enables multiple fragments within the same
-  navigation graph to share the same ViewModel, providing a clean, lifecycle-aware state-sharing mechanism.
-</p>
+<h1>🧠 Android ViewModel Feature Collection – Development Branch</h1>
+<p>This document aggregates all ViewModel-related features implemented in the <strong>1.0-ArchitecturePhase</strong> development branch. It explores best practices for reactive UI with <code>ViewModel</code>, <code>StateFlow</code>, and scoped lifecycle management across Fragments, Activities, and Navigation Graphs in a modular Android architecture.</p>
 
 <hr />
 
-<h2>🎯 Goals of This Feature</h2>
+<h2>📋 Feature Branch Overview</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Branch</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>4.1-Creating-Feature-Module</code></td><td>Introduces clean feature modularization</td></tr>
+    <tr><td><code>4.2-View-Model-Activity-Integration</code></td><td>Shared ViewModel between Main and Home activities</td></tr>
+    <tr><td><code>4.3-View-Model-Fragment-Integration</code></td><td>Fragment, Activity, and NavGraph scoped ViewModels</td></tr>
+    <tr><td><code>4.4-View-Model-Basic-Integration</code></td><td>Basic ViewModel with StateFlow and config handling</td></tr>
+    <tr><td><code>4.5-Shared-ViewModel-Between-Fragments</code></td><td>Shared ViewModel using <code>activityViewModels()</code></td></tr>
+    <tr><td><code>4.6-NavGraph-Scoped-ViewModel</code></td><td>Scoped ViewModel to Navigation Graph using <code>getBackStackEntry()</code></td></tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>📦 Feature 4.1 – Creating Feature Module</h2>
 <ul>
-  <li>Implement <strong>graph-scoped</strong> ViewModel sharing.</li>
-  <li>Demonstrate stable ViewModel initialization using <code>getBackStackEntry()</code>.</li>
-  <li>Persist ViewModel state across fragment navigation (within the same graph).</li>
-  <li>Support multiple isolated navigation graphs for modular architecture.</li>
+  <li>✅ Created a feature module under <code>feature/</code></li>
+  <li>🔧 Gradle setup and manifest defined</li>
+  <li>🧪 Test and ProGuard placeholders included</li>
+  <li>🎯 Supports modularity, scalability, and focused testing</li>
 </ul>
 
 <hr />
 
-<h2>🧠 What is a NavGraph-Scoped ViewModel?</h2>
-<p>
-  A NavGraph-scoped ViewModel is a ViewModel that is tied to a specific navigation graph rather than an activity or a fragment.
-  This allows all fragments inside that navigation graph to share the same instance of a ViewModel.
-</p>
-
-<div style="background:#f0f9ff;border-left:4px solid #3498db;padding:10px;margin:1rem 0;">
-  <strong>Why it matters:</strong> Enables isolated, reusable ViewModel scopes — ideal for flows like onboarding, wizards, and feature modules.
-</div>
-
-<hr />
-
-<h2>✅ Benefits</h2>
+<h2>🚀 Feature 4.2 – ViewModel + Activity Integration</h2>
 <ul>
-  <li>🔁 Shared state across multiple fragments in a flow.</li>
-  <li>🎯 Cleaner logic separation – no more bundle passing.</li>
-  <li>🚀 Ideal for modularization (onboarding, authentication, etc).</li>
-  <li>♻️ Better ViewModel lifecycle management compared to activity-scoped alternatives.</li>
+  <li>📍 Shared ViewModel used across <code>MainActivity</code> and <code>HomeActivity</code></li>
+  <li>📁 Layouts: <code>activity_main.xml</code>, <code>activity_home.xml</code></li>
+  <li>🔗 Manifest entries and Gradle integration</li>
+  <li>📦 Includes shared constants and ViewModel logic</li>
 </ul>
 
 <hr />
 
-<h2>📁 Project Structure</h2>
+<h2>🧩 Feature 4.3 – ViewModel & Fragment Integration</h2>
 <ul>
-  <li><code>NavGraphVMFirstFragment.kt</code> → Displays and updates shared counter.</li>
-  <li><code>NavGraphVMSecondFragment.kt</code> → Uses the same ViewModel, updates and reflects changes.</li>
-  <li><code>NavGraphVMThirdFragment.kt</code> → Optional isolated flow in a separate nav graph.</li>
-  <li><code>NavGraphVMFirstViewModel.kt</code> → Holds shared state using <code>StateFlow</code>.</li>
-  <li><code>nav_navgraph_vm.xml</code>, <code>nav_navgraph_second_vm.xml</code> → Navigation graph definitions.</li>
+  <li>✅ <strong>Fragment ViewModel:</strong> <code>viewModels()</code></li>
+  <li>✅ <strong>Activity-scoped ViewModel:</strong> <code>activityViewModels()</code></li>
+  <li>✅ <strong>NavGraph-scoped ViewModel:</strong> <code>navGraphViewModels()</code> or <code>getBackStackEntry()</code></li>
+  <li>📁 Files: <code>ActivityVMFirstFragment.kt</code>, <code>NavGraphVMFirstFragment.kt</code>, etc.</li>
 </ul>
 
 <hr />
 
-<h2>🔄 ViewModel Setup</h2>
-<p>
-  <code>navGraphViewModels()</code> often causes timing issues if used too early (e.g., before graph is created).
-  Instead, use this pattern:
-</p>
+<h2>🧠 Feature 4.4 – ViewModel Basic Integration</h2>
+<ul>
+  <li>🧪 ViewModel with <code>StateFlow</code> for local and retained state</li>
+  <li>🔄 Configuration change handling</li>
+  <li>🎯 Comparison between retained and non-retained UI state</li>
+</ul>
+<pre>
+├── BasicVMFragment.kt
+├── ConfigChangeVMFragment.kt
+├── BasicVMViewModel.kt
+├── ConfigChangeVMViewModel.kt
+</pre>
 
-<pre><code class="kotlin">
-val backStackEntry = findNavController().getBackStackEntry(R.id.nav_navgraph_vm)
-val viewModel: NavGraphVMViewModel by viewModels({ backStackEntry })
-baseViewModel = viewModel
+<hr />
+
+<h2>🤝 Feature 4.5 – Shared ViewModel Between Fragments</h2>
+<p><strong>Concept:</strong> Shared ViewModel scoped to an <code>Activity</code> using <code>activityViewModels()</code>.</p>
+<ul>
+  <li>✅ Enables state sharing between sibling fragments</li>
+  <li>✅ Ideal for wizard flows or coordinated UIs</li>
+  <li>✅ Reduces boilerplate using lifecycle-aware communication</li>
+</ul>
+<pre><code>
+// Fragment A and B
+val sharedViewModel: SharedViewModel by activityViewModels()
 </code></pre>
-
-<p>This guarantees proper lifecycle and safe initialization.</p>
-
-<hr />
-
-<h2>📊 ViewModel State Management</h2>
-<p>Each fragment observes <code>StateFlow</code> using <code>repeatOnLifecycle</code> to collect updates only when the view is visible:</p>
-
+<p>Implements a counter with:</p>
 <pre><code class="kotlin">
-lifecycleScope.launch {
-    viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-        baseViewModel.counter.collect { count ->
-            baseViewBinding.myItem = count
-        }
-    }
+class SharedViewModel : ViewModel() {
+  private val _counter = MutableStateFlow(0)
+  val counter: StateFlow<Int> = _counter
+
+  fun increment() {
+    _counter.value++
+  }
 }
 </code></pre>
 
 <hr />
 
-<h2>📄 Related Files</h2>
+<h2>📦 Feature 4.6 – NavGraph-Scoped ViewModel</h2>
+<p><strong>Concept:</strong> Share ViewModel only between fragments inside a specific <code>NavGraph</code>.</p>
 <ul>
-  <li><code>NavGraphVMFirstFragment.kt</code></li>
-  <li><code>NavGraphVMSecondFragment.kt</code></li>
-  <li><code>NavGraphVMThirdFragment.kt</code></li>
-  <li><code>NavGraphVMFirstViewModel.kt</code></li>
-  <li><code>CounterClass.kt</code></li>
-  <li><code>nav_navgraph_vm.xml</code>, <code>nav_navgraph_second_vm.xml</code></li>
-  <li>Corresponding <code>layout/</code> XML files</li>
+  <li>✅ Scope isolation for clean navigation flow</li>
+  <li>✅ ViewModel persists during in-graph navigation</li>
+  <li>⚠️ Uses <code>getBackStackEntry()</code> for safe initialization</li>
+</ul>
+
+<pre><code class="kotlin">
+val backStackEntry = findNavController().getBackStackEntry(R.id.nav_navgraph_vm)
+val viewModel: NavGraphVMViewModel by viewModels({ backStackEntry })
+</code></pre>
+
+<h4>💡 Ideal Use Cases:</h4>
+<ul>
+  <li>Onboarding flows</li>
+  <li>Authentication modules</li>
+  <li>Nested feature graphs</li>
 </ul>
 
 <hr />
 
-<h2>🧪 Testing Tips</h2>
+<h2>📚 References</h2>
 <ul>
-  <li>✅ Log ViewModel instance hash codes to verify reuse across fragments.</li>
-  <li>✅ Test navigation between fragments to ensure state retention.</li>
-  <li>✅ Rotate screen – observe ViewModel survival.</li>
-  <li>✅ Navigate between different nav graphs – verify ViewModel scoping isolation.</li>
+  <li><a href="https://developer.android.com/topic/libraries/architecture/viewmodel">Android ViewModel</a></li>
+  <li><a href="https://developer.android.com/kotlin/flow/stateflow-and-sharedflow">StateFlow & SharedFlow</a></li>
+  <li><a href="https://developer.android.com/jetpack/guide">Jetpack Architecture Guide</a></li>
 </ul>
 
-<hr />
-
-<h2>🚀 Conclusion</h2>
-<p>
-  The <strong>NavGraph-scoped ViewModel</strong> pattern offers a scalable way to manage shared UI state in modular flows.
-  This feature branch showcases how to set it up correctly and use it effectively with <code>StateFlow</code>,
-  <code>repeatOnLifecycle</code>, and Navigation Component best practices.
-</p>
-
-<p><strong>💡 Tip:</strong> Combine this with clean architecture and feature modules for a robust, scalable Android codebase.</p>
+</body>
+</html>
