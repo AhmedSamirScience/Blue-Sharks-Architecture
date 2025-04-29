@@ -46,8 +46,8 @@ object DependenciesVersions {
     //endregion
 
     // region Retrofit
-    const val RETROFIT_SQUARE_UP = "2.9.0"
-    const val RETROFIT_SQUARE_UP_CONVERTER_GSON = "2.9.0"
+    const val RETROFIT_SQUARE_UP = "2.10.0"
+    const val RETROFIT_SQUARE_UP_CONVERTER_GSON = "2.10.0"
     const val OKHTTP_SQUARE_SQUARE_UP = "5.0.0-alpha.10"
     //const val interceptorSquareUp = "5.0.0-alpha.10"
     //endregion

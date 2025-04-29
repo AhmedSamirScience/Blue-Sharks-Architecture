@@ -29,6 +29,9 @@ import org.gradle.kotlin.dsl.project
     fun DependencyHandler.loginModule() {
         moduleImplementation(project(":feature:login"))
     }
+    fun DependencyHandler.remoteDataModule() {
+        moduleImplementation(project(":feature:remotedata"))
+    }
     //endregion
 
     //region Libraries
