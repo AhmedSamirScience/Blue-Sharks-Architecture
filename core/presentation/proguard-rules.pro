@@ -1,25 +1,5 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
-
+####################################################################################################
+# 🧩 DataBindingComponent – Prevent Name Clashes and Preserve Core Data Binding API
 ####################################################################################################
 # 📌 WHY THIS IS NEEDED:
 # - DataBindingComponent is a central part of the Android Data Binding framework.
@@ -45,6 +25,7 @@
 ####################################################################################################
 
 
+
 ####################################################################################################
 # 🧩 BaseActivity – Retain for Navigation and Lifecycle Safety
 ####################################################################################################
@@ -68,6 +49,8 @@
 -keep public class com.samir.bluearchitecture.presentation.activity.BaseActivity { *; }
 ####################################################################################################
 
+
+
 ####################################################################################################
 # 🧩 BaseFragment – Preserve for Navigation XML and Reflection Use
 ####################################################################################################
@@ -89,6 +72,8 @@
 -keep class com.samir.bluearchitecture.presentation.fragment.BaseFragment { *; }
 ####################################################################################################
 
+
+
 ####################################################################################################
 # 🧩 BaseViewModel – Needed When Using Reflection or Custom DI
 ####################################################################################################
@@ -109,4 +94,31 @@
 #
 # 💡 TIP: If you prefer to reduce the keep surface, target only lifecycle methods or constructors.
 -keep class com.samir.bluearchitecture.presentation.viewModel.BaseViewModel { *; }
+####################################################################################################
+
+
+
+####################################################################################################
+# 🧩 ActivityLifecycleLogger – Retain Lifecycle Logging Utility for Runtime Usage
+####################################################################################################
+# ✅ This rule ensures:
+#   - The `ActivityLifecycleLogger` class is retained with all its public and private members.
+#   - None of its methods or fields are stripped or renamed during R8 minification.
+#
+# 📌 WHY IS THIS NEEDED?
+# - This class is likely used to **log or observe activity lifecycle events** (e.g., onCreate, onResume, onPause).
+# - If it's attached as a lifecycle observer or injected via a DI framework (e.g., Hilt), it may be accessed
+#   **reflectively**, or indirectly through the Android Lifecycle system.
+#
+# 🚫 Without this rule:
+#   - R8 might remove the class entirely if it doesn't detect explicit usage (especially in reflection-based code).
+#   - Lifecycle events may fail to be logged, or the app may crash at runtime if used via reflection.
+#
+# ✅ With this rule:
+#   - All logging logic, observers, and lifecycle hooks in this class are preserved.
+#   - Ensures traceability and debug visibility during app execution.
+#
+# 💡 TIP: If you're only using this class in debug/QA builds, consider wrapping it with a build flag
+#   and applying this rule only in non-release variants.
+-keep public class com.samir.bluearchitecture.presentation.activity.ActivityLifecycleLogger { *; }
 ####################################################################################################

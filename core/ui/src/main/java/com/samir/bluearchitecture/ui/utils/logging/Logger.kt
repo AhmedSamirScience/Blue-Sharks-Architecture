@@ -1,4 +1,5 @@
 package com.samir.bluearchitecture.ui.utils.logging
+
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,27 +11,27 @@ object Logger {
 
   // Helper function to format the log message with Activity, Fragment, ViewModel, and Use Case names
   private fun formatMessage(activity: AppCompatActivity?, fragment: Fragment?, viewModel: ViewModel?, useCase: Class<*>?, message: String): String {
-    /*val activityName = activity?.javaClass?.simpleName ?: "" // "UnknownActivity"
-    val fragmentName = fragment?.javaClass?.simpleName?.replace("Fragment", " Fragment 🏠") ?: "" // "NoFragment"
-    val viewModelName = viewModel?.javaClass?.simpleName ?: "" // "NoViewModel"
-    val useCaseName = useCase?.simpleName?.replace("UseCase", " UseCase 🎲") ?: "" // "NoUseCase"
-    // return "[$activityName][$fragmentName][$viewModelName][$useCaseName]: $message"
-    return "[$activityName$fragmentName$viewModelName$useCaseName]: $message"*/
+    val activityName = activity?.javaClass?.simpleName ?.let {
+      "🚢 $it"
+    }
+    val fragmentName = fragment?.javaClass?.simpleName?.let {
+      "🏀 $it"
+    }
+    val viewModelName = viewModel?.javaClass?.simpleName?.let {
+      "🪟 $it"
+    }
+    val useCaseName = useCase?.simpleName?.let {
+      "🎲 $it"
+    }
 
-    val activityName = activity?.javaClass?.simpleName ?: ""
-    val fragmentName = fragment?.javaClass?.simpleName?.replace("Fragment", " Fragment 🏠") ?: ""
-    val viewModelName = viewModel?.javaClass?.simpleName ?: ""
-    val useCaseName = useCase?.simpleName?.replace("UseCase", " UseCase 🎲") ?: ""
+    val parts = listOfNotNull(activityName, fragmentName, viewModelName, useCaseName)
+    return buildString {
+      append("[")
+      append(parts.joinToString(" · ")) // Optional separator between parts
+      append("]: ")
+      append(message)
+    }
 
-    return StringBuilder()
-      .append("[")
-      .append(activityName)
-      .append(fragmentName)
-      .append(viewModelName)
-      .append(useCaseName)
-      .append("]: ")
-      .append(message)
-      .toString()
   }
 
   // Logs debug messages
