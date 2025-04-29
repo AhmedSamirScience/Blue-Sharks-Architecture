@@ -31,61 +31,52 @@ object Logger {
       append("]: ")
       append(message)
     }
-
   }
 
   // Logs debug messages
   fun d(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
-    // if (BuildConfig.DEBUG) {
+    // if (BuildConfig.DEBUG)
     Log.d(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
-    // }
   }
 
   // Logs info messages
   fun i(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
-    // if (BuildConfig.DEBUG) {
+    // if (BuildConfig.DEBUG)
     Log.i(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
-    // }
   }
 
   // Logs warning messages
   fun w(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
-    // if (BuildConfig.DEBUG) {
+    // if (BuildConfig.DEBUG)
     Log.w(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
-    // }
   }
 
   fun wtf(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
-    // if (BuildConfig.DEBUG) {
+    // if (BuildConfig.DEBUG)
     Log.wtf(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
-    // }
   }
 
   // Logs error messages
   fun e(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String, throwable: Throwable? = null) {
     if (throwable != null) {
-      // if (BuildConfig.DEBUG) {
+      // if (BuildConfig.DEBUG)
       Log.e(TAG, formatMessage(activity, fragment, viewModel, useCase, message), throwable)
-      // }
     } else {
-      // if (BuildConfig.DEBUG) {
+      // if (BuildConfig.DEBUG)
       Log.e(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
-      // }
     }
   }
 
   // Logs verbose messages
   fun v(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
-    // if (BuildConfig.DEBUG) {
+    // if (BuildConfig.DEBUG)
     Log.v(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
-    // }
   }
 
   // Logs to a custom destination, e.g., a file or remote server
   fun customLog(destination: (String, String) -> Unit, activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
-    // if (BuildConfig.DEBUG) {
+    // if (BuildConfig.DEBUG)
     destination(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
-    // }
   }
 }
 
