@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">bluearchitecture</string>
+
+    <!--************************************************************App Flow****************************************************-->
+    <!--Main Activity-->
+    <string
+        name="mainActivity_btnViewModelFeature"
+        translatable="false"
+    >View Models</string>
+    <string
+        name="mainActivity_btnRemoteDataFeature"
+        translatable="false"
+    >Remote Data</string>
+    <!--******************************************************************************************************************************-->
+
 </resources>

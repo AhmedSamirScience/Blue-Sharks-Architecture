@@ -1,10 +1,14 @@
 import build.BuildCreator
 import build.BuildDimensions
+import dependencies.coroutines
 import dependencies.defaultLibraries
+import dependencies.dependencyInjectionHilt
 import dependencies.jetpackViewModelAndLifecycle
 import dependencies.loginModule
 import dependencies.navigationComponent
+import dependencies.networking
 import dependencies.presentationModule
+import dependencies.remoteDataModule
 import dependencies.viewModelCasesModule
 
 /**
@@ -127,6 +131,51 @@ plugins {
    * 🔗 Official Documentation: https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args
    */
   id(plugs.BuildPlugins.SAFE_ARGS)
+
+  /**
+   * ⚙️ Applying the Kotlin Annotation Processing Tool (KAPT)
+   * - This plugin enables support for **annotation processing** in Kotlin-based Android projects.
+   * - It is required for many popular libraries that generate code at compile time using annotations.
+   *
+   * 🔹 Why Apply the KAPT Plugin?
+   * - ✅ Enables libraries like **Dagger/Hilt**, **Room**, **Data Binding**, and **Moshi/KotlinX Serialization** to work.
+   * - 🏗️ Generates necessary source files during compilation (e.g., Dagger components, Room DAO implementations).
+   * - 🧠 Handles Java annotation processors in Kotlin projects by converting Kotlin code to Java stubs internally.
+   *
+   * ⚠️ Requirements:
+   * - Use `kapt {}` block in your `build.gradle.kts` for custom configuration (if needed).
+   * - Make sure annotation processors are declared using `kapt` instead of `implementation`.
+   *
+   * 💡 Notes:
+   * - Slower than Java’s annotation processing due to the extra stub generation step.
+   * - For better performance and full Kotlin support, consider using **KSP** (Kotlin Symbol Processing) when available.
+   *
+   * 🔗 Official Documentation: https://kotlinlang.org/docs/kapt.html
+   */
+  id(plugs.BuildPlugins.KAPT)
+
+  /**
+   * 🧪 Applying the Dagger Hilt Plugin – Dependency Injection for Android
+   * - Integrates the **Dagger Hilt Gradle Plugin** to support Hilt-based dependency injection in Android projects.
+   * - Automatically generates Hilt components and simplifies dependency graph setup across modules.
+   *
+   * 🔹 Why Apply the Dagger Hilt Plugin?
+   * - ✅ Simplifies setup of Dagger in Android apps with a standard lifecycle-aware structure.
+   * - 🧱 Automatically creates base classes like `HiltApplication`, `HiltActivity`, and `HiltViewModel`.
+   * - 🧠 Eliminates boilerplate Dagger components, improving maintainability.
+   * - 🛡️ Ensures consistency in dependency injection across feature and core modules.
+   *
+   * ⚙️ Behavior:
+   * - Triggers code generation during build (e.g., `*_HiltComponents`, `*_Factory`, etc.).
+   * - Requires `kapt` to process Hilt's annotations properly.
+   *
+   * ⚠️ Requirements:
+   * - Apply the **Kotlin KAPT plugin** first.
+   * - Your application class must extend `HiltAndroidApp`.
+   *
+   * 🔗 Official Docs: https://developer.android.com/training/dependency-injection/hilt-android
+   */
+  id(plugs.BuildPlugins.DAGGER_HILT) version plugs.BuildPlugins.DAGGER_HILT_VERSION_NUMBER
 }
 
 android {
@@ -319,6 +368,11 @@ android {
      */
     BuildCreator.Release(project).create(this).apply {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+      /* proguardFiles(
+         getDefaultProguardFile("proguard-android-optimize.txt"),
+         "proguard-rules.pro", // Local per-module rules
+         File(rootProject.rootDir, "build-system/proguard/proguard-common-rules.pro"), // Shared rules ✅
+       )*/
       signingConfig = signingConfigs.getByName(sigining.SigningTypes.RELEASE)
     }
 
@@ -577,8 +631,13 @@ dependencies {
   dependencies.presentationModule()
   dependencies.viewModelCasesModule()
   dependencies.loginModule()
+  dependencies.remoteDataModule()
 
   dependencies.defaultLibraries()
   dependencies.jetpackViewModelAndLifecycle()
   dependencies.navigationComponent()
+
+  dependencies.dependencyInjectionHilt()
+  dependencies.coroutines()
+  dependencies.networking()
 }

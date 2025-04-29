@@ -16,8 +16,19 @@
             android:id="@+id/sharedViewModelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Models"
+            android:text="@string/mainActivity_btnViewModelFeature"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+
+        <Button
+            android:id="@+id/remoteDataButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainActivity_btnRemoteDataFeature"
+            app:layout_constraintBottom_toTopOf="@+id/sharedViewModelButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
