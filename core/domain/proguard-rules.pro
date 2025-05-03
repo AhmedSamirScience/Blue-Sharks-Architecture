@@ -1,21 +1,48 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+################################################################################################
+# ✅ Keep OutCome sealed class and subclasses (Success, Error, Empty)
+################################################################################################
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Why?
+# - `OutCome` is a sealed class with generic subtypes used across modules (e.g., remotedata, viewmodelcases).
+# - It's often returned from `UseCase` classes and passed to UI.
+# - R8 might strip or rename them if used through generics or reflection.
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# What this rule does:
+# - Preserves the class and all members (subclasses like OutCome$Success, etc.)
+-keep class com.samir.bluearchitecture.domain.main.result.** { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+
+
+################################################################################################
+# ✅ Keep all UseCase and AsyncUseCase classes
+################################################################################################
+
+# Why?
+# - `AsyncUseCase` is a generic abstract base class used for structured coroutine-based use cases.
+# - Subclasses (like LoginUseCase) rely on reflection or coroutine dispatching and may be stripped.
+
+# What this rule does:
+# - Keeps both `AsyncUseCase` and any subclasses or interfaces in the `usecase` package.
+
+
+# You can use this rule to keep all classes in the usecase package
+#-keep class com.samir.bluearchitecture.domain.main.usecase.** { *; }
+
+# Or you can use these lines
+-keep class com.samir.bluearchitecture.domain.main.usecase.UseCase { *; }
+-keep class com.samir.bluearchitecture.domain.main.usecase.AsyncUseCase { *; }
+-keepnames class com.samir.bluearchitecture.domain.main.usecase.**
+
+
+
+################################################################################################
+# ✅ Preserve ErrorMessageMapper used inside OutCome.Error
+################################################################################################
+
+# Why?
+# - `ErrorMessageMapper` may be serialized/deserialized (e.g., from API).
+# - Also used internally to show mapped error messages in the app.
+
+# What this rule does:
+# - Prevents removal or renaming of this class to maintain runtime integrity.
+-keep class com.samir.bluearchitecture.domain.main.model.ErrorMessageMapper { *; }
