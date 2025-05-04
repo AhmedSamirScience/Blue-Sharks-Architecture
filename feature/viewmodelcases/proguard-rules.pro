@@ -1,32 +1,8 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
-
 # ----------------------------------------------------------------------------------
 # ✅ KEEP RULE: Prevent obfuscation of the DataBindingComponent interface
 # ----------------------------------------------------------------------------------
 # This rule tells R8 / ProGuard to keep the `androidx.databinding.DataBindingComponent`
 # class and all its members (methods, fields) without renaming or removing them.
-
-
 ####################################################################################################
 # 📌 WHY THIS IS NEEDED:
 # - DataBindingComponent is a central part of the Android Data Binding framework.
@@ -97,6 +73,8 @@
 }
 ####################################################################################################
 
+
+
 ################################################################################################
 # 👇 ViewModel Rule: Keep ViewModel subclasses used with reflection, Hilt, or SavedStateHandle
 ################################################################################################
@@ -127,3 +105,36 @@
     public <init>();
 }
 ####################################################################################################
+
+
+
+################################################################################################
+# 👇 DataBinding Rule: Keep DataBinding-generated classes for the viewmodelcases feature module
+################################################################################################
+
+# Why?
+# - The Data Binding compiler generates binding classes like ActivityBasicRdactivityBinding
+#   inside the `databinding` package.
+# - When R8 obfuscation is enabled, these classes may be renamed to short names like `a.a`.
+# - If multiple modules contain DataBinding classes and are obfuscated separately, this causes:
+#     ❌ `Type a.a is defined multiple times` error at merge/dex time.
+
+# What this rule does:
+# - Keeps all classes under `com.samir.bluearchitecture.viewmodelcases.databinding`
+# - Prevents renaming, shrinking, and removal of their fields and methods
+# - Ensures these classes remain accessible and uniquely named across modules
+
+# When is it needed?
+# ✅ Required in multi-module projects when:
+#   - DataBinding is enabled in multiple feature modules
+#   - R8/ProGuard is enabled for each module
+# ❌ Not needed if you disable minification in all but the final app module
+
+# Helps prevent:
+# - Duplicate class errors during build
+# - ClassNotFoundException or NoSuchMethodException at runtime
+# - Debugging nightmares due to stripped/mangled binding classes
+
+# Safe and minimal — scoped to DataBinding only for viewmodelcases module.
+-keep class com.samir.bluearchitecture.viewmodelcases.databinding.** { *; }
+################################################################################################
