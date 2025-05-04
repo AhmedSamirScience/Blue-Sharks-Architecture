@@ -3,6 +3,7 @@ package extensions
 
 // Imports Gradle's `Project` class, which represents the current Gradle project.
 import com.android.build.api.dsl.ApplicationBuildType
+import com.android.build.api.dsl.LibraryBuildType
 import org.gradle.api.Project
 
 // Imports Java's Properties class to read local configuration files.
@@ -118,5 +119,56 @@ fun ApplicationBuildType.buildConfigIntField(name: String, value: String) {
  * ```
  */
 fun ApplicationBuildType.buildConfigBooleanField(name: String, value: String) {
+    this.buildConfigField("boolean", name, value)
+}
+
+/**
+ * Adds a `buildConfigField` of type `String` to the specified [LibraryBuildType].
+ *
+ * This is used to inject constant string values into the generated `BuildConfig` class.
+ *
+ * ### Example:
+ * ```kotlin
+ * buildConfigStringField("API_BASE_URL", "\"https://example.com/api/\"")
+ * ```
+ *
+ * @param name The constant name in `BuildConfig`.
+ * @param value The value to be assigned. Must be quoted like `"\"value\""` in the DSL.
+ */
+fun LibraryBuildType.buildConfigStringField(name: String, value: String) {
+    this.buildConfigField("String", name, value)
+}
+
+/**
+ * Adds a `buildConfigField` of type `int` to the specified [LibraryBuildType].
+ *
+ * Useful for injecting numeric constants into `BuildConfig`, such as version codes or limits.
+ *
+ * ### Example:
+ * ```kotlin
+ * buildConfigIntField("MAX_RETRIES", "5")
+ * ```
+ *
+ * @param name The constant name in `BuildConfig`.
+ * @param value The value to be assigned, passed as a String.
+ */
+fun LibraryBuildType.buildConfigIntField(name: String, value: String) {
+    this.buildConfigField("int", name, value)
+}
+
+/**
+ * Adds a `buildConfigField` of type `boolean` to the specified [LibraryBuildType].
+ *
+ * Typically used for toggles such as enabling logs or features in different build types.
+ *
+ * ### Example:
+ * ```kotlin
+ * buildConfigBooleanField("LOGGING_ENABLED", "true")
+ * ```
+ *
+ * @param name The constant name in `BuildConfig`.
+ * @param value The boolean value as a String (`"true"` or `"false"`).
+ */
+fun LibraryBuildType.buildConfigBooleanField(name: String, value: String) {
     this.buildConfigField("boolean", name, value)
 }

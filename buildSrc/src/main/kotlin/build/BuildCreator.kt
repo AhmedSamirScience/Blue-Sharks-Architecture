@@ -77,6 +77,14 @@ sealed class BuildCreator(val name: String) {
                 isMinifyEnabled = Build.Debug.isMinifyEnabled
                 isMinifyEnabled = Build.Debug.isShrinkEnabled
                 enableUnitTestCoverage = Build.Debug.enableUnitTestCoverage
+
+                // Set build configuration fields from local properties
+                buildConfigStringField(BuildVariables.BASE_URL, project.getLocalProperty("dev.debug_endpoint"))
+                buildConfigStringField(BuildVariables.PIN_CERTIFCATE, project.getLocalProperty("dev.project.certificate_pin"))
+                buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
+                buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
+                buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("dev.map_key"))
+
             }
         }
     }
@@ -119,6 +127,12 @@ sealed class BuildCreator(val name: String) {
                 isMinifyEnabled = Build.Release.isMinifyEnabled  // Enable minification.
                 enableUnitTestCoverage = Build.Release.enableUnitTestCoverage // Disable test coverage.
 
+                // Set build configuration fields from local properties
+                buildConfigStringField(BuildVariables.BASE_URL, project.getLocalProperty("dev.prod_endpoint"))
+                buildConfigStringField(BuildVariables.PIN_CERTIFCATE, project.getLocalProperty("release.project.certificate_pin"))
+                buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
+                buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
+                buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("release.map_key"))
             }
         }
     }
@@ -161,6 +175,13 @@ sealed class BuildCreator(val name: String) {
             return namedDomainObjectContainer.create(name) {
                 isMinifyEnabled = Build.ReleaseExternalQa.isMinifyEnabled
                 enableUnitTestCoverage = Build.ReleaseExternalQa.enableUnitTestCoverage
+
+                // Set build configuration fields from local properties
+                buildConfigStringField(BuildVariables.BASE_URL, project.getLocalProperty("dev.qa_endpoint"))
+                buildConfigStringField(BuildVariables.PIN_CERTIFCATE, project.getLocalProperty("dev.project.certificate_pin"))
+                buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
+                buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
+                buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("dev.map_key"))
 
             }
         }
