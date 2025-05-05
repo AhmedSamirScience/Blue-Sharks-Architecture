@@ -1,34 +1,3 @@
-# ----------------------------------------------------------------------------------
-# ✅ KEEP RULE: Prevent obfuscation of the DataBindingComponent interface
-# ----------------------------------------------------------------------------------
-# This rule tells R8 / ProGuard to keep the `androidx.databinding.DataBindingComponent`
-# class and all its members (methods, fields) without renaming or removing them.
-####################################################################################################
-# 📌 WHY THIS IS NEEDED:
-# - DataBindingComponent is a central part of the Android Data Binding framework.
-# - When using R8 in multiple modules (with `minifyEnabled true`), each module may
-#   independently obfuscate this interface to the same short name (e.g., `a.a`).
-# - This leads to "Type a.a is defined multiple times" during the final app merge step.
-#
-# 🚫 Without this rule, R8 renames the class (e.g., to `a.a`) in both modules.
-# ✅ With this rule, it retains the original name, avoiding duplication across modules.
-#
-# 🧩 Applies to:
-# - Any module using Android DataBinding (core, feature, presentation, etc.)
-# - Especially important in multi-module projects with release R8 enabled per module.
-#
-# 💡 Best Practice:
-# - Add this rule to each module using DataBinding and minification.
-# - Or disable `minifyEnabled` in libraries and obfuscate only in the app module.
-#
-# 🔐 Final note:
-# This does not stop shrinking or removing unused classes — it only preserves the name.
-# ----------------------------------------------------------------------------------
--keep class androidx.databinding.DataBindingComponent { *; }
-####################################################################################################
-
-
-
 ################################################################################################
 # 👇 Fragment Rule: Keep Fragment subclasses used by Navigation XML or FragmentContainerView
 ################################################################################################
@@ -58,15 +27,15 @@
 -keep class com.samir.bluearchitecture.viewmodelcases.**.*Fragment {
     public <init>();
 #    void onAttach(...);
-    void onCreate(...);
-    void onCreateView(...);
-    void onViewCreated(...);
-    void onStart(...);
-    void onResume(...);
-    void onPause(...);
-    void onStop(...);
-    void onDestroyView(...);
-    void onDestroy(...);
+#    void onCreate(...);
+#    void onCreateView(...);
+#    void onViewCreated(...);
+#    void onStart(...);
+#    void onResume(...);
+#    void onPause(...);
+#    void onStop(...);
+#    void onDestroyView(...);
+#    void onDestroy(...);
 #    void onDetach(...);
 #    void onSaveInstanceState(...);
 #    void onViewStateRestored(...);
@@ -101,7 +70,7 @@
 # - Hilt runtime errors during ViewModel injection
 #
 # Light and safe — avoids keeping all ViewModel code, just essentials.
--keep class com.samir.bluearchitecture.viewmodelcases.**.*ViewModel {
+-keep class **.*ViewModel {
     public <init>();
 }
 ####################################################################################################
@@ -136,5 +105,34 @@
 # - Debugging nightmares due to stripped/mangled binding classes
 
 # Safe and minimal — scoped to DataBinding only for viewmodelcases module.
--keep class com.samir.bluearchitecture.viewmodelcases.databinding.** { *; }
+-keep class **.databinding.** { *; }
+################################################################################################
+
+################################################################################################
+# 👁️‍🗨️ RULE: Preserve Class Names in `viewmodelcases` Package
+################################################################################################
+
+# 📌 Why:
+# - Classes inside this package (e.g., ViewModels, Fragments) may be instantiated via reflection,
+#   XML (e.g., FragmentContainerView), or Hilt ViewModel factory.
+# - These features require the class name to remain intact, but they do not care about field/method names.
+
+# ✅ What This Does:
+# - Keeps the full class name (e.g., com.samir.bluearchitecture.viewmodelcases.SomeViewModel)
+# - Allows shrinking: unused classes are still removed
+# - Allows member obfuscation: method/field names can still be shortened for optimization
+# - Lightweight: does NOT prevent shrinking or R8 optimization
+
+# ❌ Does NOT:
+# - Prevent internal members (fields/methods) from being obfuscated or stripped if unused
+# - Prevent removed classes if they're not reachable in the app
+
+# 💡 Use this when:
+# - You want to preserve class names for reflection or diagnostics
+# - But still want full R8 optimizations inside those classes
+
+# 📦 Target Scope:
+# - All classes under `com.samir.bluearchitecture.viewmodelcases` and its subpackages
+
+-keepnames class com.samir.bluearchitecture.viewmodelcases.**
 ################################################################################################
