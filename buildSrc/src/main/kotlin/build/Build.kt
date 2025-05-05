@@ -6,21 +6,6 @@ sealed class Build {
     // Common properties that will be inherited by all subclasses
 
     /**
-     * Determines whether resource shrinking is enabled.
-     *
-     * - `true`: Enables resource shrinking using R8 or ProGuard. Unused resources (e.g., images, strings, layouts)
-     *   will be removed from the final APK or AAB, reducing the app size.
-     * - `false`: Keeps all declared resources, even if unused.
-     *
-     * ⚠️ Resource shrinking typically requires `isMinifyEnabled = true` to be effective,
-     *    since the shrinker relies on code analysis to determine which resources are unused.
-     *
-     * 🔍 Recommended for **release builds** where reducing APK size is critical.
-     */
-    open val isShrinkEnabled = false
-
-
-    /**
      * Determines whether code shrinking (minification) is enabled.
      * - `true`: Removes unused code and resources to reduce APK size.
      * - `false`: Keeps all code and resources.
@@ -73,7 +58,6 @@ sealed class Build {
         override val isMinifyEnabled = false        // No minification (preserves full debugging capabilities).
         override val isDebuggable = true            // Enables debugging features.
         override val enableUnitTestCoverage = true  // Generates test coverage reports.
-        override val isShrinkEnabled = false        //disable shrink
     }
 
     /**
@@ -89,7 +73,6 @@ sealed class Build {
         override val isMinifyEnabled = false             // No minification (easier for testing).
         override val isDebuggable = false               // Debugging is disabled.
         override val enableUnitTestCoverage = true      // Enables test coverage for QA purposes.
-        override val isShrinkEnabled = true             //enable shrink
     }
 
     /**
@@ -103,6 +86,5 @@ sealed class Build {
         override val isMinifyEnabled = true        // Enables minification (removes unused code).
         override val isDebuggable = false         // Disables debugging for security.
         override val enableUnitTestCoverage = false // Disables test coverage to speed up the build.
-        override val isShrinkEnabled = true         //enable shrink
     }
 }

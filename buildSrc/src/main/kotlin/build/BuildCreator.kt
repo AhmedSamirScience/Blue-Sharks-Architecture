@@ -53,7 +53,6 @@ sealed class BuildCreator(val name: String) {
             return namedDomainObjectContainer.getByName(name) {
 
                 // Apply debug-specific build configurations
-                isMinifyEnabled = Build.Debug.isShrinkEnabled   // Disable minification.
                 isMinifyEnabled = Build.Debug.isMinifyEnabled  // Keep all code for debugging.
                 isDebuggable = Build.Debug.isDebuggable        // Enable debugging features.
                 versionNameSuffix = Build.Debug.versionNameSuffix // Add "-DEBUG" to version name.
@@ -75,7 +74,6 @@ sealed class BuildCreator(val name: String) {
         override fun createLibrary(namedDomainObjectContainer: NamedDomainObjectContainer<LibraryBuildType>): LibraryBuildType {
             return namedDomainObjectContainer.getByName(name) {
                 isMinifyEnabled = Build.Debug.isMinifyEnabled
-                isMinifyEnabled = Build.Debug.isShrinkEnabled
                 enableUnitTestCoverage = Build.Debug.enableUnitTestCoverage
 
                 // Set build configuration fields from local properties
@@ -104,7 +102,6 @@ sealed class BuildCreator(val name: String) {
             return namedDomainObjectContainer.getByName(name) {
 
                 // Apply release-specific configurations
-                isMinifyEnabled = Build.Release.isShrinkEnabled // Enable shrinking.
                 isMinifyEnabled = Build.Release.isMinifyEnabled // Enable minification.
                 enableUnitTestCoverage = Build.Release.enableUnitTestCoverage // Disable test coverage.
                 isDebuggable = Build.Release.isDebuggable // Disable debugging.
