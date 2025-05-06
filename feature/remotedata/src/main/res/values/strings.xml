@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">bluearchitecture</string>
+
+    <!--************************************************************ RemoteData Flow ****************************************************-->
+    <!--Main RD Activity-->
+    <string
+        name="mainRDActivity_btnBasicRemoteData"
+        translatable="false"
+    >Basic Flow</string>
+    <string
+        name="basicRDFirstFragment_btnFireApi"
+        translatable="false"
+    >Fire API</string>
+    <string
+        name="basicRDFirstFragment_tvScreenTitle"
+        translatable="false"
+    >First Fragment - Basic Remote Data</string>
+    <!--******************************************************************************************************************************-->
+</resources>
