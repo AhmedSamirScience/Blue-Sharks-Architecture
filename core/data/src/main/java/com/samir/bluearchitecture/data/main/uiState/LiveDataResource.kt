@@ -5,7 +5,6 @@ package com.samir.bluearchitecture.data.main.uiState
  * https://medium.com/@summitkumar/unlocking-the-power-of-sealed-classes-in-kotlin-design-patterns-and-better-code-organization-5627d73a4903
  */
 
-
 /**
  * A sealed class representing various UI states commonly used with [Live Data] to communicate
  * data loading, success, or error states to the UI layer.

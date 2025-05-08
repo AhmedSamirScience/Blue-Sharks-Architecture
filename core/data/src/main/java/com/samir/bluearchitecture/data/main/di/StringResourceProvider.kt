@@ -31,11 +31,11 @@ import javax.inject.Singleton
 @Singleton
 class StringResourceProvider @Inject constructor(private val context: Context) {
 
-    /**
-    * Retrieves a string from the app's resources using the given resource ID.
-    *
-    * @param resId The string resource ID annotated with [StringRes].
-    * @return The corresponding string value.
-    */
-    fun getString(@StringRes resId: Int): String = context.getString(resId)
+  /**
+   * Retrieves a string from the app's resources using the given resource ID.
+   *
+   * @param resId The string resource ID annotated with [StringRes].
+   * @return The corresponding string value.
+   */
+  fun getString(@StringRes resId: Int): String = context.getString(resId)
 }
