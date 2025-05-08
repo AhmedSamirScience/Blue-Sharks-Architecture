@@ -39,6 +39,38 @@ import javax.inject.Singleton
 class NetworkModule {
 
   /**
+   * Provides a singleton instance of [StringResourceProvider] for dependency injection.
+   *
+   * This method is annotated with `@Provides` and `@Singleton`, allowing Hilt to know how
+   * to create and cache a single instance of [StringResourceProvider] throughout the application's lifecycle.
+   *
+   * ---
+   * ### 🧩 Dependencies:
+   * - **@ApplicationContext**: Injects the application-level [Context], ensuring the provider has access
+   *   to application-wide resources (e.g., string resources) without leaking an Activity or Fragment.
+   *
+   * ---
+   * ### ✅ Use Case:
+   * This provider is useful for accessing localized string resources in a testable and centralized way
+   * across ViewModels, UseCases, or other components that should not directly depend on Android framework classes.
+   *
+   * ---
+   * ### 📦 Example Injection:
+   * ```kotlin
+   * @Inject lateinit var stringProvider: StringResourceProvider
+   * val title = stringProvider.getString(R.string.welcome_title)
+   * ```
+   *
+   * @param context Application context injected by Hilt via `@ApplicationContext`.
+   * @return A singleton instance of [StringResourceProvider].
+   */
+  @Singleton
+  @Provides
+  fun provideResourceProvider(@ApplicationContext context: Context): StringResourceProvider {
+    return StringResourceProvider(context)
+  }
+
+  /**
    * Provides a singleton [Gson] instance for JSON serialization/deserialization.
    */
   @Provides
