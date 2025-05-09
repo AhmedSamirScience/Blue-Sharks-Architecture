@@ -4,6 +4,11 @@
     <!--************************************************************ RemoteData Flow ****************************************************-->
     <!--Main RD Activity-->
     <string
+        name="app_loading"
+        translatable="false"
+    >Your content is on its way, just a moment...</string>
+
+    <string
         name="mainRDActivity_btnBasicRemoteData"
         translatable="false"
     >Basic Flow</string>
@@ -15,5 +20,15 @@
         name="basicRDFirstFragment_tvScreenTitle"
         translatable="false"
     >First Fragment - Basic Remote Data</string>
+
+    <!--First Fragment-->
+    <string
+        name="firstFragment_loginFailed"
+        translatable="false"
+    >Login Failed</string>
+
+    <string name="app_error_invalid_data_received" translatable="false">
+    The server returned data in an unexpected format. Please try again later.
+    </string>
     <!--******************************************************************************************************************************-->
 </resources>

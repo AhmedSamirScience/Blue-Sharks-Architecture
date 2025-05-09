@@ -6,6 +6,7 @@ import dependencies.dataModule
 import dependencies.defaultLibraries // Imports a function to add default dependencies.
 import dependencies.dependencyInjectionHilt
 import dependencies.domainModule
+import dependencies.gifMedia
 import dependencies.navigationComponent
 import dependencies.networking
 import dependencies.presentationModule
@@ -146,4 +147,6 @@ dependencies {
 
   dataModule()
   domainModule()
+
+  gifMedia()
 }
