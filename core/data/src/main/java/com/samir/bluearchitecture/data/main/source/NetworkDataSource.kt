@@ -134,11 +134,10 @@ class NetworkDataSource<SERVICE>(
           UNKNOWN
         }
       }
-      //return onError(getDefaultErrorResponse(), code)
+      // return onError(getDefaultErrorResponse(), code)
       val message = errorMessageProvider.getMessageForCode(code)
       val errorResponse = ErrorResponse("", message, emptyList())
       return onError(errorResponse, code)
-
     }
   }
 }
