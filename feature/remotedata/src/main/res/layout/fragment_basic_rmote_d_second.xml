@@ -3,31 +3,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".main.flow1Basic.fragment.f1BasicRD.BasicRDFirstFragment"
+    tools:context=".main.flow1Basic.fragment.f2BasicRD.BasicRmoteDSecondFragment"
 >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
     >
-        <TextView
+
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="36dp"
             android:background="@color/color_gray_medium_light"
             android:gravity="center"
             android:padding="@dimen/_10sdp"
-            android:text="@string/basicRDFirstFragment_tvScreenTitle"
+            android:text="@string/basicRDSecondFragment_tvScreenTitle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
         />
 
-        <Button
-            android:id="@+id/fireBasicApiButton"
+    <Button
+            android:id="@+id/fireParallelApiButton"
             android:layout_width="@dimen/_230sdp"
             android:layout_height="@dimen/_50sdp"
-            android:text="@string/basicRDFirstFragment_btnFireApi"
+            android:text="@string/basicRDSecondFragment_btnFireApiParallel"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,18 +38,6 @@
             app:layout_constraintTop_toTopOf="parent"
         />
 
-        <Button
-            android:id="@+id/navigateToSecondFragmentButton"
-            android:layout_width="@dimen/_230sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:text="Navigate To Second Fragment"
-            android:layout_marginBottom="@dimen/_30sdp"
-            android:textSize="@dimen/_11ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-        />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

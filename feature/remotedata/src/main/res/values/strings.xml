@@ -16,6 +16,7 @@
         name="basicRDFirstFragment_btnFireApi"
         translatable="false"
     >Fire API</string>
+
     <string
         name="basicRDFirstFragment_tvScreenTitle"
         translatable="false"
@@ -26,6 +27,17 @@
         name="firstFragment_loginFailed"
         translatable="false"
     >Login Failed</string>
+
+    <!--Second Fragment-->
+    <string
+        name="basicRDSecondFragment_tvScreenTitle"
+        translatable="false"
+    >Second Fragment - Basic Remote Data</string>
+
+    <string
+        name="basicRDSecondFragment_btnFireApiParallel"
+        translatable="false"
+    >Fire two APIs parallel</string>
 
     <string name="app_error_invalid_data_received" translatable="false">
     The server returned data in an unexpected format. Please try again later.

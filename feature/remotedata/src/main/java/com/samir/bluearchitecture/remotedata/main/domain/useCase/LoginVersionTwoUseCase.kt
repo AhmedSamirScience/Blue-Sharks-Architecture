@@ -13,13 +13,13 @@ import com.samir.bluearchitecture.remotedata.main.domain.repository.AuthReposito
 import com.samir.bluearchitecture.ui.utils.logging.Logger
 import javax.inject.Inject
 @Keep
-class LoginUseCase @Inject constructor(
+class LoginVersionTwoUseCase @Inject constructor(
   private val repository: AuthRepository,
   private val stringResourceProvider: StringResourceProvider,
 ) : AsyncUseCase<LoginRq, Login>() {
   override suspend fun run(input: LoginRq): OutCome<Login> {
     return repository.login(input).mapOrElse { login ->
-      Logger.d(useCase = this@LoginUseCase::class.java, message = "loginUseCase (i w): $login")
+      Logger.d(useCase = this@LoginVersionTwoUseCase::class.java, message = "LoginVersionTwoUseCase (i w): $login")
       if (login.isDataValid()) {
         if (login.errorMessage == "Wrong Email or Password") {
           OutCome.error(ErrorMessageMapper(1, stringResourceProvider.getString(R.string.firstFragment_loginFailed), emptyList()))

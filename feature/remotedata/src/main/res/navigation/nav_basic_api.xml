@@ -12,5 +12,20 @@
         android:name="com.samir.bluearchitecture.remotedata.main.flow1Basic.fragment.f1BasicRD.BasicRDFirstFragment"
         android:label="fragment_basic_r_d_first"
         tools:layout="@layout/fragment_basic_r_d_first"
+    >
+        <action
+            android:id="@+id/action_basicRDFirstFragment_to_basicRmoteDSecondFragment"
+            app:destination="@id/basicRmoteDSecondFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/basicRmoteDSecondFragment"
+        android:name="com.samir.bluearchitecture.remotedata.main.flow1Basic.fragment.f2BasicRD.BasicRmoteDSecondFragment"
+        android:label="fragment_basic_rmote_d_second"
+        tools:layout="@layout/fragment_basic_rmote_d_second"
     />
 </navigation>
