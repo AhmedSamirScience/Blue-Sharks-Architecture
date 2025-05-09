@@ -2,6 +2,7 @@ package com.samir.bluearchitecture.data.main.source
 
 import com.google.gson.Gson
 import com.google.gson.JsonParseException
+import com.samir.bluearchitecture.data.main.error.ErrorMessageProvider
 import com.samir.bluearchitecture.data.main.error.getDefaultErrorResponse
 import com.samir.bluearchitecture.data.main.error.getErrorResponse
 import com.samir.bluearchitecture.data.main.interceptors.NoConnectivityException
@@ -37,6 +38,8 @@ import kotlin.coroutines.coroutineContext
 class NetworkDataSource<SERVICE>(
   private val service: SERVICE,
   private val gson: Gson,
+  private val errorMessageProvider: ErrorMessageProvider,
+
 ) {
 
   /**
@@ -50,7 +53,12 @@ class NetworkDataSource<SERVICE>(
   suspend fun <R, T> performRequest(
     request: suspend SERVICE.() -> Response<R>,
     onSuccess: suspend (R, Headers) -> OutCome<T> = { _, _ -> OutCome.empty() },
-    onEmpty: suspend () -> OutCome<T> = { OutCome.empty() },
+    onEmpty: suspend () -> OutCome<T> = {
+      // OutCome.empty()
+      val message = errorMessageProvider.getEmptyResponseMessage()
+      val errorResponse = ErrorResponse("", message, emptyList())
+      OutCome.error(errorResponse.toDomain(code = -1)) // Use -1 or a custom EMPTY code
+    },
     onError: suspend (ErrorResponse, Int) -> OutCome<T> = { errorResponse, code ->
       OutCome.error(errorResponse.toDomain(code))
     },
@@ -66,10 +74,10 @@ class NetworkDataSource<SERVICE>(
           if (coroutineContext.isActive) {
             onSuccess(body, response.headers())
           } else {
-            onEmpty()
+            onEmpty() // ✅ CASE 1: Coroutine is not active (e.g. job was cancelled)
           }
         } else {
-          onEmpty()
+          onEmpty() // ✅ CASE 2: Response body is null or empty (but status is successful)
         }
       } else {
         val parsedError = if (errorBody.isNullOrBlank()) {
@@ -105,7 +113,6 @@ class NetworkDataSource<SERVICE>(
             Logger.w(useCase = this::class.java, message = "⚠️ Unhandled response code: $responseCode")
           }
         }
-
         return onError(parsedError, responseCode)
       }
     } catch (e: Exception) {
@@ -127,7 +134,11 @@ class NetworkDataSource<SERVICE>(
           UNKNOWN
         }
       }
-      return onError(getDefaultErrorResponse(), code)
+      //return onError(getDefaultErrorResponse(), code)
+      val message = errorMessageProvider.getMessageForCode(code)
+      val errorResponse = ErrorResponse("", message, emptyList())
+      return onError(errorResponse, code)
+
     }
   }
 }

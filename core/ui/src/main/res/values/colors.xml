@@ -59,4 +59,27 @@
     <!-- UI States -->
     <color name="color_item_default">#FFFFFFFF</color>
     <color name="color_item_selected">#FFFF0000</color>
+
+
+    <color name="black">#FF000000</color>
+    <color name="black_light">#BF000000</color>
+    <color name="black_light_extra">#66000000</color>
+
+    <color name="gray_light">#BFBFBFBF</color>
+    <color name="gray_light_opacity_20">#33BFBFBF</color>
+    <color name="gray_dark">#BFACACAC</color>
+    <color name="gray_extra_light">#80EAEAEA</color>
+    <color name="gray_medium_light">#80DFDEDE</color>
+
+    <color name="green">#FF00FF00</color>
+    <color name="green_dark">#077307</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_dark">#EDEDED</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FF3D00</color>
+    <color name="blue_light">#8BCCFF</color>
+
+    <color name="default_item_color">#FFFFFF</color> <!-- Default color -->
+    <color name="selected_item_color">#FF0000</color> <!-- Selected color -->
 </resources>

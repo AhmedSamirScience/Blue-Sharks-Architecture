@@ -149,7 +149,7 @@ import org.gradle.kotlin.dsl.project
     *
     * ✅ Use this in **UI modules** that require GIF display (e.g., loading indicators, animated banners).
     */
-    fun DependencyHandler.mediaAnimations() {
+    fun DependencyHandler.gifMedia() {
         implementation(Dependencies.GIF_DRAWABLE)
     }
     //endregion

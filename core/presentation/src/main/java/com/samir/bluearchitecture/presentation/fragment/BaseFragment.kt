@@ -171,6 +171,44 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding>() : SafeAr
     Logger.i(fragment = this, message = "📺📺📺onViewCreated called📺📺📺")
 
     /**
+     * Initializes the view state for the fragment by:
+     *
+     * 1. **Loading the views that can be enabled or disabled** dynamically using [getAllViews].
+     * 2. **Optionally referencing a loading indicator view** via [getViewIndicatorProgress],
+     *    which is shown/hidden during state changes (e.g., API call in progress).
+     *
+     * ---
+     * ### ✅ Purpose:
+     * This function prepares the fragment's interactive views for state control
+     * via [disableAllViews] and [enableAllViews], promoting consistent UI feedback during loading or error states.
+     *
+     * ---
+     * ### 📦 Typical Use Case:
+     * Called in `onViewCreated()` before observing or reacting to data from the ViewModel.
+     *
+     * ---
+     * ### ⚠️ Requirements:
+     * - You must override [getAllViews] to specify the views to manage.
+     * - Optionally override [getViewIndicatorProgress] if a loading indicator is used.
+     *
+     * ---
+     * ### 🧩 Example:
+     * ```kotlin
+     * override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+     *     super.onViewCreated(view, savedInstanceState)
+     *     initializeViewState()
+     *     subscribeObservers()
+     * }
+     * ```
+     *
+     * @see getAllViews
+     * @see getViewIndicatorProgress
+     * @see disableAllViews
+     * @see enableAllViews
+     */
+    initializeViewState()
+
+    /**
      * 🍧 subscribeObservers() 🍧
      *
      * ▶️ **Purpose:**

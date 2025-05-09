@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style
         name="Base.Theme.bluearchitecture"
@@ -9,4 +9,115 @@
     </style>
 
     <style name="Theme.bluearchitecture" parent="Base.Theme.bluearchitecture" />
+
+    <!-- **********************************************  Text Fonts  ********************************************** -->
+    <style
+        name="TextAppearance.MyApp.Thin"
+        parent="Base.Theme.bluearchitecture"
+    >
+        <item name="fontFamily">@font/roboto_thin</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Text Regular -->
+    <style
+        name="TextAppearance.MyApp.Regular"
+        parent="Base.Theme.bluearchitecture"
+    >
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Text Light -->
+    <style
+        name="TextAppearance.MyApp.Light"
+        parent="Base.Theme.bluearchitecture"
+    >
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Text Medium -->
+    <style
+        name="TextAppearance.MyApp.Medium"
+        parent="Base.Theme.bluearchitecture"
+    >
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Text Bold -->
+    <style
+        name="TextAppearance.MyApp.Bold"
+        parent="Base.Theme.bluearchitecture"
+    >
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+    <!-- ****************************************************************************************************** -->
+
+    <!-- ********************************************** Main Button Style  ********************************************** -->
+    <style name="style_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <!--
+                <item name="android:padding">@dimen/_10sdp</item>
+        -->
+        <item
+            name="android:background"
+        >@drawable/themes_selectorbtn_maincolorredyellow</item>
+
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/color_gray_light</item>
+    </style>
+    <!-- ****************************************************************************************************** -->
+
+    <!-- **********************************************  Custom Alert Dialog  ********************************************** -->
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item
+            name="android:windowBackground"
+        >@drawable/shape_rounded_spinner_crn2</item>
+    </style>
+    <!-- ****************************************************************************************************** -->
+
+
+    <style name="CustomActiveIndicatorStyle">
+        <item
+            name="android:width"
+        >@dimen/_40sdp</item> <!-- Set custom width -->
+        <item
+            name="android:height"
+        >@dimen/_25sdp</item> <!-- Set custom height -->
+        <item
+            name="android:color"
+        >@color/gray_light_opacity_20</item> <!-- Set custom color -->
+    </style>
+
+    <!-- TextAppearance for Active (Selected) Items -->
+    <style name="BottomNavActiveText" parent="TextAppearance.AppCompat">
+        <item
+            name="android:textSize"
+        >@dimen/_9ssp</item>  <!-- Set the text size for active items -->
+    </style>
+
+    <!-- TextAppearance for Inactive (Unselected) Items -->
+    <style name="BottomNavInactiveText" parent="TextAppearance.AppCompat">
+        <item
+            name="android:textSize"
+        >@dimen/_7ssp</item>  <!-- Set the text size for inactive items -->
+    </style>
+
 </resources>

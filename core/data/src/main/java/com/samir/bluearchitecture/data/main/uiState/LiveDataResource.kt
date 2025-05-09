@@ -33,7 +33,7 @@ package com.samir.bluearchitecture.data.main.uiState
  * - [Loading]: Represents a loading state, typically during API calls or DB operations.
  * - [Success]: Operation completed successfully with optional data.
  * - [Error]: Generic error state with a message.
- * - [ErrorResponse]: Specialized error state for handling structured error responses (e.g., API errors).
+ * - [Error Response]: Specialized error state for handling structured error responses (e.g., API errors).
  *
  * @param T The type of data expected in the success case.
  * @property data Optional data returned in case of success.
@@ -54,12 +54,6 @@ sealed class LiveDataResource<T>(val data: T? = null, val message: String? = nul
    * @param data The result of the successful operation.
    */
   class Success<T>(data: T?) : LiveDataResource<T>(data)
-
-  /**
-   * Represents an error with a structured or backend response message.
-   * @param message The error message from API or known source.
-   */
-  class ErrorResponse<T>(message: String) : LiveDataResource<T>(null, message)
 
   /**
    * Represents a generic error with a message.

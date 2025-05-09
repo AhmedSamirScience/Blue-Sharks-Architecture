@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <!--************************************************************General****************************************************-->
+    <!--General-->
+    <!-- ***************************************************************
+     ✅ GENERAL ERROR MESSAGES MAPPED TO NETWORK/LOGIC ERRORS
+     **************************************************************** -->
+
+    <!-- Used when JSON parsing fails or unexpected structure is received -->
+    <string name="app_error_invalid_data_received" translatable="false">
+    The server returned data in an unexpected format. Please try again later.
+    </string>
+
+    <!-- Used for general Retrofit/HTTP failures (e.g. 500, 503, 403, unknown codes) -->
+    <string name="app_error_http_exception" translatable="false">
+    We\'re having trouble communicating with the server. Please try again shortly.
+    </string>
+
+    <!-- Used for network-level exceptions: UnknownHostException, IOExceptions, etc. -->
+    <string name="app_error_io_exception" translatable="false">
+    No internet connection detected. Please check your network and try again.
+    </string>
+
+    <!-- Used as a fallback for uncategorized exceptions -->
+    <string name="app_error_unexpected_exception" translatable="false">
+    Something went wrong unexpectedly. Please try again later.
+    </string>
+
+    <!-- Used for SocketTimeoutException -->
+    <string name="app_error_timeout_exception" translatable="false">
+    The request took too long to complete. Please check your connection and try again.
+    </string>
+
+    <!-- Used as a catch-all fallback if no specific error code is matched -->
+    <string name="app_general_error" translatable="false">
+    An error occurred. Please try again later.
+    </string>
+
+    <string name="app_error_empty_response" translatable="false">
+    No data was returned from the server. Please try again later.
+    </string>
+    <!--******************************************************************************************************************************-->
+
+</resources>

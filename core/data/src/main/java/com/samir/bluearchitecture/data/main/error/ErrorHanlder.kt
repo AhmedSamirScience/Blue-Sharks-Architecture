@@ -12,7 +12,7 @@ import com.samir.bluearchitecture.data.main.response.ErrorResponse
  *
  * @return A default [ErrorResponse] with empty message, code, and error list.
  */
-fun getDefaultErrorResponse() = ErrorResponse("", "", emptyList())
+fun getDefaultErrorResponse() = ErrorResponse("-", "-", emptyList())
 
 /**
  * Attempts to parse the raw error body string into a structured [ErrorResponse] using [Gson].

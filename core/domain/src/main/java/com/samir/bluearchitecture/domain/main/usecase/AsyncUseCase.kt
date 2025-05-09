@@ -75,6 +75,12 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
   // Callback for failure result
   private lateinit var error: suspend (ErrorMessageMapper) -> Unit
 
+  // Callback for loading state
+  private lateinit var loading: suspend () -> Unit
+
+  // Callback for idle state
+  private lateinit var idle: suspend () -> Unit
+
   /**
    * Executes the use case with the given input and lifecycle callbacks.
    *
@@ -88,11 +94,16 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
     success: suspend (R) -> Unit = {},
     empty: suspend () -> Unit = {},
     error: suspend (ErrorMessageMapper) -> Unit = {},
+    loading: suspend () -> Unit = {},
+    idle: suspend () -> Unit = {},
   ) {
     this.success = success
     this.empty = empty
     this.error = error
+    this.loading = loading
+    this.idle = idle
 
+    loading()
     run(input).accept(this)
   }
 
@@ -109,6 +120,7 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
    */
   override suspend fun onSuccess(success: OutCome.Success<R>) {
     success(success.data)
+    idle()
   }
 
   /**
@@ -116,6 +128,7 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
    */
   override suspend fun onEmpty() {
     empty()
+    idle()
   }
 
   /**
@@ -123,5 +136,6 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
    */
   override suspend fun onError(errorMessageMapper: ErrorMessageMapper) {
     error(errorMessageMapper)
+    idle()
   }
 }
