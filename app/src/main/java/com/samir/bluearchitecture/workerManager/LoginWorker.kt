@@ -57,7 +57,7 @@ class LoginWorker @AssistedInject constructor(
         } else {
           return Result.failure()
         }*/
-        return Result.retry()     // 🟡 Try again later (up to 10 times)
+        return Result.retry() // 🟡 Try again later (up to 10 times)
       }
       is OutCome.Empty -> {
         Logger.e(worker = LoginWorker::class, message = "EMPTY → Login result was empty")
@@ -66,7 +66,7 @@ class LoginWorker @AssistedInject constructor(
         } else {
           return Result.failure()
         }*/
-        return Result.retry()     // 🟡 Try again later (up to 10 times)
+        return Result.retry() // 🟡 Try again later (up to 10 times)
       }
       else -> {
         Logger.e(worker = LoginWorker::class, message = "UNKNOWN → Login result was unknown")
