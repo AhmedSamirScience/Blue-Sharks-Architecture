@@ -4,13 +4,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import kotlin.reflect.KClass
 
 object Logger {
 
   private const val TAG = "MyAppLogger" // Default tag for log messages
 
   // Helper function to format the log message with Activity, Fragment, ViewModel, and Use Case names
-  private fun formatMessage(activity: AppCompatActivity?, fragment: Fragment?, viewModel: ViewModel?, useCase: Class<*>?, message: String): String {
+  private fun formatMessage(activity: AppCompatActivity?, fragment: Fragment?, viewModel: ViewModel?, useCase: Class<*>?, worker: KClass<*>?, message: String): String {
     val activityName = activity?.javaClass?.simpleName ?.let {
       "🚢 $it"
     }
@@ -23,8 +24,11 @@ object Logger {
     val useCaseName = useCase?.simpleName?.let {
       "🎲 $it"
     }
+    val workerName = worker?.simpleName?.let {
+      "⏲️ $it"
+    }
 
-    val parts = listOfNotNull(activityName, fragmentName, viewModelName, useCaseName)
+    val parts = listOfNotNull(activityName, fragmentName, viewModelName, useCaseName, workerName)
     return buildString {
       append("[")
       append(parts.joinToString(" · ")) // Optional separator between parts
@@ -34,49 +38,49 @@ object Logger {
   }
 
   // Logs debug messages
-  fun d(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
+  fun d(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, worker: KClass<*>? = null, message: String) {
     // if (BuildConfig.DEBUG)
-    Log.d(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
+    Log.d(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message))
   }
 
   // Logs info messages
-  fun i(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
+  fun i(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, worker: KClass<*>? = null, message: String) {
     // if (BuildConfig.DEBUG)
-    Log.i(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
+    Log.i(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message))
   }
 
   // Logs warning messages
-  fun w(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
+  fun w(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, worker: KClass<*>? = null, message: String) {
     // if (BuildConfig.DEBUG)
-    Log.w(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
+    Log.w(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message))
   }
 
-  fun wtf(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
+  fun wtf(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, worker: KClass<*>? = null, message: String) {
     // if (BuildConfig.DEBUG)
-    Log.wtf(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
+    Log.wtf(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message))
   }
 
   // Logs error messages
-  fun e(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String, throwable: Throwable? = null) {
+  fun e(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, worker: KClass<*>? = null, message: String, throwable: Throwable? = null) {
     if (throwable != null) {
       // if (BuildConfig.DEBUG)
-      Log.e(TAG, formatMessage(activity, fragment, viewModel, useCase, message), throwable)
+      Log.e(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message), throwable)
     } else {
       // if (BuildConfig.DEBUG)
-      Log.e(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
+      Log.e(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message))
     }
   }
 
   // Logs verbose messages
-  fun v(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
+  fun v(activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, worker: KClass<*>? = null, useCase: Class<*>? = null, message: String) {
     // if (BuildConfig.DEBUG)
-    Log.v(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
+    Log.v(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message))
   }
 
   // Logs to a custom destination, e.g., a file or remote server
-  fun customLog(destination: (String, String) -> Unit, activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, message: String) {
+  fun customLog(destination: (String, String) -> Unit, activity: AppCompatActivity? = null, fragment: Fragment? = null, viewModel: ViewModel? = null, useCase: Class<*>? = null, worker: KClass<*>? = null, message: String) {
     // if (BuildConfig.DEBUG)
-    destination(TAG, formatMessage(activity, fragment, viewModel, useCase, message))
+    destination(TAG, formatMessage(activity, fragment, viewModel, useCase, worker, message))
   }
 }
 

@@ -37,7 +37,7 @@ object DependenciesVersions {
     const val DAGGER_HILT_ANDROID = "2.49"
     const val DAGGER_HILT_COMPILER = "2.49"
     //const val HILT_LIFECYCLE_VIEWMODEL = "1.0.0-alpha01"
-    const val ANDROID_HILT_COMPILER = "1.0.0"
+    const val ANDROID_HILT_COMPILER = "1.1.0"
     //endregion
 
     //region Coroutines
@@ -50,5 +50,10 @@ object DependenciesVersions {
     const val RETROFIT_SQUARE_UP_CONVERTER_GSON = "2.10.0"
     const val OKHTTP_SQUARE_SQUARE_UP = "5.0.0-alpha.10"
     //const val interceptorSquareUp = "5.0.0-alpha.10"
+    //endregion
+
+    //region Worker Manager
+    const val WORK_RUNTIME = "2.9.0"
+    const val ANDROIDX_HILT = "1.1.0"
     //endregion
 }

@@ -104,3 +104,39 @@
 
 -keepnames class com.samir.bluearchitecture.remotedata.main.**
 ################################################################################################
+
+
+
+################################################################################################
+# 🧩 Keep Login Domain Model Fully Intact (fields + methods)
+#
+# 🔎 WHY:
+# - The `Login` class is a Kotlin `data class` used across:
+#     - ViewModels
+#     - UseCases
+#     - Workers (e.g., LoginWorker)
+#     - Repositories
+# - Its properties (e.g., `chemistID`, `errorMessage`) are often accessed:
+#     - Directly (`login.chemistID`)
+#     - Indirectly via reflection (e.g., logging, serialization, mapping)
+#
+# 🚫 ISSUE:
+# - In release builds, R8 may:
+#     - Strip unused methods like `componentN()`, `copy()`, `toString()`
+#     - Rename or remove fields accessed reflectively
+#     - Obfuscate property names — leading to `NoSuchMethodError` or broken serialization
+#
+# ✅ WHAT IT DOES:
+# - Keeps the entire class `Login` intact:
+#     - Class name
+#     - Fields
+#     - Kotlin-generated methods (copy, toString, hashCode, etc.)
+#     - Java-style accessors (if used via Java or Gson)
+#
+# 🧠 USE WHEN:
+# - A domain model is passed to/from a Worker or ViewModel
+# - It's mapped, serialized, or logged
+# - You're seeing `NoSuchMethodError`, `IllegalAccessException`, or broken Gson parsing
+
+-keep class com.samir.bluearchitecture.remotedata.main.domain.model.Login { *; }
+################################################################################################

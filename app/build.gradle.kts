@@ -1,8 +1,10 @@
 import build.BuildCreator
 import build.BuildDimensions
 import dependencies.coroutines
+import dependencies.dataModule
 import dependencies.defaultLibraries
 import dependencies.dependencyInjectionHilt
+import dependencies.domainModule
 import dependencies.jetpackViewModelAndLifecycle
 import dependencies.loginModule
 import dependencies.navigationComponent
@@ -10,6 +12,7 @@ import dependencies.networking
 import dependencies.presentationModule
 import dependencies.remoteDataModule
 import dependencies.viewModelCasesModule
+import dependencies.workerManager
 
 /**
  * ***build.gradle/build.gradle.kts (app module)***
@@ -632,6 +635,8 @@ dependencies {
   dependencies.viewModelCasesModule()
   dependencies.loginModule()
   dependencies.remoteDataModule()
+  dependencies.domainModule()
+  dependencies.dataModule()
 
   dependencies.defaultLibraries()
   dependencies.jetpackViewModelAndLifecycle()
@@ -640,4 +645,5 @@ dependencies {
   dependencies.dependencyInjectionHilt()
   dependencies.coroutines()
   dependencies.networking()
+  dependencies.workerManager()
 }

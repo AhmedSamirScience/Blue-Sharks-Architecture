@@ -156,4 +156,11 @@ import org.gradle.kotlin.dsl.project
 
     //endregion
 
+    //region Worker Manager
+    fun DependencyHandler.workerManager() {
+        implementation(Dependencies.WORK_RUNTIME)
+        implementation(Dependencies.HILT_WORK)
+    }
+    //endregion
+
 

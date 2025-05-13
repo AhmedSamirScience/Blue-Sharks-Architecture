@@ -1404,4 +1404,8 @@ object Dependencies {
     const val GIF_DRAWABLE = "pl.droidsonroids.gif:android-gif-drawable:${DependenciesVersions.GIF_DRAWABLE}"
     //endregion
 
+    //region Worker Manager
+    const val WORK_RUNTIME = "androidx.work:work-runtime-ktx:${DependenciesVersions.WORK_RUNTIME}"
+    const val HILT_WORK = "androidx.hilt:hilt-work:${DependenciesVersions.ANDROIDX_HILT}"
+    //endregion
 }
