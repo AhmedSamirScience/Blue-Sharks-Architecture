@@ -52,19 +52,21 @@ class LoginWorker @AssistedInject constructor(
       }
       is OutCome.Error -> {
         Logger.e(worker = LoginWorker::class, message = "ERROR → message = ${result.errorMessage().messageMapper}")
-        if (runAttemptCount < 10) {
+        /*if (runAttemptCount < 10) {
           return Result.retry() // ⛔ Retry logic on known errors
         } else {
           return Result.failure()
-        }
+        }*/
+        return Result.retry()     // 🟡 Try again later (up to 10 times)
       }
       is OutCome.Empty -> {
         Logger.e(worker = LoginWorker::class, message = "EMPTY → Login result was empty")
-        if (runAttemptCount < 10) {
+        /*if (runAttemptCount < 10) {
           return Result.retry() // ⛔ Retry logic on known errors
         } else {
           return Result.failure()
-        }
+        }*/
+        return Result.retry()     // 🟡 Try again later (up to 10 times)
       }
       else -> {
         Logger.e(worker = LoginWorker::class, message = "UNKNOWN → Login result was unknown")
