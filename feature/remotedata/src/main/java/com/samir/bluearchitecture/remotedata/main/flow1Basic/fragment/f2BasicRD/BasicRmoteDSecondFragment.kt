@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.samir.bluearchitecture.data.main.uiState.LiveDataResource
+import com.samir.bluearchitecture.data.main.remote.uiState.LiveDataResource
 import com.samir.bluearchitecture.presentation.fragment.BaseFragment
 import com.samir.bluearchitecture.remotedata.R
 import com.samir.bluearchitecture.remotedata.databinding.FragmentBasicRmoteDSecondBinding

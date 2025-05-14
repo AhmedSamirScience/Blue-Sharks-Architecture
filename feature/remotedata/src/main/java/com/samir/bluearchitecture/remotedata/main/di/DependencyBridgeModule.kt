@@ -37,9 +37,9 @@ import dagger.hilt.components.SingletonComponent
  */
 @Module(
   includes = [
-    com.samir.bluearchitecture.data.main.di.NetworkModule::class,
-    com.samir.bluearchitecture.data.main.di.InterceptorsModule::class,
-    com.samir.bluearchitecture.data.main.di.LocaleModule::class,
+    com.samir.bluearchitecture.data.main.remote.di.NetworkModule::class,
+    com.samir.bluearchitecture.data.main.remote.di.InterceptorsModule::class,
+    com.samir.bluearchitecture.data.main.remote.di.LocaleModule::class,
   ],
 )
 @InstallIn(SingletonComponent::class)

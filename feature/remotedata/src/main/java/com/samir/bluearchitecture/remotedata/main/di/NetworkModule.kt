@@ -2,9 +2,9 @@ package com.samir.bluearchitecture.remotedata.main.di
 
 import android.content.Context
 import com.google.gson.Gson
-import com.samir.bluearchitecture.data.main.error.ErrorMessageProvider
-import com.samir.bluearchitecture.data.main.factory.ServiceFactory
-import com.samir.bluearchitecture.data.main.source.NetworkDataSource
+import com.samir.bluearchitecture.data.main.remote.error.ErrorMessageProvider
+import com.samir.bluearchitecture.data.main.remote.factory.ServiceFactory
+import com.samir.bluearchitecture.data.main.remote.source.NetworkDataSource
 import com.samir.bluearchitecture.remotedata.main.data.remote.apiService.AuthApi
 import com.samir.bluearchitecture.remotedata.main.data.remote.repository.AuthRepositoryImpl
 import com.samir.bluearchitecture.remotedata.main.domain.repository.AuthRepository

@@ -1,6 +1,6 @@
 package com.samir.bluearchitecture.remotedata.main.data.remote.repository
 
-import com.samir.bluearchitecture.data.main.source.NetworkDataSource
+import com.samir.bluearchitecture.data.main.remote.source.NetworkDataSource
 import com.samir.bluearchitecture.domain.main.result.OutCome
 import com.samir.bluearchitecture.remotedata.main.data.remote.apiService.AuthApi
 import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject.firstScreen.LoginRq

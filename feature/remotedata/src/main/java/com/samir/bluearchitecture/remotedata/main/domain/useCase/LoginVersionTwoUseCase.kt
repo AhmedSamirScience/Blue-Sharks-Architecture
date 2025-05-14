@@ -1,7 +1,7 @@
 package com.samir.bluearchitecture.remotedata.main.domain.useCase
 
 import androidx.annotation.Keep
-import com.samir.bluearchitecture.data.main.di.StringResourceProvider
+import com.samir.bluearchitecture.data.main.remote.di.StringResourceProvider
 import com.samir.bluearchitecture.domain.main.model.ErrorMessageMapper
 import com.samir.bluearchitecture.domain.main.result.OutCome
 import com.samir.bluearchitecture.domain.main.result.mapOrElse

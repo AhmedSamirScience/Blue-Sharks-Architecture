@@ -2,7 +2,7 @@ package com.samir.bluearchitecture.remotedata.main.flow1Basic.fragment.f2BasicRD
 
 import androidx.annotation.Keep
 import androidx.lifecycle.viewModelScope
-import com.samir.bluearchitecture.data.main.uiState.LiveDataResource
+import com.samir.bluearchitecture.data.main.remote.uiState.LiveDataResource
 import com.samir.bluearchitecture.domain.main.result.OutCome
 import com.samir.bluearchitecture.presentation.viewModel.BaseViewModel
 import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject.firstScreen.LoginRq
