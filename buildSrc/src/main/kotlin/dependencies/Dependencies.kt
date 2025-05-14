@@ -1408,4 +1408,14 @@ object Dependencies {
     const val WORK_RUNTIME = "androidx.work:work-runtime-ktx:${DependenciesVersions.WORK_RUNTIME}"
     const val HILT_WORK = "androidx.hilt:hilt-work:${DependenciesVersions.ANDROIDX_HILT}"
     //endregion
+
+
+    //region Room Data Base
+    // Room
+    const val ROOM_RUNTIME = "androidx.room:room-runtime:${DependenciesVersions.ROOM_RUNTIME}"
+    const val ROOM_COMPILER = "androidx.room:room-compiler:${DependenciesVersions.ROOM_COMPILER}"
+
+    // Room with Kotlin Coroutines (suspend & Flow support)
+    const val ROOM_KTX = "androidx.room:room-ktx:${DependenciesVersions.ROOM_KTX}"
+    //endregion
 }

@@ -11,6 +11,10 @@
         name="mainActivity_btnRemoteDataFeature"
         translatable="false"
     >Remote Data</string>
+    <string
+        name="mainActivity_btnOfflineDataFeature"
+        translatable="false"
+    >Offline Data</string>
     <!--******************************************************************************************************************************-->
 
 </resources>

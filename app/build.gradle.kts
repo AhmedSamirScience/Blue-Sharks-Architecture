@@ -9,6 +9,7 @@ import dependencies.jetpackViewModelAndLifecycle
 import dependencies.loginModule
 import dependencies.navigationComponent
 import dependencies.networking
+import dependencies.offlineDataModule
 import dependencies.presentationModule
 import dependencies.remoteDataModule
 import dependencies.viewModelCasesModule
@@ -637,6 +638,7 @@ dependencies {
   dependencies.remoteDataModule()
   dependencies.domainModule()
   dependencies.dataModule()
+  dependencies.offlineDataModule()
 
   dependencies.defaultLibraries()
   dependencies.jetpackViewModelAndLifecycle()

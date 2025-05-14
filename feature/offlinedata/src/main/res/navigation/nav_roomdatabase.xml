@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_roomdatabase"
+    app:startDestination="@id/roomDataBaseFragment"
+>
+
+    <fragment
+        android:id="@+id/roomDataBaseFragment"
+        android:name="com.samir.bluearchitecture.offlinedata.roomDataBaseFlow.fragment.f1MainRDFlow.RoomDataBaseFragment"
+        android:label="fragment_room_data_base"
+        tools:layout="@layout/fragment_room_data_base"
+    />
+</navigation>

@@ -56,4 +56,11 @@ object DependenciesVersions {
     const val WORK_RUNTIME = "2.9.0"
     const val ANDROIDX_HILT = "1.1.0"
     //endregion
+
+    // region Room Database
+    const val ROOM_RUNTIME = "2.6.1"
+    const val ROOM_COMPILER = "2.6.1"
+    const val ROOM_KTX = "2.6.1"
+    //endregion
+
 }

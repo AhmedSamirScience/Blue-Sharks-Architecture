@@ -1,18 +1,36 @@
 // ───────────────────────────────────────────────────────────────────────────────
 // Import Statements
 // ───────────────────────────────────────────────────────────────────────────────
+import dependencies.coroutines
+import dependencies.dataModule
 import dependencies.defaultLibraries // Imports a function to add default dependencies.
 import dependencies.dependencyInjectionHilt
 import dependencies.domainModule
+import dependencies.gifMedia
+import dependencies.navigationComponent
 import dependencies.networking
+import dependencies.presentationModule
 import dependencies.roomDatabase
-import dependencies.uiModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
 // ───────────────────────────────────────────────────────────────────────────────
 // Apply Plugins
 // ───────────────────────────────────────────────────────────────────────────────
 plugins {
+  /**
+   * `KOTLIN_ANDROID` - Enables **Kotlin support** in the Android module.
+   * - Required when using Kotlin source files.
+   * - Also required for plugins like `androidx.navigation.safeargs.kotlin`.
+   * - Defined in `plugs.BuildPlugins` as `"org.jetbrains.kotlin.android"`.
+   * - Example usage:
+   *   ```kotlin
+   *   plugins {
+   *       id(BuildPlugins.KOTLIN_ANDROID)
+   *   }
+   *   ```
+   */
+  id(plugs.BuildPlugins.KOTLIN_ANDROID)
+
   /**
    * `ANDROID_LIBRARY` - Applies the Android Library plugin.
    * - Required for building **Android libraries (`.aar` files)**.
@@ -25,6 +43,8 @@ plugins {
    *   ```
    */
   id(plugs.BuildPlugins.ANDROID_LIBRARY)
+
+  id(plugs.BuildPlugins.SAFE_ARGS)
 
   // other plugins - order is important
   id(plugs.BuildPlugins.KAPT)
@@ -56,7 +76,11 @@ android {
    *   namespace = "com.example.my_library"
    *   ```
    */
-  namespace = "com.samir.bluearchitecture.data"
+  namespace = "com.samir.bluearchitecture.offlinedata"
+
+  buildFeatures {
+    dataBinding = true
+  }
 }
 
 // ───────────────────────────────────────────────────────────────────────────────
@@ -76,6 +100,10 @@ dependencies {
    *   ```
    */
   defaultLibraries()
+
+  navigationComponent()
+
+  presentationModule()
 
   /**
    * `dependencyInjectionHilt()`
@@ -114,37 +142,13 @@ dependencies {
    */
   dependencyInjectionHilt()
 
-  /**
-   * `networking()`
-   *
-   * Adds core networking libraries required for API communication using Retrofit and OkHttp.
-   *
-   * ### Included Dependencies:
-   * - `RETROFIT_SQUARE_UP`: Core Retrofit library for HTTP communication.
-   * - `RETROFIT_SQUARE_UP_CONVERTER_GSON`: Gson converter for JSON serialization/deserialization.
-   * - `OKHTTP_SQUARE_UP`: OkHttp client for efficient and customizable HTTP calls.
-   * - `INTERCEPTOR_SQUARE_UP`: Logging interceptor for monitoring network traffic.
-   *
-   * ### Purpose:
-   * - Promotes a consistent and centralized setup for networking across the app.
-   * - Encourages separation of concerns by abstracting dependency definitions.
-   *
-   * ### Example Usage:
-   * ```kotlin
-   * fun DependencyHandler.networking() {
-   *     implementation(Dependencies.RETROFIT_SQUARE_UP)
-   *     implementation(Dependencies.RETROFIT_SQUARE_UP_CONVERTER_GSON)
-   *     implementation(Dependencies.OKHTTP_SQUARE_UP)
-   *     implementation(Dependencies.INTERCEPTOR_SQUARE_UP)
-   * }
-   * ```
-   *
-   * > Note: Ensure ProGuard/R8 rules are properly configured for Retrofit and OkHttp in release builds.
-   */
+  coroutines()
+
   networking()
 
+  dataModule()
   domainModule()
-  uiModule()
 
+  gifMedia()
   roomDatabase()
 }

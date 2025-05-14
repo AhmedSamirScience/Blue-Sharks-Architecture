@@ -32,6 +32,9 @@ import org.gradle.kotlin.dsl.project
     fun DependencyHandler.remoteDataModule() {
         moduleImplementation(project(":feature:remotedata"))
     }
+    fun DependencyHandler.offlineDataModule() {
+        moduleImplementation(project(":feature:offlinedata"))
+    }
     //endregion
 
     //region Libraries
@@ -160,6 +163,15 @@ import org.gradle.kotlin.dsl.project
     fun DependencyHandler.workerManager() {
         implementation(Dependencies.WORK_RUNTIME)
         implementation(Dependencies.HILT_WORK)
+    }
+    //endregion
+
+
+    //region Room Data Base
+    fun DependencyHandler.roomDatabase() {
+        implementation(Dependencies.ROOM_RUNTIME)
+        kapt(Dependencies.ROOM_COMPILER)
+        implementation(Dependencies.ROOM_KTX)
     }
     //endregion
 

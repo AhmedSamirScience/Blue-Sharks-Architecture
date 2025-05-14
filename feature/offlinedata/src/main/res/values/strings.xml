@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">bluearchitecture</string>
+
+    <!--************************************************************ OfflineData Flow ****************************************************-->
+    <!--Main RD Activity-->
+    <string
+        name="app_loading"
+        translatable="false"
+    >Your content is on its way, just a moment...</string>
+
+    <string
+        name="mainORActivity_btnDataBaseRoomData"
+        translatable="false"
+    >DataBase Room Flow</string>
+    <string
+        name="basicRDFirstFragment_btnFireApi"
+        translatable="false"
+    >Fire API</string>
+
+    <string
+        name="basicORFirstFragment_tvScreenTitle"
+        translatable="false"
+    >First Fragment - Basic Offline Data</string>
+
+    <!--First Fragment-->
+    <string
+        name="firstFragment_loginFailed"
+        translatable="false"
+    >Login Failed</string>
+
+
+
+    <string
+        name="basicRDSecondFragment_btnFireApiParallel"
+        translatable="false"
+    >Fire two APIs parallel</string>
+
+    <string name="app_error_invalid_data_received" translatable="false">
+    The server returned data in an unexpected format. Please try again later.
+    </string>
+    <!--******************************************************************************************************************************-->
+</resources>
