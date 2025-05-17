@@ -5,6 +5,7 @@
 -keep class com.samir.bluearchitecture.data.main.remote.factory.ServiceFactory { *; }
 -keep class com.samir.bluearchitecture.data.main.remote.uiState.** { *; }
 -keep class com.samir.bluearchitecture.data.main.dataSource.** { *; }
+-keep class com.samir.bluearchitecture.data.main.encrDecrByKeyStore.CryptoHelper { *; }
 -keepnames class com.samir.bluearchitecture.data.main.**
 
 -keep class android.util.Log.** { *; }

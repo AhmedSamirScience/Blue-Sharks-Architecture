@@ -52,4 +52,9 @@ const val READ_TIMEOUT: Long = 30 // 30 seconds
 const val WRITE_TIMEOUT: Long = 15 // 30 seconds
 //endregion
 
+//region --- Encryption ---
+/**
+ * Secret Key used for encryption and decryption.
+ */
+const val SECRET_KEY_2024 = BuildConfig.SECRET_KEY_2025
 //endregion

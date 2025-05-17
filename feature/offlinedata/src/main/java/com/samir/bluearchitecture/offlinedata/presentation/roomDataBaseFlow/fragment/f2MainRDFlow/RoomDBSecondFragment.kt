@@ -69,7 +69,7 @@ class RoomDBSecondFragment :
             enableAllViews() // 🧿 🧿 🧿 Enable all views after success message is displayed  ⛔ ⛔ ⛔
           }
           is LiveDataResource.Error -> {
-            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Error ${result.message}", Toast.LENGTH_SHORT).show()
             Logger.e(fragment = this@RoomDBSecondFragment, message = "getAllLoginDataObserver (Error): ${result.message}")
             enableAllViews() // 🧿 🧿 🧿 Enable all views after error message is displayed  ⛔ ⛔ ⛔
           }

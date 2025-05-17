@@ -80,4 +80,14 @@ object BuildVariables {
      *   ```
      */
     const val PIN_CERTIFCATE = "PIN_CERTIFCATE"
+
+    /**
+     * Constant key used for storing or retrieving a symmetric encryption key
+     * from secure storage (e.g., Android Keystore, SharedPreferences, or DataStore).
+     *
+     * - Typically used as a reference name when saving a generated key
+     * - Should match the identifier expected by your encryption/decryption manager
+     * - Recommended to rotate or version keys by year (e.g., 2025)
+     */
+    const val SECRET_KEY_2025 = "SECRET_KEY_2025"
 }

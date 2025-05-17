@@ -65,6 +65,7 @@ sealed class BuildCreator(val name: String) {
                 buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
                 buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
                 buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("dev.map_key"))
+                buildConfigStringField(BuildVariables.SECRET_KEY_2025, project.getLocalProperty("release_key.key_store"))
             }
         }
 
@@ -82,6 +83,7 @@ sealed class BuildCreator(val name: String) {
                 buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
                 buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
                 buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("dev.map_key"))
+                buildConfigStringField(BuildVariables.SECRET_KEY_2025, project.getLocalProperty("release_key.key_store"))
 
             }
         }
@@ -112,6 +114,7 @@ sealed class BuildCreator(val name: String) {
                 buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
                 buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
                 buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("release.map_key"))
+                buildConfigStringField(BuildVariables.SECRET_KEY_2025, project.getLocalProperty("release_key.key_store"))
 
             }
         }
@@ -130,6 +133,7 @@ sealed class BuildCreator(val name: String) {
                 buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
                 buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
                 buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("release.map_key"))
+                buildConfigStringField(BuildVariables.SECRET_KEY_2025, project.getLocalProperty("release_key.key_store"))
             }
         }
     }
@@ -161,6 +165,7 @@ sealed class BuildCreator(val name: String) {
                 buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
                 buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
                 buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("dev.map_key"))
+                buildConfigStringField(BuildVariables.SECRET_KEY_2025, project.getLocalProperty("release_key.key_store"))
 
             }
         }
@@ -179,6 +184,7 @@ sealed class BuildCreator(val name: String) {
                 buildConfigIntField(BuildVariables.DB_VERSION, project.getLocalProperty("dev.db_version"))
                 buildConfigBooleanField(BuildVariables.CAN_CLEAR_CACHE, project.getLocalProperty("dev.clear_cache"))
                 buildConfigStringField(BuildVariables.MAP_KEY, project.getLocalProperty("dev.map_key"))
+                buildConfigStringField(BuildVariables.SECRET_KEY_2025, project.getLocalProperty("release_key.key_store"))
 
             }
         }

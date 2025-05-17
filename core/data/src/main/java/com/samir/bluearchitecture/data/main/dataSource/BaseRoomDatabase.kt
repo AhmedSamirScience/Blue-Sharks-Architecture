@@ -44,7 +44,6 @@ abstract class BaseRoomDatabase : RoomDatabase() {
       override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         // Optional: Insert initial data, setup schema, or log
-
       }
     }
   }

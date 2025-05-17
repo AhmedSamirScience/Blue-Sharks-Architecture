@@ -10,8 +10,8 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.samir.bluearchitecture.domain.main.result.OutCome
-import com.samir.bluearchitecture.offlinedata.data.remote.dataTransferObject.firstScreen.LoginRq
-import com.samir.bluearchitecture.offlinedata.domain.useCase.firstScreen.LoginUseCase
+import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject.firstScreen.LoginRq
+import com.samir.bluearchitecture.remotedata.main.domain.useCase.LoginUseCase
 import com.samir.bluearchitecture.ui.utils.logging.Logger
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject

@@ -1,9 +1,5 @@
 package com.samir.bluearchitecture.offlinedata.di
 
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-
 /**
  * 🧩 DependencyBridgeModule
  *
@@ -35,12 +31,13 @@ import dagger.hilt.components.SingletonComponent
  * - Use this pattern whenever a feature module **depends on bindings from another module**,
  *   and you want to **explicitly expose them in the dependency graph**.
  */
-@Module(
+/*@Module(
   includes = [
     com.samir.bluearchitecture.data.main.remote.di.NetworkModule::class,
     com.samir.bluearchitecture.data.main.remote.di.InterceptorsModule::class,
     com.samir.bluearchitecture.data.main.remote.di.LocaleModule::class,
+    com.samir.bluearchitecture.data.main.remote.di.SecurityModule::class,
   ],
 )
 @InstallIn(SingletonComponent::class)
-object DependencyBridgeModule
+object DependencyBridgeModule*/

@@ -6,5 +6,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "login")
 data class LoginEntity(
   @PrimaryKey val userId: String,
-  val userName: String,
+  val userName: String, // ⚠️ This holds encrypted value
 )

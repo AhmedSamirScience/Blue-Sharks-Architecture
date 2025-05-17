@@ -1,5 +1,6 @@
 package com.samir.bluearchitecture.offlinedata.data.remote.repository
 
+import com.samir.bluearchitecture.data.main.encrDecrByKeyStore.CryptoHelper
 import com.samir.bluearchitecture.data.main.remote.source.NetworkDataSource
 import com.samir.bluearchitecture.domain.main.model.ErrorMessageMapper
 import com.samir.bluearchitecture.domain.main.result.OutCome
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(
   private val networkDataSource: NetworkDataSource<AuthApi>,
   private val loginDao: LoginDao,
-
+  private val cryptoHelper: CryptoHelper,
 ) : AuthRepository {
 
   //region First Screen (Example)
@@ -32,7 +33,9 @@ class AuthRepositoryImpl @Inject constructor(
 
   override suspend fun cacheLogin(login: LoginEntity): OutCome<Unit> {
     return try {
-      loginDao.insert(LoginEntity(login.userId, login.userName))
+      val encryptedName = cryptoHelper.encrypt(login.userName)
+      val entity = LoginEntity(userId = login.userId, userName = encryptedName)
+      loginDao.insert(entity)
       OutCome.success(Unit)
     } catch (e: Exception) {
       OutCome.error(
@@ -53,8 +56,10 @@ class AuthRepositoryImpl @Inject constructor(
 
   override suspend fun getAllLogins(): OutCome<List<LoginEntity>> {
     return try {
-      val logins = loginDao.getAllLogins()
-      OutCome.success(logins)
+      val result = loginDao.getAllLogins().map {
+        it.copy(userName = cryptoHelper.decrypt(it.userName))
+      }
+      OutCome.success(result)
     } catch (e: Exception) {
       OutCome.error(
         ErrorMessageMapper(
