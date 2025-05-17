@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.samir.bluearchitecture.offlinedata.databinding.ActivityMainOractivityBinding
-import com.samir.bluearchitecture.offlinedata.roomDataBaseFlow.activity.MainRoomDataBaseActivity
+import com.samir.bluearchitecture.offlinedata.presentation.roomDataBaseFlow.activity.MainRoomDataBaseActivity
 
 class MainORActivity : AppCompatActivity() {
 

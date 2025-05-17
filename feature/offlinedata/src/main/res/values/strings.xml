@@ -15,19 +15,59 @@
     <string
         name="basicRDFirstFragment_btnFireApi"
         translatable="false"
-    >Fire API</string>
+    >Fire Basic API</string>
+    <string
+        name="basicRDFirstFragment_btnNavigateToSecondFragment"
+        translatable="false"
+    >Navigate To Second Fragment</string>
+    <string
+        name="basicRDFirstFragment_btnInsertData"
+        translatable="false"
+    >Insert Data API</string>
+    <string
+        name="basicRDFirstFragment_btnGetData"
+        translatable="false"
+    >Get All Login Data List</string>
 
     <string
         name="basicORFirstFragment_tvScreenTitle"
         translatable="false"
     >First Fragment - Basic Offline Data</string>
+    <string
+        name="basicORSecondFragment_tvScreenTitle"
+        translatable="false"
+    >Second Fragment - Basic Offline Data</string>
 
     <!--First Fragment-->
     <string
         name="firstFragment_loginFailed"
         translatable="false"
     >Login Failed</string>
+    <string
+        name="firstFragment_userIdFailed"
+        translatable="false"
+    >User ID</string>
+    <string
+        name="firstFragment_userIdHelperText"
+        translatable="false"
+    >Ex: 12345</string>
 
+    <string
+        name="firstFragment_userNameFailed"
+        translatable="false"
+    >User Name</string>
+    <string
+        name="firstFragment_userNameHelperText"
+        translatable="false"
+    >Ex:Ahmed Samir</string>
+    <string
+        name="firstFragment_noData"
+        translatable="false"
+    >Enter your Data</string>
+    <string
+        name="firstFragment_noDataFound"
+        translatable="false"
+    >No Data Found</string>
 
 
     <string

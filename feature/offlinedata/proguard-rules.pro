@@ -79,7 +79,7 @@
 # - For Hilt/Dagger setup to function correctly across feature modules
 # - Especially when using R8 shrinking in each feature module (like offlinedata)
 
-#-keep class com.samir.bluearchitecture.offlinedata.di.** { *; }
+-keep class com.samir.bluearchitecture.offlinedata.di.** { *; }
 ################################################################################################
 
 
@@ -138,5 +138,6 @@
 # - It's mapped, serialized, or logged
 # - You're seeing `NoSuchMethodError`, `IllegalAccessException`, or broken Gson parsing
 
-#-keep class com.samir.bluearchitecture.offlinedata.main.domain.model.Login { *; }
+-keep class com.samir.bluearchitecture.offlinedata.data.dataSource.** { *; }
+-keep class com.samir.bluearchitecture.offlinedata.domain.useCase.** { *; }
 ################################################################################################

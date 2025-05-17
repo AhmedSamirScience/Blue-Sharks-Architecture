@@ -7,6 +7,7 @@ import com.samir.bluearchitecture.presentation.viewModel.BaseViewModel
 import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject.firstScreen.LoginRq
 import com.samir.bluearchitecture.remotedata.main.domain.model.Login
 import com.samir.bluearchitecture.remotedata.main.domain.useCase.LoginUseCase
+import com.samir.bluearchitecture.ui.utils.logging.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,15 +28,19 @@ class BasicRDFirstViewModel @Inject constructor(
       loginUseCase.execute(
         input = request,
         success = {
+          Logger.d(viewModel = this@BasicRDFirstViewModel, message = "login (Success) -> $it")
           _loginStateFlow.value = LiveDataResource.Success(it)
         },
         error = {
+          Logger.e(viewModel = this@BasicRDFirstViewModel, message = "login (Error) -> ${it.messageMapper}")
           _loginStateFlow.value = LiveDataResource.Error(it.messageMapper)
         },
         loading = {
+          Logger.v(viewModel = this@BasicRDFirstViewModel, message = "login (Loading) ...")
           _loginStateFlow.value = LiveDataResource.Loading()
         },
         idle = {
+          Logger.v(viewModel = this@BasicRDFirstViewModel, message = "login (Idle)")
           _loginStateFlow.value = LiveDataResource.Idle()
         },
       )

@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".roomDataBaseFlow.activity.MainRoomDataBaseActivity"
+            android:name=".presentation.roomDataBaseFlow.activity.MainRoomDataBaseActivity"
             android:exported="false"
         />
         <activity android:name=".MainORActivity" android:exported="false" />

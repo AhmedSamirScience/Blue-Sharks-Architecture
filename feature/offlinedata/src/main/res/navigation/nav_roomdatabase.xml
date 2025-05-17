@@ -9,8 +9,23 @@
 
     <fragment
         android:id="@+id/roomDataBaseFragment"
-        android:name="com.samir.bluearchitecture.offlinedata.roomDataBaseFlow.fragment.f1MainRDFlow.RoomDataBaseFragment"
+        android:name="com.samir.bluearchitecture.offlinedata.presentation.roomDataBaseFlow.fragment.f1MainRDFlow.RoomDataBaseFragment"
         android:label="fragment_room_data_base"
         tools:layout="@layout/fragment_room_data_base"
+    >
+        <action
+            android:id="@+id/action_roomDataBaseFragment_to_roomDBSecondFragment"
+            app:destination="@id/roomDBSecondFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/roomDBSecondFragment"
+        android:name="com.samir.bluearchitecture.offlinedata.presentation.roomDataBaseFlow.fragment.f2MainRDFlow.RoomDBSecondFragment"
+        android:label="fragment_room_d_b_second"
+        tools:layout="@layout/fragment_room_d_b_second"
     />
 </navigation>

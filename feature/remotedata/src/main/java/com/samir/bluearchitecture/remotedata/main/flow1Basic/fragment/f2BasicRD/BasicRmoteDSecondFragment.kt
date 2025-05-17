@@ -52,7 +52,7 @@ class BasicRmoteDSecondFragment : BaseFragment<BasicRmoteDSecondViewModel, Fragm
       baseViewModel.loginStateFlow.collect { result ->
         when (result) {
           is LiveDataResource.Success -> {
-            Logger.d(fragment = this@BasicRmoteDSecondFragment, message = "loginObserver (i w): ${result.data}")
+            Logger.d(fragment = this@BasicRmoteDSecondFragment, message = "loginObserver (Success): ${result.data}")
             Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
             enableAllViews() // 🧿 🧿 🧿 Enable all views after success message is displayed  ⛔ ⛔ ⛔
           }
@@ -61,7 +61,7 @@ class BasicRmoteDSecondFragment : BaseFragment<BasicRmoteDSecondViewModel, Fragm
             enableAllViews() // 🧿 🧿 🧿 Enable all views after error message is displayed  ⛔ ⛔ ⛔
           }
           is LiveDataResource.Loading -> {
-            Logger.v(fragment = this@BasicRmoteDSecondFragment, message = "loginObserver (Loading): loading")
+            Logger.v(fragment = this@BasicRmoteDSecondFragment, message = "loginObserver (Loading): loading state")
             disableAllViews() // 🧿 🧿 🧿 Disable all views while loading ⛔ ⛔ ⛔
           }
           is LiveDataResource.Idle -> {

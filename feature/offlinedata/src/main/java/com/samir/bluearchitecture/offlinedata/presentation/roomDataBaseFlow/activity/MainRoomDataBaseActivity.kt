@@ -1,4 +1,4 @@
-package com.samir.bluearchitecture.offlinedata.roomDataBaseFlow.activity
+package com.samir.bluearchitecture.offlinedata.presentation.roomDataBaseFlow.activity
 
 import android.view.LayoutInflater
 import com.samir.bluearchitecture.offlinedata.R

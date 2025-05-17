@@ -9,6 +9,7 @@ import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject
 import com.samir.bluearchitecture.remotedata.main.domain.model.Login
 import com.samir.bluearchitecture.remotedata.main.domain.useCase.LoginUseCase
 import com.samir.bluearchitecture.remotedata.main.domain.useCase.LoginVersionTwoUseCase
+import com.samir.bluearchitecture.ui.utils.logging.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -77,15 +78,20 @@ class BasicRmoteDSecondViewModel @Inject constructor(
       result.onSuccess { (res1, res2) -> // Handle success case if no exception occurred
         // You can combine them, prioritize one, or show both independently
         if (res1 is OutCome.Success && res2 is OutCome.Success) { // ✅ Both succeeded — emit one or combine them
+          Logger.d(viewModel = this@BasicRmoteDSecondViewModel, message = "login (Success) -> ${res1.data}")
           _loginStateFlow.value = LiveDataResource.Success(res1.data)
         } else if (res1 is OutCome.Error) { // ❌ First use case failed
+          Logger.e(viewModel = this@BasicRmoteDSecondViewModel, message = "login (Error) -> ${res1.errorMessage().messageMapper}")
           _loginStateFlow.value = LiveDataResource.Error(res1.errorMessage().messageMapper)
         } else if (res2 is OutCome.Error) { // ❌ Second use case failed
+          Logger.e(viewModel = this@BasicRmoteDSecondViewModel, message = "login (Error) -> ${res2.errorMessage().messageMapper}")
           _loginStateFlow.value = LiveDataResource.Error(res2.errorMessage().messageMapper)
         } else { // 🟠 Neither succeeded but didn't fail clearly
+          Logger.e(viewModel = this@BasicRmoteDSecondViewModel, message = "login (Unknown state) -> $res1 and $res2")
           _loginStateFlow.value = LiveDataResource.Error("Unknown state")
         }
       }.onFailure { e -> // Handle failure if an exception occurred (network, null pointer, etc.)
+        Logger.e(viewModel = this@BasicRmoteDSecondViewModel, message = "login (Exception) -> ${e.message}")
         _loginStateFlow.value = LiveDataResource.Error(e.message ?: "Unexpected error")
       }
     }
