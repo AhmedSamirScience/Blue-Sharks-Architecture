@@ -63,4 +63,8 @@ object DependenciesVersions {
     const val ROOM_KTX = "2.6.1"
     //endregion
 
+    // region Preference Data Store
+    const val PREFERENCE_DATA_STORE =  "1.1.0"
+    //endregion
+
 }

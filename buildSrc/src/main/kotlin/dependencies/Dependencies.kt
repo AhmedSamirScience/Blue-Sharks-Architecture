@@ -1418,4 +1418,10 @@ object Dependencies {
     // Room with Kotlin Coroutines (suspend & Flow support)
     const val ROOM_KTX = "androidx.room:room-ktx:${DependenciesVersions.ROOM_KTX}"
     //endregion
+
+    // Data Store Preference
+    const val DATA_STORE_PREFERENCES = "androidx.datastore:datastore-preferences:${DependenciesVersions.PREFERENCE_DATA_STORE}"
+    //endregion
+
+
 }

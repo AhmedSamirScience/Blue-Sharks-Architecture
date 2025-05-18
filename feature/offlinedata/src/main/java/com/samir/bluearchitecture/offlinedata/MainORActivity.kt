@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.samir.bluearchitecture.offlinedata.databinding.ActivityMainOractivityBinding
+import com.samir.bluearchitecture.offlinedata.presentation.prefDataStoreFlow.activity.PreferenceDataStoreActivity
 import com.samir.bluearchitecture.offlinedata.presentation.roomDataBaseFlow.activity.MainRoomDataBaseActivity
 
 class MainORActivity : AppCompatActivity() {
@@ -18,6 +19,16 @@ class MainORActivity : AppCompatActivity() {
 
     binding.basicRemoteDataButton.setOnClickListener {
       val intent = Intent(this, MainRoomDataBaseActivity::class.java)
+      val options = ActivityOptions.makeCustomAnimation(
+        this,
+        com.samir.bluearchitecture.ui.R.anim.slide_in_from_top,
+        com.samir.bluearchitecture.ui.R.anim.slide_out_to_bottom,
+      )
+      startActivity(intent, options.toBundle())
+    }
+
+    binding.preferenceDataStoreButton.setOnClickListener {
+      val intent = Intent(this, PreferenceDataStoreActivity::class.java)
       val options = ActivityOptions.makeCustomAnimation(
         this,
         com.samir.bluearchitecture.ui.R.anim.slide_in_from_top,

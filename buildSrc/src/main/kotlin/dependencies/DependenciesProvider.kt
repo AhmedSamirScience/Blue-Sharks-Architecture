@@ -175,4 +175,10 @@ import org.gradle.kotlin.dsl.project
     }
     //endregion
 
+    // region Preference Data Store
+    fun DependencyHandler.preferenceDataStore() {
+        implementation(Dependencies.DATA_STORE_PREFERENCES)
+    }
+    //endregion
+
 

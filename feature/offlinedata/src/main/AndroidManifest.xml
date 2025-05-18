@@ -3,6 +3,10 @@
 
     <application>
         <activity
+            android:name=".presentation.prefDataStoreFlow.activity.PreferenceDataStoreActivity"
+            android:exported="false"
+        />
+        <activity
             android:name=".presentation.roomDataBaseFlow.activity.MainRoomDataBaseActivity"
             android:exported="false"
         />

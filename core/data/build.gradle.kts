@@ -5,6 +5,7 @@ import dependencies.defaultLibraries // Imports a function to add default depend
 import dependencies.dependencyInjectionHilt
 import dependencies.domainModule
 import dependencies.networking
+import dependencies.preferenceDataStore
 import dependencies.roomDatabase
 import dependencies.uiModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
@@ -147,4 +148,6 @@ dependencies {
   uiModule()
 
   roomDatabase()
+
+  preferenceDataStore()
 }

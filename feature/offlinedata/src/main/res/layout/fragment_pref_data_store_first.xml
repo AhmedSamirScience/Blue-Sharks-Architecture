@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.prefDataStoreFlow.fragment.firstScreen.PrefDataStoreFirstFragment"
+>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    >
+
+    <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@color/color_gray_medium_light"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/basicORFirstFragment_tvScreenTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_userId"
+            style="?attr/textInputFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:hint="@string/firstFragment_userIdFailed"
+            android:textAlignment="viewStart"
+            app:endIconMode="clear_text"
+            app:helperText="@string/firstFragment_userIdHelperText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_userId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_13ssp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_serverTime"
+            style="?attr/textInputFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:hint="Server Time"
+            android:textAlignment="viewStart"
+            app:endIconMode="clear_text"
+            app:helperText="write server time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_userId"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_serverTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:inputType="text"
+                android:maxLength="10"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_13ssp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_timeZone"
+            style="?attr/textInputFilledStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:hint="Time Zone"
+            android:textAlignment="viewStart"
+            app:endIconMode="clear_text"
+            app:helperText="Write time zone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_serverTime"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_TimeZone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:inputType="text"
+                android:maxLength="10"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_13ssp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            android:id="@+id/insertDataBaseButton"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:text="@string/basicRDFirstFragment_btnInsertDataStore"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_timeZone"
+        />
+
+    <Button
+            android:id="@+id/fireBasicApiButton"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:text="@string/basicRDFirstFragment_btnFireApi"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/insertDataBaseButton"
+        />
+
+    <Button
+            android:id="@+id/navigateToSecondFragmentButton"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:text="@string/basicRDFirstFragment_btnNavigateToSecondFragment"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fireBasicApiButton"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

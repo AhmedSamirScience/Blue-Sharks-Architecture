@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_prefdatastore"
+    app:startDestination="@id/prefDataStoreFirstFragment"
+>
+
+    <fragment
+        android:id="@+id/prefDataStoreFirstFragment"
+        android:name="com.samir.bluearchitecture.offlinedata.presentation.prefDataStoreFlow.fragment.firstScreen.PrefDataStoreFirstFragment"
+        android:label="fragment_pref_data_store_first"
+        tools:layout="@layout/fragment_pref_data_store_first"
+    >
+
+        <action
+            android:id="@+id/action_prefDataStoreFirstFragment_to_prefDataStoreSecFragment"
+            app:destination="@id/prefDataStoreSecFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/prefDataStoreSecFragment"
+        android:name="com.samir.bluearchitecture.offlinedata.presentation.prefDataStoreFlow.fragment.secondScreen.PrefDataStoreSecFragment"
+        android:label="fragment_pref_data_store_sec"
+        tools:layout="@layout/fragment_pref_data_store_sec"
+    />
+</navigation>

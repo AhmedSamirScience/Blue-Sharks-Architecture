@@ -13,6 +13,10 @@
         translatable="false"
     >DataBase Room Flow</string>
     <string
+        name="mainORActivity_btnPreferenceDataStore"
+        translatable="false"
+    >Preference Data Store Flow</string>
+    <string
         name="basicRDFirstFragment_btnFireApi"
         translatable="false"
     >Fire Basic API</string>
@@ -25,9 +29,17 @@
         translatable="false"
     >Insert Data API</string>
     <string
+        name="basicRDFirstFragment_btnInsertDataStore"
+        translatable="false"
+    >Insert Proto Data Store</string>
+    <string
         name="basicRDFirstFragment_btnGetData"
         translatable="false"
     >Get All Login Data List</string>
+    <string
+        name="basicRDFirstFragment_btnGetProtoDataStore"
+        translatable="false"
+    >Get All Data Has Been Saved</string>
 
     <string
         name="basicORFirstFragment_tvScreenTitle"

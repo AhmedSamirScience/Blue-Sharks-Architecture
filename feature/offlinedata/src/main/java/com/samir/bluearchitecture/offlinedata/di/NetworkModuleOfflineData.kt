@@ -1,6 +1,7 @@
 package com.samir.bluearchitecture.offlinedata.di
 
 import com.google.gson.Gson
+import com.samir.bluearchitecture.data.main.dataSource.EncryptedPreferencesDataStoreManager
 import com.samir.bluearchitecture.data.main.encrDecrByKeyStore.CryptoHelper
 import com.samir.bluearchitecture.data.main.remote.error.ErrorMessageProvider
 import com.samir.bluearchitecture.data.main.remote.factory.ServiceFactory
@@ -93,7 +94,8 @@ class NetworkModuleOfflineData {
     networkDataSource: NetworkDataSource<AuthApi>,
     loginDao: LoginDao,
     cryptoHelper: CryptoHelper,
+    encryptedPreferencesDataStoreManager: EncryptedPreferencesDataStoreManager,
   ): AuthRepository {
-    return AuthRepositoryImpl(networkDataSource, loginDao, cryptoHelper)
+    return AuthRepositoryImpl(networkDataSource, loginDao, cryptoHelper, encryptedPreferencesDataStoreManager)
   }
 }

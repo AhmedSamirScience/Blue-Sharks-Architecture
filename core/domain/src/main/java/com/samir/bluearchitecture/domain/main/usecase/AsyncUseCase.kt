@@ -2,6 +2,7 @@ package com.samir.bluearchitecture.domain.main.usecase
 
 import com.samir.bluearchitecture.domain.main.model.ErrorMessageMapper
 import com.samir.bluearchitecture.domain.main.result.OutCome
+import kotlinx.coroutines.delay
 
 /**
  * `AsyncUseCase<I, R>` is an abstract base class designed to simplify the execution
@@ -120,6 +121,7 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
    */
   override suspend fun onSuccess(success: OutCome.Success<R>) {
     success(success.data)
+    delay(100)
     idle()
   }
 
@@ -128,6 +130,7 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
    */
   override suspend fun onEmpty() {
     empty()
+    delay(100)
     idle()
   }
 
@@ -136,6 +139,7 @@ abstract class AsyncUseCase<I, R> : UseCase<R> {
    */
   override suspend fun onError(errorMessageMapper: ErrorMessageMapper) {
     error(errorMessageMapper)
+    delay(100)
     idle()
   }
 }
