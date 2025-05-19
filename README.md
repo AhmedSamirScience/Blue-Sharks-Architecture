@@ -1,4 +1,4 @@
- <body style="font-family: Arial, sans-serif; line-height: 1.6; padding: 2rem; background-color: #f9f9f9; color: #333;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; padding: 2rem; background-color: #f9f9f9; color: #333;">
   <h1>📦 Remote Data & Storage Integration</h1>
 
   <p>This development branch consolidates the following feature modules to enable a robust and scalable remote data flow, offline caching, and secure key-value storage.</p>
