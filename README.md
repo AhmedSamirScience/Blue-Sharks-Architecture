@@ -4,6 +4,7 @@
 
 <hr />
 
+
 <h2>🔐 Key Features</h2>
 <ul>
   <li><strong>Encrypted DataStore:</strong> Ensures secure key-value storage using encryption wrappers around DataStore.</li>
