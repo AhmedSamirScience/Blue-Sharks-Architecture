@@ -1,115 +1,64 @@
-<h1>📦 NavGraph-Scoped ViewModel – Feature Branch Overview</h1>
+<h1>🔐 Parallel Login Use Case Flow – Feature Branch Overview</h1>
 
-<p>
-  This branch demonstrates how to use <strong>NavGraph-scoped ViewModels</strong> in Android using Jetpack Navigation Component,
-  <code>StateFlow</code>, and <code>repeatOnLifecycle</code>. This approach enables multiple fragments within the same
-  navigation graph to share the same ViewModel, providing a clean, lifecycle-aware state-sharing mechanism.
-</p>
+<p>This branch introduces the implementation of <strong>parallel login use case execution</strong> across the <code>BasicRD</code> remote data feature, enhancing authentication responsiveness and modularity.</p>
 
 <hr />
 
-<h2>🎯 Goals of This Feature</h2>
+<h2>🎯 Goal</h2>
 <ul>
-  <li>Implement <strong>graph-scoped</strong> ViewModel sharing.</li>
-  <li>Demonstrate stable ViewModel initialization using <code>getBackStackEntry()</code>.</li>
-  <li>Persist ViewModel state across fragment navigation (within the same graph).</li>
-  <li>Support multiple isolated navigation graphs for modular architecture.</li>
+  <li>Support multiple login strategies using parallel coroutine execution</li>
+  <li>Improve user experience by handling multi-endpoint authentication simultaneously</li>
+  <li>Maintain clean architecture by extending <code>AsyncUseCase</code> usage and ViewModel result collection</li>
 </ul>
 
 <hr />
 
-<h2>🧠 What is a NavGraph-Scoped ViewModel?</h2>
-<p>
-  A NavGraph-scoped ViewModel is a ViewModel that is tied to a specific navigation graph rather than an activity or a fragment.
-  This allows all fragments inside that navigation graph to share the same instance of a ViewModel.
-</p>
-
-<div style="background:#f0f9ff;border-left:4px solid #3498db;padding:10px;margin:1rem 0;">
-  <strong>Why it matters:</strong> Enables isolated, reusable ViewModel scopes — ideal for flows like onboarding, wizards, and feature modules.
-</div>
-
-<hr />
-
-<h2>✅ Benefits</h2>
+<h2>📦 Key Features</h2>
 <ul>
-  <li>🔁 Shared state across multiple fragments in a flow.</li>
-  <li>🎯 Cleaner logic separation – no more bundle passing.</li>
-  <li>🚀 Ideal for modularization (onboarding, authentication, etc).</li>
-  <li>♻️ Better ViewModel lifecycle management compared to activity-scoped alternatives.</li>
+  <li><code>LoginVersionTwoUseCase</code>: A second use case executed in parallel with <code>LoginUseCase</code></li>
+  <li>Fragments and ViewModels updated to launch both use cases using <code>viewModelScope.launch { ... }</code> and <code>async</code></li>
+  <li>Unified result handling with <code>OutCome</code> and <code>LiveDataResource</code> for predictable state transitions</li>
 </ul>
 
 <hr />
 
-<h2>📁 Project Structure</h2>
+<h2>🧱 Updated Components</h2>
 <ul>
-  <li><code>NavGraphVMFirstFragment.kt</code> → Displays and updates shared counter.</li>
-  <li><code>NavGraphVMSecondFragment.kt</code> → Uses the same ViewModel, updates and reflects changes.</li>
-  <li><code>NavGraphVMThirdFragment.kt</code> → Optional isolated flow in a separate nav graph.</li>
-  <li><code>NavGraphVMFirstViewModel.kt</code> → Holds shared state using <code>StateFlow</code>.</li>
-  <li><code>nav_navgraph_vm.xml</code>, <code>nav_navgraph_second_vm.xml</code> → Navigation graph definitions.</li>
+  <li><code>BasicRDFirstFragment</code> and <code>BasicRDFirstViewModel</code>: now trigger parallel login flows</li>
+  <li><code>secondScreen</code> ViewModel: mirrors parallel flow with result mapping</li>
+  <li>Updated layouts: new UI strings and progress states</li>
+  <li>Navigation graph enhancements for improved screen transition and backstack handling</li>
 </ul>
 
 <hr />
 
-<h2>🔄 ViewModel Setup</h2>
-<p>
-  <code>navGraphViewModels()</code> often causes timing issues if used too early (e.g., before graph is created).
-  Instead, use this pattern:
-</p>
-
-<pre><code class="kotlin">
-val backStackEntry = findNavController().getBackStackEntry(R.id.nav_navgraph_vm)
-val viewModel: NavGraphVMViewModel by viewModels({ backStackEntry })
-baseViewModel = viewModel
-</code></pre>
-
-<p>This guarantees proper lifecycle and safe initialization.</p>
+<h2>🧪 Testing Scenarios</h2>
+<ul>
+  <li>Test login with API A and API B firing concurrently</li>
+  <li>Validate OutCome state resolution for both success and failure cases</li>
+  <li>Use slow network to observe parallel coroutine independence</li>
+  <li>Check if the final state correctly reflects the latest successful result or fallback error</li>
+</ul>
 
 <hr />
 
-<h2>📊 ViewModel State Management</h2>
-<p>Each fragment observes <code>StateFlow</code> using <code>repeatOnLifecycle</code> to collect updates only when the view is visible:</p>
+<h2>📄 Recommended Pattern</h2>
+<p>Each login use case encapsulates a separate logic unit, allowing independent request dispatch. ViewModel collects both results using coroutine <code>async { }</code> and processes their responses within a unified result mapper.</p>
 
-<pre><code class="kotlin">
-lifecycleScope.launch {
-    viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-        baseViewModel.counter.collect { count ->
-            baseViewBinding.myItem = count
-        }
-    }
+<pre><code>
+viewModelScope.launch {
+  val first = async { loginUseCase(...) }
+  val second = async { loginVersionTwoUseCase(...) }
+
+  val result1 = first.await()
+  val result2 = second.await()
+  handleCombinedResult(result1, result2)
 }
 </code></pre>
 
 <hr />
 
-<h2>📄 Related Files</h2>
-<ul>
-  <li><code>NavGraphVMFirstFragment.kt</code></li>
-  <li><code>NavGraphVMSecondFragment.kt</code></li>
-  <li><code>NavGraphVMThirdFragment.kt</code></li>
-  <li><code>NavGraphVMFirstViewModel.kt</code></li>
-  <li><code>CounterClass.kt</code></li>
-  <li><code>nav_navgraph_vm.xml</code>, <code>nav_navgraph_second_vm.xml</code></li>
-  <li>Corresponding <code>layout/</code> XML files</li>
-</ul>
-
-<hr />
-
-<h2>🧪 Testing Tips</h2>
-<ul>
-  <li>✅ Log ViewModel instance hash codes to verify reuse across fragments.</li>
-  <li>✅ Test navigation between fragments to ensure state retention.</li>
-  <li>✅ Rotate screen – observe ViewModel survival.</li>
-  <li>✅ Navigate between different nav graphs – verify ViewModel scoping isolation.</li>
-</ul>
-
-<hr />
-
-<h2>🚀 Conclusion</h2>
+<h2>✅ Summary</h2>
 <p>
-  The <strong>NavGraph-scoped ViewModel</strong> pattern offers a scalable way to manage shared UI state in modular flows.
-  This feature branch showcases how to set it up correctly and use it effectively with <code>StateFlow</code>,
-  <code>repeatOnLifecycle</code>, and Navigation Component best practices.
+  This upgrade empowers the app to handle more robust authentication scenarios, such as social login + standard login fallback, or identity verification + OTP. It also serves as a practical case study in applying structured concurrency with Kotlin coroutines inside MVVM architecture.
 </p>
-
-<p><strong>💡 Tip:</strong> Combine this with clean architecture and feature modules for a robust, scalable Android codebase.</p>
