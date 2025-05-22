@@ -39,13 +39,29 @@ plugins {
 }
 
 // ───────────────────────────────────────────────────────────────────────────────
-// Global publication resolution override — avoids conflict with multi-variant modules
+// Global publication resolution override — avoids conflict with multi-variant modules (((Debug)))
+// ───────────────────────────────────────────────────────────────────────────────
+/*allprojects {
+    configurations.configureEach {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "com.samir.core") {
+                val forcedVariant = "googleDebug"
+                val forced = "${requested.group}:${requested.name}-$forcedVariant:${requested.version}"
+                useTarget(forced)
+            }
+        }
+    }
+}*/
+
+
+// ───────────────────────────────────────────────────────────────────────────────
+// Global publication resolution override — avoids conflict with multi-variant modules Google (((Release)))
 // ───────────────────────────────────────────────────────────────────────────────
 allprojects {
     configurations.configureEach {
         resolutionStrategy.eachDependency {
             if (requested.group == "com.samir.core") {
-                val forcedVariant = "googleDebug"
+                val forcedVariant = "googleRelease"
                 val forced = "${requested.group}:${requested.name}-$forcedVariant:${requested.version}"
                 useTarget(forced)
             }

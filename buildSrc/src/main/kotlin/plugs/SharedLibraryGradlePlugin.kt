@@ -33,8 +33,8 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
         project.addPluginConfigurations()
         project.addAndroidConfigurations()
         project.applyKotlinOptions()
-        project.configurePublishingDebug()
-        //project.configurePublishingRelease()
+        //project.configurePublishingDebug()
+        project.configurePublishingRelease()
     }
 
     // ───────────────────────────────────────────────────────────────────────────────
@@ -163,13 +163,12 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
             }
             // ✅ This is what registers the 'release' SoftwareComponent for Maven publishing
             publishing {
-//                singleVariant("clientGoogleRelease") {
-//                    withSourcesJar()
-//                    //withJavadocJar()
-//                }
-                singleVariant("googleDebug") {
+                singleVariant("googleRelease") {
                     withSourcesJar()
                 }
+//                singleVariant("googleDebug") {
+//                    withSourcesJar()
+//                }
             }
         }
     }
@@ -308,11 +307,11 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
         plugins.withId("maven-publish") {
             afterEvaluate {
                 // 👇 This will resolve *all* `com.samir.core:*` dependencies to this variant
-                forceSinglePublicationResolution("clientGoogleRelease")
+                forceSinglePublicationResolution("googleRelease")
 
                 extensions.findByType(PublishingExtension::class.java)?.apply {
                     publications {
-                        listOf("clientGoogleRelease").forEach { variant ->
+                        listOf("googleRelease").forEach { variant ->
                             create(variant, MavenPublication::class.java) {
                                 groupId = "com.samir.core"
                                 artifactId = project.path.replace(":", "-").removePrefix("-") + "-$variant"
@@ -349,9 +348,18 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
     }
 
     /**
+     *  --------------- Debug ---------------
      *  ./gradlew :core:data:publishGoogleDebugPublicationToMavenLocal
      *  ./gradlew :core:domain:publishGoogleDebugPublicationToMavenLocal
      *  ./gradlew :core:ui:publishGoogleDebugPublicationToMavenLocal
      *  ./gradlew :core:presentation:publishGoogleDebugPublicationToMavenLocal
+     */
+
+    /**
+     *  --------------- Release ---------------
+     *  ./gradlew :core:data:publishGoogleReleasePublicationToMavenLocal
+     *  ./gradlew :core:domain:publishGoogleReleasePublicationToMavenLocal
+     *  ./gradlew :core:ui:publishGoogleReleasePublicationToMavenLocal
+     *  ./gradlew :core:presentation:publishGoogleReleasePublicationToMavenLocal
      */
 }
