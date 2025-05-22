@@ -28,23 +28,4 @@ object FlavorTypes {
      */
     const val HUAWEI = "huawei"
 
-    /**
-     * `DRIVER` - Defines the flavor for the **Driver** version of the app.
-     * - Used in `BuildFlavor.Driver`.
-     * - Example usage in Gradle:
-     *   ```kotlin
-     *   productFlavors.create(FlavorTypes.DRIVER) { dimension = "app" }
-     *   ```
-     */
-    const val DRIVER = "driver"
-
-    /**
-     * `CLIENT` - Defines the flavor for the **Client** version of the app.
-     * - Used in `BuildFlavor.Client`.
-     * - Example usage in Gradle:
-     *   ```kotlin
-     *   productFlavors.create(FlavorTypes.CLIENT) { dimension = "app" }
-     *   ```
-     */
-    const val CLIENT = "client"
 }

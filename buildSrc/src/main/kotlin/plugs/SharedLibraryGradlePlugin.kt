@@ -70,7 +70,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
      * - Sets default configurations (minSdk, test runner).
      * - Defines signing configurations.
      * - Creates build types (Debug, Release, QA).
-     * - Adds product flavors (Google, Huawei, Client, Driver).
+     * - Adds product flavors (Google, Huawei).
      */
     private fun Project.addAndroidConfigurations() {
         extensions.getByType(LibraryExtension::class.java).apply {
@@ -133,24 +133,18 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
             // ───────────────────────────────────────────────────────────────────────────────
             /**
              * Defines **flavor dimensions**.
-             * - `APP` → Groups app-based flavors (e.g., Client, Driver).
              * - `STORE` → Groups store-based flavors (e.g., Google Play, Huawei Store).
              */
-            flavorDimensions.add(BuildDimensions.APP)
             flavorDimensions.add(BuildDimensions.STORE)
 
             /**
              * Defines different **product flavors** for app distribution.
              * - `Google` → Google Play Store version.
              * - `Huawei` → Huawei AppGallery version.
-             * - `Client` → Client-side version of the app.
-             * - `Driver` → Driver-specific version of the app.
              */
             productFlavors {
                 BuildFlavor.Google.createLibrary(this)
                 BuildFlavor.Huawei.createLibrary(this)
-                BuildFlavor.Client.createLibrary(this)
-                BuildFlavor.Driver.createLibrary(this)
             }
 
             // ───────────────────────────────────────────────────────────────────────────────
@@ -173,7 +167,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
 //                    withSourcesJar()
 //                    //withJavadocJar()
 //                }
-                singleVariant("clientGoogleDebug") {
+                singleVariant("googleDebug") {
                     withSourcesJar()
                 }
             }
@@ -283,11 +277,11 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
         plugins.withId("maven-publish") {
             afterEvaluate {
                 // 👇 This will resolve *all* `com.samir.core:*` dependencies to this variant
-                forceSinglePublicationResolution("clientGoogleDebug")
+                forceSinglePublicationResolution("googleDebug")
 
                 extensions.findByType(PublishingExtension::class.java)?.apply {
                     publications {
-                        listOf("clientGoogleDebug").forEach { variant ->
+                        listOf("googleDebug").forEach { variant ->
                             create(variant, MavenPublication::class.java) {
                                 groupId = "com.samir.core"
                                 artifactId = project.path.replace(":", "-").removePrefix("-") + "-$variant"
@@ -355,9 +349,9 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
     }
 
     /**
-     *  ./gradlew :core:data:publishClientGoogleDebugPublicationToMavenLocal
-     *  ./gradlew :core:domain:publishClientGoogleDebugPublicationToMavenLocal
-     *  ./gradlew :core:ui:publishClientGoogleDebugPublicationToMavenLocal
-     *  ./gradlew :core:presentation:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:data:publishGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:domain:publishGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:ui:publishGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:presentation:publishGoogleDebugPublicationToMavenLocal
      */
 }

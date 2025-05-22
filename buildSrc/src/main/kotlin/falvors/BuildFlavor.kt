@@ -16,10 +16,10 @@ import org.gradle.api.NamedDomainObjectContainer
  * - This class supports both **app flavors** and **library module flavors**.
  *
  * **Why Use a `sealed class`?**
- * - Ensures that only predefined flavors (`Google`, `Huawei`, `Driver`, `Client`) exist.
+ * - Ensures that only predefined flavors (`Google`, `Huawei`) exist.
  * - Prevents unwanted or dynamic modifications to the flavor list.
  *
- * @param name The unique name of the flavor (e.g., `"google"`, `"huawei"`, `"driver"`, `"client"`).
+ * @param name The unique name of the flavor (e.g., `"google"`, `"huawei"`).
  */
 sealed class BuildFlavor(val name: String) {
 
@@ -93,58 +93,4 @@ sealed class BuildFlavor(val name: String) {
             }
         }
     }
-
-    // ───────────────────────────────────────────────────────────────────────────────
-    // Driver App Flavor
-    // ───────────────────────────────────────────────────────────────────────────────
-
-    /**
-     * `Driver` product flavor:
-     * - Used for a driver-specific version of the app.
-     * - Assigned to the `APP` flavor dimension.
-     * - Appends `.driver` to the `applicationId` and `-driver` to the version name.
-     */
-    object Driver : BuildFlavor(FlavorTypes.DRIVER){
-        override fun create(namedDomainObjectContainer: NamedDomainObjectContainer<ApplicationProductFlavor>): ApplicationProductFlavor {
-            return namedDomainObjectContainer.create(name){
-                dimension = BuildDimensions.APP // Assigned to the "app" dimension.
-                applicationIdSuffix = ".$name" // App ID becomes `com.example.app.driver`
-                versionNameSuffix = "-$name" // Version name becomes `1.0-driver`
-            }
-        }
-
-        override fun createLibrary(namedDomainObjectContainer: NamedDomainObjectContainer<LibraryProductFlavor>): LibraryProductFlavor {
-            return namedDomainObjectContainer.create(name){
-                dimension = BuildDimensions.APP
-            }
-        }
-    }
-
-    // ───────────────────────────────────────────────────────────────────────────────
-    // Client App Flavor
-    // ───────────────────────────────────────────────────────────────────────────────
-
-    /**
-     * `Client` product flavor:
-     * - Used for a client-specific version of the app.
-     * - Assigned to the `APP` flavor dimension.
-     * - Appends `.client` to the `applicationId` and `-client` to the version name.
-     */
-    object Client : BuildFlavor(FlavorTypes.CLIENT){
-        override fun create(namedDomainObjectContainer: NamedDomainObjectContainer<ApplicationProductFlavor>): ApplicationProductFlavor {
-            return namedDomainObjectContainer.create(name){
-                dimension = BuildDimensions.APP
-                applicationIdSuffix = ".$name" // App ID becomes `com.example.app.client`
-                versionNameSuffix = "-$name" // Version name becomes `1.0-client`
-            }
-        }
-
-        override fun createLibrary(namedDomainObjectContainer: NamedDomainObjectContainer<LibraryProductFlavor>): LibraryProductFlavor {
-            return namedDomainObjectContainer.create(name){
-                dimension = BuildDimensions.APP
-            }
-        }
-    }
-
-
 }

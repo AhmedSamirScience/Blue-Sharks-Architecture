@@ -8,14 +8,6 @@ package build
  * - These dimensions help structure multiple flavor configurations.
  */
 object BuildDimensions {
-
-    /**
-     * `APP` represents a **dimension** for application-based flavors.
-     * - This can be used when defining product flavors related to different **app types**.
-     * - Example: Flavors like `free` and `paid` could be part of this dimension.
-     */
-    const val APP = "app"
-
     /**
      * `STORE` represents a **dimension** for store-based flavors.
      * - This can be used when defining flavors based on **distribution platforms**.

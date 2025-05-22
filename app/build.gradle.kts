@@ -386,18 +386,14 @@ android {
   // ───────────────────────────────────────────────────────────────────────────────
   /**
    * Defines **flavor dimensions** to categorize product flavors.
-   * - `APP` → Groups app-based flavors (e.g., `Client`, `Driver`).
    * - `STORE` → Groups store-based flavors (e.g., `Google Play`, `Huawei Store`).
    */
-  flavorDimensions.add(BuildDimensions.APP)
   flavorDimensions.add(BuildDimensions.STORE)
   productFlavors {
     /**
      * Defines different **product flavors** to generate multiple APK variants.
      * - `Google` → Google Play Store distribution.
      * - `Huawei` → Huawei AppGallery distribution.
-     * - `Client` → Client-side version of the app.
-     * - `Driver` → Driver-side version of the app.
      *
      * **Why Use `BuildFlavor` Instead of Defining Flavors Manually?**
      * - Centralizes flavor logic for **easier maintenance**.
@@ -405,8 +401,6 @@ android {
      */
     BuildFlavor.Google.create(this)
     BuildFlavor.Huawei.create(this)
-    BuildFlavor.Client.create(this)
-    BuildFlavor.Driver.create(this)
   }
 
   // ───────────────────────────────────────────────────────────────────────────────

@@ -172,7 +172,7 @@ object BuildPlugins {
      * ### ⚠️ Requirements:
      * - Must be applied **alongside** the `com.android.library` plugin in Android modules.
      * - Requires a `PublishingExtension` configuration to define artifacts, groupId, artifactId, and version.
-     * - Should declare a `MavenPublication` per variant you want to publish (e.g., `clientGoogleDebug`).
+     * - Should declare a `MavenPublication` per variant you want to publish (e.g., `googleDebug`).
      *
      * ---
      * ### 📦 Example usage in `build.gradle.kts`:

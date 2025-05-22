@@ -45,7 +45,7 @@ allprojects {
     configurations.configureEach {
         resolutionStrategy.eachDependency {
             if (requested.group == "com.samir.core") {
-                val forcedVariant = "clientGoogleDebug"
+                val forcedVariant = "googleDebug"
                 val forced = "${requested.group}:${requested.name}-$forcedVariant:${requested.version}"
                 useTarget(forced)
             }
