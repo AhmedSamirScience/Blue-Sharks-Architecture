@@ -12,6 +12,7 @@ import com.android.build.api.dsl.LibraryExtension // Used to configure Android l
 import org.gradle.api.JavaVersion // Specifies Java version compatibility.
 import org.gradle.api.Plugin // Defines a Gradle plugin.
 import org.gradle.api.Project // Represents the Gradle project.
+import org.gradle.api.publish.PublishingExtension
 import org.gradle.kotlin.dsl.withType // Extension function for applying configurations to Gradle tasks.
 import sigining.BuildSigning // Handles signing configurations.
 import sigining.SigningTypes // Constants for different signing types.
@@ -172,6 +173,9 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
                     withSourcesJar()
                     //withJavadocJar()
                 }
+                singleVariant("clientGoogleDebug") {
+                    withSourcesJar()
+                }
             }
         }
     }
@@ -195,7 +199,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
     // ───────────────────────────────────────────────────────────────────────────────
     // ✅ AAR Publishing Configuration (Maven-compatible)
     // ───────────────────────────────────────────────────────────────────────────────
-    fun Project.configurePublishing() {
+    /*fun Project.configurePublishing() {
         plugins.withId("maven-publish") {
             afterEvaluate {
                 extensions.findByType(org.gradle.api.publish.PublishingExtension::class.java)
@@ -230,6 +234,53 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
                     }
             }
         }
+    }*/
+
+    fun Project.configurePublishing() {
+        plugins.withId("maven-publish") {
+            afterEvaluate {
+                extensions.findByType(PublishingExtension::class.java)?.apply {
+                    publications {
+
+                        listOf(
+                            "clientGoogleDebug",
+                            "clientGoogleRelease"
+                            // Add more here as needed
+                        ).forEach { variant ->
+                            create(variant, MavenPublication::class.java) {
+                                groupId = "com.samir.core"
+                                artifactId = "$name-$variant" // Ensures uniqueness
+                                version = "1.0.0"
+
+                                val component = components.findByName(variant)
+                                if (component != null) {
+                                    from(component)
+                                } else {
+                                    logger.warn("⚠️ '$variant' component not found in ${project.name}")
+                                }
+
+                                pom {
+                                    name.set("$name - $variant")
+                                    description.set("Published variant $variant of module $name")
+                                }
+                            }
+                        }
+                    }
+
+                    repositories {
+                        mavenLocal()
+                        // Optionally: external maven repo
+                        // maven {
+                        //     url = uri("${rootProject.buildDir}/local-maven")
+                        // }
+                    }
+                }
+            }
+        }
     }
 
+    /**
+     * ./gradlew publishClientGoogleDebugPublicationToMavenLocal
+     * ./gradlew publishClientGoogleReleasePublicationToMavenLocal
+     */
 }
