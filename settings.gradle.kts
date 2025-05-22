@@ -16,6 +16,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        mavenLocal() // 👈 Works automatically with ~/.m2/repository
+
+        // 👇 Add this block
+        maven {
+            url = uri("file://${rootDir}/build/local-maven")
+        }
     }
 }
 

@@ -99,25 +99,6 @@ plugins {
   id(plugs.BuildPlugins.UPDATE_DEPS_VERSIONS)
 
   /**
-   * 📌 Applying the Dokka Plugin - Kotlin Documentation Generator
-   * - This plugin integrates **Dokka** into the Gradle build system.
-   * - It enables automatic generation of API documentation from KDoc comments.
-   *
-   * 🔹 Why Apply the Dokka Plugin?
-   * - 📝 Automatically generates project documentation from KDoc.
-   * - 📄 Supports multiple output formats: HTML, Markdown, Javadoc, etc.
-   * - 🔄 Useful for sharing documentation with teams or publishing libraries.
-   * - ✅ Ensures up-to-date documentation with every build.
-   *
-   * 🛠️ Components:
-   * - **dokka-gradle-plugin** → Core plugin for generating documentation.
-   * - **kotlin-as-java-plugin** → Converts Kotlin documentation into a JavaDoc-like format.
-   *
-   * 🔗 Official Documentation: https://kotlinlang.org/docs/dokka-introduction.html
-   */
-  id(plugs.BuildPlugins.DOKKA)
-
-  /**
    * 📌 Applying the Safe Args Kotlin Plugin - Type-Safe Navigation in Jetpack
    * - This plugin integrates **Safe Args** into the Gradle build system.
    * - It enables the generation of **type-safe classes** for passing data between navigation destinations.

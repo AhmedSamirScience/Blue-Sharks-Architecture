@@ -135,11 +135,7 @@ object BuildPlugins {
      */
     const val UPDATE_DEPS_VERSIONS = "update-dependencies"
 
-    /**
-     * `DOKKA` - Applies the **Dokka Plugin** for generating Kotlin documentation.
-     * - Converts Kotlin comments into **HTML or Markdown documentation**.
-     */
-    const val DOKKA = "dokka-settings"
+
 
     /**
      * `SAFE_ARGS` - Applies the **Safe Args Kotlin Plugin** for Jetpack Navigation.
