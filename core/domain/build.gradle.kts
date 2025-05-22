@@ -20,6 +20,7 @@ plugins {
    *   ```
    */
   id(plugs.BuildPlugins.ANDROID_LIBRARY)
+  id("maven-publish")
 }
 
 /**

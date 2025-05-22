@@ -236,7 +236,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
         }
     }*/
 
-    fun Project.configurePublishing() {
+/*    fun Project.configurePublishing() {
         plugins.withId("maven-publish") {
             afterEvaluate {
                 extensions.findByType(PublishingExtension::class.java)?.apply {
@@ -249,7 +249,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
                         ).forEach { variant ->
                             create(variant, MavenPublication::class.java) {
                                 groupId = "com.samir.core"
-                                artifactId = "$name-$variant" // Ensures uniqueness
+                                artifactId = project.path.replace(":", "-").removePrefix("-") + "-$variant"
                                 version = "1.0.0"
 
                                 val component = components.findByName(variant)
@@ -277,10 +277,59 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
                 }
             }
         }
+    }*/
+
+    fun Project.configurePublishing() {
+        plugins.withId("maven-publish") {
+            afterEvaluate {
+                // 👇 This will resolve *all* `com.samir.core:*` dependencies to this variant
+                forceSinglePublicationResolution("clientGoogleDebug")
+
+                extensions.findByType(PublishingExtension::class.java)?.apply {
+                    publications {
+                        listOf("clientGoogleDebug", "clientGoogleRelease").forEach { variant ->
+                            create(variant, MavenPublication::class.java) {
+                                groupId = "com.samir.core"
+                                artifactId = project.path.replace(":", "-").removePrefix("-") + "-$variant"
+                                version = "1.0.0"
+
+                                components.findByName(variant)?.let { from(it) }
+
+                                pom {
+                                    name.set("$name - $variant")
+                                    description.set("Published variant $variant of module $name")
+                                }
+                            }
+                        }
+                    }
+
+                    repositories {
+                        mavenLocal()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun Project.forceSinglePublicationResolution(variant: String) {
+        configurations.all {
+            resolutionStrategy.eachDependency {
+                // 👇 This assumes your group ID is always `com.samir.core`
+                if (requested.group == "com.samir.core") {
+                    val forcedTarget = "${requested.group}:${requested.name}-$variant:${requested.version}"
+                    useTarget(forcedTarget)
+                }
+            }
+        }
     }
 
     /**
-     * ./gradlew publishClientGoogleDebugPublicationToMavenLocal
-     * ./gradlew publishClientGoogleReleasePublicationToMavenLocal
+     *  ./gradlew :core:data:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:data:publishClientGoogleReleasePublicationToMavenLocal
+     *
+     *  ./gradlew :core:domain:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:ui:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:data:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:presentation:publishClientGoogleDebugPublicationToMavenLocal
      */
 }
