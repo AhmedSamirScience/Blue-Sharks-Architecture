@@ -6,11 +6,13 @@ package plugs
 // ───────────────────────────────────────────────────────────────────────────────
 import build.BuildConfig // Importing project-wide configuration values (e.g., compileSdk, minSdk).
 import build.BuildCreator // Manages the creation of build types.
+import org.gradle.api.publish.maven.MavenPublication
 import build.BuildDimensions // Defines flavor dimensions.
 import com.android.build.api.dsl.LibraryExtension // Used to configure Android library modules.
 import org.gradle.api.JavaVersion // Specifies Java version compatibility.
 import org.gradle.api.Plugin // Defines a Gradle plugin.
 import org.gradle.api.Project // Represents the Gradle project.
+import org.gradle.api.publish.PublishingExtension
 import org.gradle.kotlin.dsl.withType // Extension function for applying configurations to Gradle tasks.
 import sigining.BuildSigning // Handles signing configurations.
 import sigining.SigningTypes // Constants for different signing types.
@@ -31,6 +33,8 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
         project.addPluginConfigurations()
         project.addAndroidConfigurations()
         project.applyKotlinOptions()
+        project.configurePublishingDebug()
+        //project.configurePublishingRelease()
     }
 
     // ───────────────────────────────────────────────────────────────────────────────
@@ -46,7 +50,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
      *   - **Spotless** → Automatic code formatting.
      *   - **Detekt** → Static analysis for detecting code smells.
      *   - **Update Dependencies Plugin** → Ensures all dependencies are up to date.
-     *   - **Dokka** → Generates documentation from Kotlin comments.
+
      */
     private fun Project.addPluginConfigurations() {
         plugins.apply(BuildPlugins.KOTLIN_ANDROID)
@@ -55,7 +59,6 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
         plugins.apply(BuildPlugins.SPOTLESS)
         plugins.apply(BuildPlugins.DETEKT)
         plugins.apply(BuildPlugins.UPDATE_DEPS_VERSIONS)
-        plugins.apply(BuildPlugins.DOKKA)
     }
 
     // ───────────────────────────────────────────────────────────────────────────────
@@ -164,6 +167,16 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
                 sourceCompatibility = JavaVersion.VERSION_17
                 targetCompatibility = JavaVersion.VERSION_17
             }
+            // ✅ This is what registers the 'release' SoftwareComponent for Maven publishing
+            publishing {
+//                singleVariant("clientGoogleRelease") {
+//                    withSourcesJar()
+//                    //withJavadocJar()
+//                }
+                singleVariant("clientGoogleDebug") {
+                    withSourcesJar()
+                }
+            }
         }
     }
 
@@ -182,4 +195,169 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
             }
         }
     }
+
+    // ───────────────────────────────────────────────────────────────────────────────
+    // ✅ AAR Publishing Configuration (Maven-compatible)
+    // ───────────────────────────────────────────────────────────────────────────────
+    /*fun Project.configurePublishing() {
+        plugins.withId("maven-publish") {
+            afterEvaluate {
+                extensions.findByType(org.gradle.api.publish.PublishingExtension::class.java)
+                    ?.apply {
+                        publications {
+                            create("release", MavenPublication::class.java) {
+                                groupId = "com.samir.core"
+                                artifactId = project.name
+                                version = "1.0.0"
+
+                                val releaseComponent = components.findByName("clientGoogleRelease")
+                                if (releaseComponent != null) {
+                                    from(releaseComponent)
+                                } else {
+                                    logger.warn("⚠️ Cannot publish '${project.name}': no 'release' component registered.")
+                                }
+
+                                pom {
+                                    name.set("${project.name.capitalize()} Module")
+                                    description.set("Auto-published Android library module '${project.name}'")
+                                }
+                            }
+                        }
+
+                        repositories {
+                            mavenLocal()
+                            // Optionally: publish to local dir for team/internal use
+                            // maven {
+                            //     url = uri("${rootProject.buildDir}/local-maven")
+                            // }
+                        }
+                    }
+            }
+        }
+    }*/
+
+    /*    fun Project.configurePublishing() {
+            plugins.withId("maven-publish") {
+                afterEvaluate {
+                    extensions.findByType(PublishingExtension::class.java)?.apply {
+                        publications {
+
+                            listOf(
+                                "clientGoogleDebug",
+                                "clientGoogleRelease"
+                                // Add more here as needed
+                            ).forEach { variant ->
+                                create(variant, MavenPublication::class.java) {
+                                    groupId = "com.samir.core"
+                                    artifactId = project.path.replace(":", "-").removePrefix("-") + "-$variant"
+                                    version = "1.0.0"
+
+                                    val component = components.findByName(variant)
+                                    if (component != null) {
+                                        from(component)
+                                    } else {
+                                        logger.warn("⚠️ '$variant' component not found in ${project.name}")
+                                    }
+
+                                    pom {
+                                        name.set("$name - $variant")
+                                        description.set("Published variant $variant of module $name")
+                                    }
+                                }
+                            }
+                        }
+
+                        repositories {
+                            mavenLocal()
+                            // Optionally: external maven repo
+                            // maven {
+                            //     url = uri("${rootProject.buildDir}/local-maven")
+                            // }
+                        }
+                    }
+                }
+            }
+        }*/
+
+    fun Project.configurePublishingDebug() {
+        plugins.withId("maven-publish") {
+            afterEvaluate {
+                // 👇 This will resolve *all* `com.samir.core:*` dependencies to this variant
+                forceSinglePublicationResolution("clientGoogleDebug")
+
+                extensions.findByType(PublishingExtension::class.java)?.apply {
+                    publications {
+                        listOf("clientGoogleDebug").forEach { variant ->
+                            create(variant, MavenPublication::class.java) {
+                                groupId = "com.samir.core"
+                                artifactId = project.path.replace(":", "-").removePrefix("-") + "-$variant"
+                                version = "1.0.0"
+
+                                components.findByName(variant)?.let { from(it) }
+
+                                pom {
+                                    name.set("$name - $variant")
+                                    description.set("Published variant $variant of module $name")
+                                }
+                            }
+                        }
+                    }
+
+                    repositories {
+                        mavenLocal()
+                    }
+                }
+            }
+        }
+    }
+    fun Project.configurePublishingRelease() {
+        plugins.withId("maven-publish") {
+            afterEvaluate {
+                // 👇 This will resolve *all* `com.samir.core:*` dependencies to this variant
+                forceSinglePublicationResolution("clientGoogleRelease")
+
+                extensions.findByType(PublishingExtension::class.java)?.apply {
+                    publications {
+                        listOf("clientGoogleRelease").forEach { variant ->
+                            create(variant, MavenPublication::class.java) {
+                                groupId = "com.samir.core"
+                                artifactId = project.path.replace(":", "-").removePrefix("-") + "-$variant"
+                                version = "1.0.0"
+
+                                components.findByName(variant)?.let { from(it) }
+
+                                pom {
+                                    name.set("$name - $variant")
+                                    description.set("Published variant $variant of module $name")
+                                }
+                            }
+                        }
+                    }
+
+                    repositories {
+                        mavenLocal()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun Project.forceSinglePublicationResolution(variant: String) {
+        configurations.all {
+            resolutionStrategy.eachDependency {
+                // 👇 This assumes your group ID is always `com.samir.core`
+                if (requested.group == "com.samir.core") {
+                    val forcedTarget = "${requested.group}:${requested.name}-$variant:${requested.version}"
+                    useTarget(forcedTarget)
+                }
+            }
+        }
+    }
+
+    /**
+     *  ./gradlew :core:data:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:domain:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:ui:publishClientGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:presentation:publishClientGoogleDebugPublicationToMavenLocal
+     */
 }

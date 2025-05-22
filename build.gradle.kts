@@ -37,3 +37,18 @@ plugins {
      */
     //id(ProjectPlugins.KOTLIN_ANDROID) version ProjectPlugins.KOTLIN_ANDROID_PLUGIN_VERSION_NUMBER apply false
 }
+
+// ───────────────────────────────────────────────────────────────────────────────
+// Global publication resolution override — avoids conflict with multi-variant modules
+// ───────────────────────────────────────────────────────────────────────────────
+allprojects {
+    configurations.configureEach {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "com.samir.core") {
+                val forcedVariant = "clientGoogleDebug"
+                val forced = "${requested.group}:${requested.name}-$forcedVariant:${requested.version}"
+                useTarget(forced)
+            }
+        }
+    }
+}

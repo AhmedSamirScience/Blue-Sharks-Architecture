@@ -21,6 +21,8 @@ plugins {
    *   ```
    */
   id(plugs.BuildPlugins.ANDROID_LIBRARY)
+
+  id(plugs.BuildPlugins.MAVEN_PUBLISH)
 }
 
 /**

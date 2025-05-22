@@ -30,6 +30,7 @@ plugins {
   // other plugins - order is important
   id(plugs.BuildPlugins.KAPT)
   id(plugs.BuildPlugins.DAGGER_HILT) version plugs.BuildPlugins.DAGGER_HILT_VERSION_NUMBER
+  id(plugs.BuildPlugins.MAVEN_PUBLISH)
 }
 
 /**

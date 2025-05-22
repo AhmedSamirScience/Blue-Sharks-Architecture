@@ -136,12 +136,6 @@ object BuildPlugins {
     const val UPDATE_DEPS_VERSIONS = "update-dependencies"
 
     /**
-     * `DOKKA` - Applies the **Dokka Plugin** for generating Kotlin documentation.
-     * - Converts Kotlin comments into **HTML or Markdown documentation**.
-     */
-    const val DOKKA = "dokka-settings"
-
-    /**
      * `SAFE_ARGS` - Applies the **Safe Args Kotlin Plugin** for Jetpack Navigation.
      * - Generates **type-safe classes** for navigating and passing arguments between destinations.
      * - Reduces the risk of runtime errors due to incorrect argument types or missing data.
@@ -158,4 +152,51 @@ object BuildPlugins {
      *   ```
      */
     const val SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
+
+
+    /**
+     * `MAVEN_PUBLISH` - Applies the **Maven Publish Plugin** to the module.
+     *
+     * - Enables publishing of the module as a **Maven-compatible artifact** (e.g., AAR or JAR).
+     * - Commonly used to publish Android library modules to:
+     *   - **Local Maven repository** (`mavenLocal()`)
+     *   - **Remote Maven repositories** (e.g., GitHub Packages, JitPack, Nexus, JFrog Artifactory)
+     *
+     * ---
+     * ### ✅ Key Features:
+     * - Supports publishing different **build variants** (e.g., `debug`, `release`, or flavored variants).
+     * - Allows inclusion of **source JARs**, **JavaDocs**, and **custom POM metadata**.
+     * - Plays well with `singleVariant(...)` and variant-aware publishing for Android libraries.
+     *
+     * ---
+     * ### ⚠️ Requirements:
+     * - Must be applied **alongside** the `com.android.library` plugin in Android modules.
+     * - Requires a `PublishingExtension` configuration to define artifacts, groupId, artifactId, and version.
+     * - Should declare a `MavenPublication` per variant you want to publish (e.g., `clientGoogleDebug`).
+     *
+     * ---
+     * ### 📦 Example usage in `build.gradle.kts`:
+     * ```kotlin
+     * plugins {
+     *     id("com.android.library")
+     *     id(BuildPlugins.MAVEN_PUBLISH)
+     * }
+     *
+     * apply<SharedLibraryGradlePlugin>() // Custom plugin that registers variant(s) for publishing
+     * ```
+     *
+     * ---
+     * ### 🛠️ Example Publishing Task:
+     * ```bash
+     * ./gradlew :core:data:publishClientGoogleDebugPublicationToMavenLocal
+     * ```
+     *
+     * ---
+     * ### 💡 Tip:
+     * - To resolve internal project dependencies cleanly during publishing, use:
+     *   ```kotlin
+     *   implementation(project(mapOf("path" to ":core:domain", "configuration" to "clientGoogleDebugRuntimeElements")))
+     *   ```
+     */
+    const val MAVEN_PUBLISH = "maven-publish"
 }
