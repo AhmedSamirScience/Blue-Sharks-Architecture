@@ -122,3 +122,43 @@
 #   and applying this rule only in non-release variants.
 -keep public class com.samir.bluearchitecture.presentation.activity.ActivityLifecycleLogger { *; }
 ####################################################################################################
+
+#
+## ✅ Preserve all classes in fragment package, including inner and anonymous classes
+#-keep class com.samir.bluearchitecture.presentation.fragment.** { *; }
+#
+## ✅ Preserve all ViewModels (especially if some are only used reflectively)
+#-keep class com.samir.bluearchitecture.presentation.viewModel.** { *; }
+#
+## ✅ Preserve all Activities (some might be used by navigation)
+#-keep class com.samir.bluearchitecture.presentation.activity.** { *; }
+#
+## ✅ Keep Kotlin metadata so type signatures remain resolvable
+#-keep class kotlin.Metadata { *; }
+#
+## ✅ Preserve synthetic classes (like lambdas, generated Kotlin closures)
+#-keepclassmembers class * {
+#    *** lambda*(...);
+#}
+#-keepclassmembers class * {
+#    *** anonfun*(...);
+#}
+#
+## ✅ Prevent obfuscation of parameter names (especially important for Kotlin)
+#-keepattributes *Annotation*, InnerClasses, Signature, EnclosingMethod, LocalVariableTable, LocalVariableTypeTable, LineNumberTable
+#
+## ✅ Optional: Keep public API interfaces used by consumers of your AAR
+#-keep public class com.samir.bluearchitecture.** { public *; }
+#
+#
+## 🔐 Retain all fragments and their inner classes (including lambdas like $1 or $a)
+#-keep class com.samir.bluearchitecture.presentation.fragment.** { *; }
+#-keep class com.samir.bluearchitecture.presentation.fragment.*$* { *; }
+
+# Keep all fragments and their inner classes
+-keep class com.samir.bluearchitecture.presentation.fragment.** { *; }
+-keep class com.samir.bluearchitecture.presentation.fragment.**$* { *; }
+
+# Keep Kotlin metadata and reflection info
+-keep class kotlin.Metadata { *; }
+-keepattributes *Annotation*, InnerClasses, EnclosingMethod, Signature, LocalVariableTable, LocalVariableTypeTable, LineNumberTable
