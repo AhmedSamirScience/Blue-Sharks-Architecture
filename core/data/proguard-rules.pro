@@ -9,3 +9,17 @@
 -keepnames class com.samir.bluearchitecture.data.main.**
 
 -keep class android.util.Log.** { *; }
+
+
+
+-keep class com.samir.bluearchitecture.data.** { @dagger.* *; }
+-keep @dagger.hilt.InstallIn class * { *; }
+
+# Keep Hilt Modules
+-keep class com.samir.bluearchitecture.data.**Module { *; }
+
+# Keep classes used in @Provides
+-keep class com.samir.bluearchitecture.data.** { @dagger.Provides *; }
+
+# Keep @Inject constructors
+-keep class com.samir.bluearchitecture.data.** { <init>(...); }
