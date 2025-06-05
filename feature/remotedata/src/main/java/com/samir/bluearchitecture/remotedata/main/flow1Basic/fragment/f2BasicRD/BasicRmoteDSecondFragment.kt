@@ -9,7 +9,7 @@ import com.samir.bluearchitecture.presentation.fragment.BaseFragment
 import com.samir.bluearchitecture.remotedata.R
 import com.samir.bluearchitecture.remotedata.databinding.FragmentBasicRmoteDSecondBinding
 import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject.firstScreen.LoginRq
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

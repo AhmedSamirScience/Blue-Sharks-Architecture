@@ -7,7 +7,7 @@ import dependencies.domainModule
 import dependencies.networking
 import dependencies.preferenceDataStore
 import dependencies.roomDatabase
-import dependencies.uiModule
+import dependencies.utilitiesModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
 // ───────────────────────────────────────────────────────────────────────────────
@@ -146,7 +146,7 @@ dependencies {
   networking()
 
   domainModule()
-  uiModule()
+  utilitiesModule()
 
   roomDatabase()
 

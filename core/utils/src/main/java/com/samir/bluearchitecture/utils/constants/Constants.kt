@@ -1,4 +1,4 @@
-package com.samir.bluearchitecture.ui.constants
+package com.samir.bluearchitecture.utils.constants
 
 /**
  * Object containing constant values used throughout the application.

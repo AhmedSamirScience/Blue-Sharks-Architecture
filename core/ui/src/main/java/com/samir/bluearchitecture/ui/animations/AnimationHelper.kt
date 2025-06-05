@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.samir.bluearchitecture.ui.constants.Constants
+import com.samir.bluearchitecture.utils.constants.Constants
 
 /**
  * Helper class for managing view animations.

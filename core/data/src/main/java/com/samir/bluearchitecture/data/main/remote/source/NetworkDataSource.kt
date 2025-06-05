@@ -21,7 +21,7 @@ import com.samir.bluearchitecture.data.main.remote.source.DataSource.Companion.U
 import com.samir.bluearchitecture.data.main.remote.source.DataSource.Companion.UNKNOWN
 import com.samir.bluearchitecture.data.main.remote.source.DataSource.Companion.UNPROCESSABLE_ENTITY
 import com.samir.bluearchitecture.domain.main.result.OutCome
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import kotlinx.coroutines.isActive
 import okhttp3.Headers
 import retrofit2.Response

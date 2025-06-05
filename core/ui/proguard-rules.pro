@@ -9,12 +9,12 @@
 #     • Classes are preserved (not removed or obfuscated).
 #     • All methods and fields inside these classes are kept as-is.
 #     • Useful for logging utilities that may use reflection or need readable names at runtime.
--keep class com.samir.bluearchitecture.ui.utils.logging.** {
-    *;
-}
+#-keep class com.samir.bluearchitecture.ui.utils.logging.** {
+#    *;
+#}
 
 -keep class com.samir.bluearchitecture.ui.animations.AnimationHelper { *; }
 -keep class com.samir.bluearchitecture.ui.components.SpinnerAdapter { *; }
 -keep class com.samir.bluearchitecture.ui.helpers.** { *; }
 -keep class com.samir.bluearchitecture.ui.keyboard.SoftKeyBoardUtils { *; }
--keep class com.samir.bluearchitecture.ui.utils.threading.DelayedActionHandler { *; }
+#-keep class com.samir.bluearchitecture.utils.threading.DelayedActionHandler { *; }

@@ -353,6 +353,7 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
      *  ./gradlew :core:domain:publishGoogleDebugPublicationToMavenLocal
      *  ./gradlew :core:ui:publishGoogleDebugPublicationToMavenLocal
      *  ./gradlew :core:presentation:publishGoogleDebugPublicationToMavenLocal
+     *  ./gradlew :core:utils:publishGoogleDebugPublicationToMavenLocal
      */
 
     /**
@@ -361,5 +362,41 @@ class SharedLibraryGradlePlugin : Plugin<Project> {
      *  ./gradlew :core:domain:publishGoogleReleasePublicationToMavenLocal
      *  ./gradlew :core:ui:publishGoogleReleasePublicationToMavenLocal
      *  ./gradlew :core:presentation:publishGoogleReleasePublicationToMavenLocal
+     *  ./gradlew :core:utils:publishGoogleReleasePublicationToMavenLocal
+     */
+
+    /**
+     * steps to generate the lib in debug and do the release with the releases function you will found it in this file (Class)
+     *
+     * STEP 1:
+     *         project.configurePublishingDebug()
+     *
+     * STEP 2:
+     *         singleVariant("googleDebug") {
+     *                     withSourcesJar()
+     *                 }
+     *
+     */
+
+    /**
+     * C:\
+     * └── Users\
+     *     └── ahmed.elbakry\
+     *         └── .m2\
+     *             └── repository\
+     *                 └── com\
+     *                     └── samir\
+     *                         └── core\
+     *                             └── data\
+     *                                 └── 1.0.0\
+     *                                     ├── data-1.0.0.aar
+     *                                     ├── data-1.0.0.pom
+     *                                     ├── data-1.0.0.module
+     *                                     ├── data-1.0.0.aar.sha1
+     *                                     ├── data-1.0.0.pom.sha1
+     *                                     ├── data-1.0.0.aar.md5
+     *                                     ├── data-1.0.0.pom.md5
+     *                                     └── _maven.repositories
+     *
      */
 }

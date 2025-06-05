@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────────────────
 import dependencies.defaultLibraries // Imports a function to add default dependencies.
 import dependencies.navigationComponent
-import dependencies.uiModuleApi
+import dependencies.utilitiesModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
 // ───────────────────────────────────────────────────────────────────────────────
@@ -120,10 +120,5 @@ dependencies {
    */
   navigationComponent()
 
-  /**
-   * I used an API dependency instead of implementation because I didn't want every module to depend directly on the UI module.
-   * Instead, I added the presentation module to the Gradle file, and since the presentation module already depends on the UI module, there's no need to include the UI module separately.
-   * Including only the presentation module is sufficient
-   */
-  uiModuleApi()
+  utilitiesModule()
 }

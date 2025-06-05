@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.samir.bluearchitecture.presentation.viewModel.BaseViewModel
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 
 /**
  * Base class for all fragments in the application.

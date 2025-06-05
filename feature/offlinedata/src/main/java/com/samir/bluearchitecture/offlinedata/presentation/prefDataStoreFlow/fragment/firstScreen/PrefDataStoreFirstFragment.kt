@@ -12,7 +12,7 @@ import com.samir.bluearchitecture.offlinedata.databinding.FragmentPrefDataStoreF
 import com.samir.bluearchitecture.offlinedata.domain.model.ServerTime
 import com.samir.bluearchitecture.presentation.fragment.BaseFragment
 import com.samir.bluearchitecture.ui.helpers.input.TextInputEditTextUtils
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

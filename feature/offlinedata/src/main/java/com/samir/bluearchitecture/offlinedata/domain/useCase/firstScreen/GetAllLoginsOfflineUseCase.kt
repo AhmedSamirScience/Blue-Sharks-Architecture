@@ -8,7 +8,7 @@ import com.samir.bluearchitecture.domain.main.usecase.AsyncUseCase
 import com.samir.bluearchitecture.offlinedata.R
 import com.samir.bluearchitecture.offlinedata.data.dataSource.model.LoginEntity
 import com.samir.bluearchitecture.offlinedata.domain.repository.AuthRepository
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import javax.inject.Inject
 
 class GetAllLoginsOfflineUseCase @Inject constructor(

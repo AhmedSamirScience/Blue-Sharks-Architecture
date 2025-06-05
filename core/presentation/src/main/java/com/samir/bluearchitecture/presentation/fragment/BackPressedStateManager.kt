@@ -3,7 +3,7 @@ package com.samir.bluearchitecture.presentation.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 
 /**
  * Abstract class to handle back pressed events in fragments.

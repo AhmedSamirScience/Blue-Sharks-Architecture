@@ -13,7 +13,7 @@ import com.samir.bluearchitecture.offlinedata.databinding.FragmentRoomDBSecondBi
 import com.samir.bluearchitecture.offlinedata.presentation.roomDataBaseFlow.fragment.f2MainRDFlow.adapter.LoginListAdapter
 import com.samir.bluearchitecture.offlinedata.presentation.roomDataBaseFlow.fragment.f2MainRDFlow.clickEvent.LoginListClickListener
 import com.samir.bluearchitecture.presentation.fragment.BaseFragment
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 @AndroidEntryPoint

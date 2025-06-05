@@ -12,7 +12,7 @@ import androidx.work.WorkerParameters
 import com.samir.bluearchitecture.domain.main.result.OutCome
 import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject.firstScreen.LoginRq
 import com.samir.bluearchitecture.remotedata.main.domain.useCase.LoginUseCase
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.concurrent.TimeUnit

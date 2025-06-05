@@ -17,8 +17,11 @@ import org.gradle.kotlin.dsl.project
     fun DependencyHandler.presentationModule() {
         moduleImplementation(project(":core:presentation"))
     }
-        fun DependencyHandler.uiModule() {
+    fun DependencyHandler.uiModule() {
         moduleImplementation(project(":core:ui"))
+    }
+    fun DependencyHandler.utilitiesModule() {
+        moduleImplementation(project(":core:utils"))
     }
     fun DependencyHandler.uiModuleApi() {
         moduleApi(project(":core:ui"))

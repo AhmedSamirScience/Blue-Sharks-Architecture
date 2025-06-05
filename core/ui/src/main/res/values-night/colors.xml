@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+      values/colors.xml
+
+      (naming convention URLs)->
+                               1- https://github.com/TreyCai/AndroidNamingConvention
+
+      <color name="<THEME_NAME>_<COLOR_NAME>"><COLOR_VALUE></color>
+      For example:
+          <color name=”holo_blue_dark”>#ff0099cc</color>
+          <color name=”material_blue_500”>#5677fc</color>
+
+      If the color is not in the theme:
+          <color name="<COLOR_NAME>"><COLOR_VALUE></color>
+
+      You can find a list of colors in the following link (Real Examples):
+-->
+<resources>
+    <!-- Base Colors -->
+    <color name="color_black">#FF000000</color>
+    <color name="color_white">#FFFFFFFF</color>
+    <color name="color_red">#FFFF0000</color>
+    <color name="color_green">#FF00FF00</color>
+    <color name="color_blue">#FF0000FF</color>
+
+    <!-- Black Shades -->
+    <color
+        name="color_black_light"
+    >#BF000000</color>         <!-- 75% opacity -->
+    <color
+        name="color_black_light_extra"
+    >#66000000</color>   <!-- 40% opacity -->
+
+    <!-- White Shades -->
+    <color
+        name="color_white_dark"
+    >#FFEDEDED</color>          <!-- Slightly dark white -->
+
+    <!-- Gray Shades -->
+    <color
+        name="color_gray_dark"
+    >#BFACACAC</color>           <!-- Medium-dark gray -->
+    <color
+        name="color_gray_light"
+    >#BFBFBFBF</color>          <!-- Light gray -->
+    <color
+        name="color_gray_light_opacity_20"
+    >#33BFBFBF</color> <!-- 20% opacity -->
+    <color
+        name="color_gray_medium_light"
+    >#80DFDEDE</color>   <!-- Medium light gray -->
+    <color
+        name="color_gray_extra_light"
+    >#80EAEAEA</color>    <!-- Extra light gray -->
+
+    <!-- Green Shades -->
+    <color name="color_green_dark">#FF077307</color>
+
+    <!-- UI States -->
+    <color name="color_item_default">#FFFFFFFF</color>
+    <color name="color_item_selected">#FFFF0000</color>
+
+
+    <color name="black">#FF000000</color>
+    <color name="black_light">#BF000000</color>
+    <color name="black_light_extra">#66000000</color>
+
+    <color name="gray_light">#BFBFBFBF</color>
+    <color name="gray_light_opacity_20">#33BFBFBF</color>
+    <color name="gray_dark">#BFACACAC</color>
+    <color name="gray_extra_light">#80EAEAEA</color>
+    <color name="gray_medium_light">#80DFDEDE</color>
+
+    <color name="green">#FF00FF00</color>
+    <color name="green_dark">#077307</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_dark">#EDEDED</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FF3D00</color>
+    <color name="blue_light">#8BCCFF</color>
+
+    <color name="default_item_color">#FFFFFF</color> <!-- Default color -->
+    <color name="selected_item_color">#FF0000</color> <!-- Selected color -->
+</resources>

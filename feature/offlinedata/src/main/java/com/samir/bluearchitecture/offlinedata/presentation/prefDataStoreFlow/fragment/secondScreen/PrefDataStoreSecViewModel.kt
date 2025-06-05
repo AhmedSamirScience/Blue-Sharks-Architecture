@@ -7,7 +7,7 @@ import com.samir.bluearchitecture.offlinedata.domain.model.ServerTime
 import com.samir.bluearchitecture.offlinedata.domain.useCase.firstScreen.GetServerTimeUseCase
 import com.samir.bluearchitecture.offlinedata.domain.useCase.firstScreen.GetUserIdUseCase
 import com.samir.bluearchitecture.presentation.viewModel.BaseViewModel
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

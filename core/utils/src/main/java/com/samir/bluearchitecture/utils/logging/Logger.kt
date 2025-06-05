@@ -1,4 +1,4 @@
-package com.samir.bluearchitecture.ui.utils.logging
+package com.samir.bluearchitecture.utils.logging
 
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity

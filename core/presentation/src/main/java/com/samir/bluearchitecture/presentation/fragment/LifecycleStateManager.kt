@@ -1,6 +1,6 @@
 package com.samir.bluearchitecture.presentation.fragment
 
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 
 /**
  * Abstract class to handle fragment lifecycle methods.

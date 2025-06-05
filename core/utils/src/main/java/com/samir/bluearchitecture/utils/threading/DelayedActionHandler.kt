@@ -1,9 +1,9 @@
-package com.samir.bluearchitecture.ui.utils.threading
+package com.samir.bluearchitecture.utils.threading
 
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.samir.bluearchitecture.ui.constants.Constants
+import com.samir.bluearchitecture.utils.constants.Constants
 
 /**
  * Helper class for performing delayed actions on the main thread.

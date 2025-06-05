@@ -9,7 +9,7 @@ import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject
 import com.samir.bluearchitecture.remotedata.main.domain.model.Login
 import com.samir.bluearchitecture.remotedata.main.domain.useCase.LoginUseCase
 import com.samir.bluearchitecture.remotedata.main.domain.useCase.LoginVersionTwoUseCase
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow

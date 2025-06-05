@@ -4,6 +4,7 @@
 import dependencies.defaultLibraries // Imports a function to add default dependencies.
 import dependencies.navigationComponent
 import dependencies.presentationModule
+import dependencies.uiModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
 // ───────────────────────────────────────────────────────────────────────────────
@@ -92,4 +93,5 @@ dependencies {
   navigationComponent()
 
   presentationModule()
+  uiModule()
 }

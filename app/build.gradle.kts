@@ -12,6 +12,7 @@ import dependencies.networking
 import dependencies.offlineDataModule
 import dependencies.presentationModule
 import dependencies.remoteDataModule
+import dependencies.utilitiesModule
 import dependencies.viewModelCasesModule
 import dependencies.workerManager
 
@@ -623,4 +624,5 @@ dependencies {
   dependencies.coroutines()
   dependencies.networking()
   dependencies.workerManager()
+  dependencies.utilitiesModule()
 }

@@ -10,7 +10,7 @@ import com.samir.bluearchitecture.remotedata.R
 import com.samir.bluearchitecture.remotedata.main.data.remote.dataTransferObject.firstScreen.LoginRq
 import com.samir.bluearchitecture.remotedata.main.domain.model.Login
 import com.samir.bluearchitecture.remotedata.main.domain.repository.AuthRepository
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import javax.inject.Inject
 @Keep
 class LoginUseCase @Inject constructor(

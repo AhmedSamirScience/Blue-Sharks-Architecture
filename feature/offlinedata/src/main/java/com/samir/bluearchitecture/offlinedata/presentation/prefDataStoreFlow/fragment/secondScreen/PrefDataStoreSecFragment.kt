@@ -8,7 +8,7 @@ import com.samir.bluearchitecture.data.main.remote.uiState.LiveDataResource
 import com.samir.bluearchitecture.offlinedata.R
 import com.samir.bluearchitecture.offlinedata.databinding.FragmentPrefDataStoreSecBinding
 import com.samir.bluearchitecture.presentation.fragment.BaseFragment
-import com.samir.bluearchitecture.ui.utils.logging.Logger
+import com.samir.bluearchitecture.utils.logging.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

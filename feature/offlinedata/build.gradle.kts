@@ -11,6 +11,8 @@ import dependencies.navigationComponent
 import dependencies.networking
 import dependencies.presentationModule
 import dependencies.roomDatabase
+import dependencies.uiModule
+import dependencies.utilitiesModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
 // ───────────────────────────────────────────────────────────────────────────────
@@ -151,4 +153,6 @@ dependencies {
 
   gifMedia()
   roomDatabase()
+  utilitiesModule()
+  uiModule()
 }

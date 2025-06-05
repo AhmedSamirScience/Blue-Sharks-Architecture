@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────────────────
 import dependencies.applyScalableDimensions
 import dependencies.defaultLibraries // Imports a function to add default dependencies.
+import dependencies.utilitiesModule
 import plugs.SharedLibraryGradlePlugin // Imports a custom Gradle plugin for library configuration.
 
 // ───────────────────────────────────────────────────────────────────────────────
@@ -125,4 +126,6 @@ dependencies {
    * ```
    */
   applyScalableDimensions()
+
+  utilitiesModule()
 }
